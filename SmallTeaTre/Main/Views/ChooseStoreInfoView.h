@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void (^ChStoInfoBack)(NSString *store,BOOL isSel);
+typedef void (^ChStoInfoBack)(NSDictionary *store,BOOL isSel);
 @interface ChooseStoreInfoView : UIView
 + (ChooseStoreInfoView *)createLoginView;
 @property (nonatomic, copy)ChStoInfoBack storeBack;

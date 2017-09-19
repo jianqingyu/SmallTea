@@ -11,6 +11,6 @@
 @interface NewUIAlertTool : NSObject
 + (void)creatActionSheetPhoto:(void (^)(void))PhotoBlock
                     andCamera:(void (^)(void))CameraBlock
-                       andCon:(id)con andView:(UIView *)view;
-+ (void)show:(NSDictionary *)dic with:(id)con back:(void (^)(void))okBlock;
+                      andView:(UIView *)view;
++ (void)show:(NSDictionary *)dic back:(void (^)(void))okBlock;
 @end

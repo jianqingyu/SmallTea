@@ -11,4 +11,5 @@
 @interface HomePageHeadView : UIView
 + (HomePageHeadView *)createHeadView;
 @property (nonatomic, copy)NSArray *infoArr;
+@property (nonatomic, copy)NSDictionary *messDic;
 @end

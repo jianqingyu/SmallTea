@@ -177,7 +177,7 @@ NSString * const kCellIdentifier = @"ReuseCellIdentifier";
   if (self.alignment == kPageControlAlignCenter) {
     self.pageControl.originX = (self.width - self.pageControl.width) / 2.0;
   } else if (self.alignment == kPageControlAlignRight) {
-    self.pageControl.rightX = self.width - 10;
+    self.pageControl.rightX = self.width - 30;
   }
   self.pageControl.originY = self.height - self.pageControl.height + 5;
 }

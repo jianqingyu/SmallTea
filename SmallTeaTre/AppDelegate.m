@@ -43,14 +43,16 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     NSDictionary *attbutes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     [[UINavigationBar appearance]setTitleTextAttributes:attbutes];
+    
+    [self setShareSDK];
     return YES;
 }
 
 - (void)setShareSDK{
-    [ShareSDK registerApp:@"1e74aa44eb1e0"
+    [ShareSDK registerApp:@"20f981628abd0"
           activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),
                             @(SSDKPlatformTypeWechat),
-                            @(SSDKPlatformTypeQQ),]
+                            @(SSDKPlatformTypeQQ)]
                  onImport:^(SSDKPlatformType platformType)
      {
          switch (platformType)
@@ -74,8 +76,8 @@
          {
              case SSDKPlatformTypeSinaWeibo:
                  //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                 [appInfo SSDKSetupSinaWeiboByAppKey:@"2196544773"
-                                           appSecret:@"1123259b9fb76e7ad9daeb05b53c07bc"
+                 [appInfo SSDKSetupSinaWeiboByAppKey:@"3530641408"
+                                           appSecret:@"af152b77aa95aa8c2d2287b50377254c"
                                          redirectUri:@"http://www.sharesdk.cn"
                                             authType:SSDKAuthTypeBoth];
                  break;
@@ -84,8 +86,8 @@
                                        appSecret:@"2cb13f5188eea61860b7a62067785d92"];
                  break;
              case SSDKPlatformTypeQQ:
-                 [appInfo SSDKSetupQQByAppId:@"1105719784"
-                                      appKey:@"aRie3uZpITCKy65H"
+                 [appInfo SSDKSetupQQByAppId:@"1106339351"
+                                      appKey:@"dXpXeg8jKculB0SS"
                                     authType:SSDKAuthTypeBoth];
                  break;
              default:

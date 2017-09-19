@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChooseStoreInfoVC">
             <connections>
                 <outlet property="nextBtn" destination="kHW-Sc-M6k" id="X2g-gR-ZRS"/>
+                <outlet property="storeLab" destination="jct-UA-eXD" id="3gm-CF-rtV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -52,6 +53,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AFa-ra-Yig">
                     <rect key="frame" x="0.0" y="97" width="320" height="50"/>
                     <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="门店" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jct-UA-eXD">
+                            <rect key="frame" x="145" y="16" width="30" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="门店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0o8-J0-15E">
                             <rect key="frame" x="35" y="16" width="30" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -78,11 +85,15 @@
                         <constraint firstItem="YfU-T5-zdN" firstAttribute="centerY" secondItem="AFa-ra-Yig" secondAttribute="centerY" id="0FU-Sd-oNK"/>
                         <constraint firstAttribute="trailing" secondItem="YfU-T5-zdN" secondAttribute="trailing" constant="25" id="AgD-ru-gf9"/>
                         <constraint firstItem="ctN-bT-gHl" firstAttribute="top" secondItem="AFa-ra-Yig" secondAttribute="top" id="CZK-8t-8K9"/>
+                        <constraint firstItem="jct-UA-eXD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0o8-J0-15E" secondAttribute="trailing" id="UaI-yp-SYi"/>
                         <constraint firstItem="0o8-J0-15E" firstAttribute="centerY" secondItem="AFa-ra-Yig" secondAttribute="centerY" id="ZJy-xL-MRG"/>
                         <constraint firstAttribute="bottom" secondItem="ctN-bT-gHl" secondAttribute="bottom" id="fdi-RB-wHh"/>
+                        <constraint firstItem="jct-UA-eXD" firstAttribute="centerX" secondItem="AFa-ra-Yig" secondAttribute="centerX" id="hTd-bM-JIs"/>
                         <constraint firstAttribute="trailing" secondItem="ctN-bT-gHl" secondAttribute="trailing" id="kgB-iq-diY"/>
+                        <constraint firstItem="YfU-T5-zdN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jct-UA-eXD" secondAttribute="trailing" id="lXQ-ig-2ML"/>
                         <constraint firstAttribute="height" constant="50" id="ra3-Q7-MBa"/>
                         <constraint firstItem="0o8-J0-15E" firstAttribute="leading" secondItem="AFa-ra-Yig" secondAttribute="leading" constant="35" id="thF-qd-Xgc"/>
+                        <constraint firstItem="jct-UA-eXD" firstAttribute="centerY" secondItem="AFa-ra-Yig" secondAttribute="centerY" id="vWG-HK-EM1"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHW-Sc-M6k">

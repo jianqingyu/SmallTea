@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet ZBButten *getCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 @property (nonatomic, copy) NSString *biz;
+@property (nonatomic,assign)BOOL isSel;
 @end
 @implementation CustomRegisterV
 
@@ -38,53 +39,68 @@
 }
 
 - (IBAction)codeClick:(UIButton *)sender {
-    if (self.phoneFie.text.length<11){
-        [NewUIAlertTool show:@{@"title":@"手机号输入有误"} with:self back:nil];
-        return;
-    }
     [self requestCheckWord];
 }
 
 - (void)requestCheckWord{
+    if (self.phoneFie.text.length<11){
+        [MBProgressHUD showError:@"手机号输入有误"];
+        [self.getCodeBtn resetBtn];
+        return;
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"phoneNumber"] = self.phoneFie.text;
     NSString *logUrl = [NSString stringWithFormat:@"%@api/sms/send",baseNet];
     [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
         if ([YQObjectBool boolForObject:response.result]&&[response.code isEqualToString:@"0000"]) {
-            params[@"tokenKey"] = response.result[@"tokenKey"];
-            params[@"isNorm"] = [AccountTool account].isNorm;
-            params[@"isNoShow"] = [AccountTool account].isNoShow;
-            NSString *encodeURL = [response.result[@"bizId"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            self.biz = encodeURL;
-            Account *account = [Account accountWithDict:params];
-            //自定义类型存储用NSKeyedArchiver
-            [AccountTool saveAccount:account];
+            self.biz = response.result[@"bizId"];
         }else{
             [self.getCodeBtn resetBtn];
-            NSString *str = response.msg?response.msg:@"登录失败";
-            SHOWALERTVIEW(str);
+            NSString *str = response.msg?response.msg:@"获取验证码失败";
+            [MBProgressHUD showError:str];
         }
     } requestURL:logUrl params:params];
 }
 
-- (IBAction)chooseClick:(id)sender {
-    
+- (IBAction)chooseClick:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    self.isSel = sender.selected;
 }
 
 - (IBAction)nextClick:(UIButton *)sender {
+    if (!self.isSel) {
+        [MBProgressHUD showError:@"请同意协议"];
+        return;
+    }
+    if (self.phoneFie.text.length!=11) {
+        [MBProgressHUD showError:@"手机格式不对"];
+        return;
+    }
+    if (self.codeFie.text.length==0) {
+        [MBProgressHUD showError:@"请输入验证码"];
+        return;
+    }
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"phoneNumber"] = self.phoneFie.text;
+    params[@"bizId"] = self.biz;
+    params[@"code"] = self.codeFie.text;
+    NSString *logUrl = [NSString stringWithFormat:@"%@api/sms/verify",baseNet];
+    [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]) {
+            [self presentChooseStore];
+        }else{
+            NSString *str = response.msg?response.msg:@"验证失败";
+            [MBProgressHUD showError:str];
+        }
+    } requestURL:logUrl params:params];
+}
+//跳转到选择门店
+- (void)presentChooseStore{
     NSMutableDictionary *params = [NSMutableDictionary new];
     params[@"phone"] = self.phoneFie.text;
-    params[@"phone"] = self.phoneFie.text;
-    params[@"biz"] = self.biz;
+    params[@"biz"] = [self.biz stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     params[@"code"] = self.codeFie.text;
-    //    params[@"userName"] = self.codeFie.text;
-    //    "loginName": "sysadmin", //登录名
-    //    "userName": "admin",//用户名
-    //    "nickName": "admin",//昵称
-    //    "passwordReal": null,
-    //    "mobile": null,//手机号
-    //    "shopId": null,//商铺id
-    //    "imgUrl": null//图像地址
+    
     UIViewController *vc = [ShowLoginViewTool getCurrentVC];
     ChooseStoreInfoVC *store = [ChooseStoreInfoVC new];
     store.mutDic = params;
@@ -97,34 +113,6 @@
     pro.isFir = YES;
     MainNavViewController *main = [[MainNavViewController alloc]initWithRootViewController:pro];
     [vc presentViewController:main animated:YES completion:nil];
-}
-
-- (void)confrimCode{
-    [SVProgressHUD show];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"loginName"] = self.phoneFie.text;
-    //    params[@"userName"] = self.codeFie.text;
-    //    "loginName": "sysadmin", //登录名
-    //    "userName": "admin",//用户名
-    //    "nickName": "admin",//昵称
-    //    "passwordReal": null,
-    //    "mobile": null,//手机号
-    //    "shopId": null,//商铺id
-    //    "imgUrl": null//图像地址
-    NSString *logUrl = [NSString stringWithFormat:@"%@api/user/register/%@/%@",baseNet,self.biz,self.codeFie.text];
-    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
-        if ([response.code isEqualToString:@"0000"]) {
-            params[@"tokenKey"] = response.result[@"tokenKey"];
-            params[@"isNorm"] = [AccountTool account].isNorm;
-            params[@"isNoShow"] = [AccountTool account].isNoShow;
-            Account *account = [Account accountWithDict:params];
-            //自定义类型存储用NSKeyedArchiver
-            [AccountTool saveAccount:account];
-        }else{
-            NSString *str = response.msg?response.msg:@"登录失败";
-            SHOWALERTVIEW(str);
-        }
-    } requestURL:logUrl params:params];
 }
 
 @end

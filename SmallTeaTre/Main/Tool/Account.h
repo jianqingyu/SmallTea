@@ -9,12 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface Account : NSObject<NSCoding>
-@property (nonatomic,copy)NSString *userName;
-@property (nonatomic,copy)NSString *password;
-@property (nonatomic,copy)NSString *phone;
-@property (nonatomic,copy)NSString *tokenKey;
-@property (nonatomic,copy)NSNumber *isNorm;
-@property (nonatomic,copy)NSNumber *isNoShow;
-@property (nonatomic,copy)NSNumber *isNoDriShow;
+@property (nonatomic,copy)NSString *loginName;
+@property (nonatomic,copy)NSString *passwordReal;
+@property (nonatomic,copy)NSString *mobile;
 + (instancetype)accountWithDict:(NSDictionary *)dict;
+
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "UserHelpViewController.h"
-
+#import "MainProtocolVC.h"
 @interface UserHelpViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,  copy)NSArray *list;
@@ -17,27 +17,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.list = @[@"小茶宝服务协议",@"仓储管理服务协议",@"仓储类问题",
-                  @"茶叶质押协议", @"茶叶赎回协议"];
     [self setupTableView];
     [self loadHomeData];
 }
 
 - (void)loadHomeData{
-    //    [SVProgressHUD show];
-    //    NSString *regiUrl = [NSString stringWithFormat:@"%@userAdminPage",baseUrl];
-    //    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    //    params[@"tokenKey"] = [AccountTool account].tokenKey;
-    //    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
-    //        if ([response.error intValue]==0) {
-    //            [self creatCusTomHeadView:response.data];
-    //            if ([YQObjectBool boolForObject:response.data[@"userInfo"]]) {
-    //            }
-    //        }else{
-    //            [MBProgressHUD showError:response.message];
-    //        }
-    //        [SVProgressHUD dismiss];
-    //    } requestURL:regiUrl params:params];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/help/types",baseNet];
+    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+            self.list = response.result;
+            [self.tableView reloadData];
+        }else{
+            NSString *str = response.msg?response.msg:@"查询失败";
+            [MBProgressHUD showError:str];
+        }
+    } requestURL:netUrl params:params];
 }
 
 - (void)setupTableView{
@@ -71,8 +66,17 @@
         customCell.textLabel.font = [UIFont systemFontOfSize:14];
         customCell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    customCell.textLabel.text = self.list[indexPath.row];
+    NSDictionary *dic = self.list[indexPath.row];
+    customCell.textLabel.text = dic[@"typeName"];
     return customCell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *dic = self.list[indexPath.row];
+    MainProtocolVC *pro = [MainProtocolVC new];
+    pro.title = dic[@"typeName"];
+    pro.typeId = dic[@"typeId"];
+    [self.navigationController pushViewController:pro animated:YES];
 }
 
 @end

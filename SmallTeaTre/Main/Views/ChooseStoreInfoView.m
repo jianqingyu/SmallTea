@@ -26,15 +26,22 @@
     self = [super init];
     if (self) {
         self = [[NSBundle mainBundle]loadNibNamed:@"ChooseStoreInfoView" owner:nil options:nil][0];
-        self.list = @[@{@"title":@"001门店",@"id":@"1"},
-                      @{@"title":@"002门店",@"id":@"2"},
-                      @{@"title":@"003门店",@"id":@"3"},
-                      @{@"title":@"004门店",@"id":@"4"}];
         self.tableView.tableFooterView = [UIView new];
         self.tableView.bounces = NO;
-        [self.tableView reloadData];
+        [self loadHomeData];
     }
     return self;
+}
+
+- (void)loadHomeData{
+    NSString *url = [NSString stringWithFormat:@"%@api/shop/all",baseNet];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+            self.list = response.result;
+            [self.tableView reloadData];
+        }
+    } requestURL:url params:params];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -46,7 +53,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.list.count?self.list.count:3;
+    return self.list.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -56,13 +63,12 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Id];
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.textLabel.textColor = CUSTOM_COLOR(40, 40, 40);
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     NSDictionary *dic;
     if (indexPath.row<self.list.count) {
         dic = self.list[indexPath.row];
     }
-    cell.textLabel.text = dic[@"title"];
+    cell.textLabel.text = dic[@"shopName"];
     return cell;
 }
 
@@ -72,13 +78,13 @@
         dic = self.list[indexPath.row];
     }
     if (self.storeBack) {
-        self.storeBack(dic[@"id"],YES);
+        self.storeBack(dic,YES);
     }
 }
 
 - (IBAction)cancelClick:(id)sender {
     if (self.storeBack) {
-        self.storeBack(@"",NO);
+        self.storeBack(@{},NO);
     }
 }
 

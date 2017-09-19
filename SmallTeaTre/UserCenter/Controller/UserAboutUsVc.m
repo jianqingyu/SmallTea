@@ -9,29 +9,39 @@
 #import "UserAboutUsVc.h"
 
 @interface UserAboutUsVc ()
-
+@property (weak, nonatomic) IBOutlet UILabel *aboutLab;
+@property (weak, nonatomic) IBOutlet UILabel *verLab;
+@property (weak, nonatomic) IBOutlet UILabel *telLab;
 @end
 
 @implementation UserAboutUsVc
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self loadHomeData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)loadHomeData{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *userId;
+    if ([[SaveUserInfoTool shared].id isKindOfClass:[NSString class]]) {
+        userId = [SaveUserInfoTool shared].id;
+    }
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/app/info",baseNet];
+    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+            [self setBaseView:response.result];
+        }else{
+            NSString *str = response.msg?response.msg:@"查询失败";
+            SHOWALERTVIEW(str);
+        }
+    } requestURL:netUrl params:params];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setBaseView:(NSDictionary *)dic{
+    self.aboutLab.text = dic[@"app_introduction"];
+    self.verLab.text = [NSString stringWithFormat:@"版本号:%@",dic[@"app_ios_version"]];
+    self.telLab.text = [NSString stringWithFormat:@"客服电话:%@",dic[@"customer_service_phone"]];
 }
-*/
 
 @end

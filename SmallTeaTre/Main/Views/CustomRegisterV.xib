@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -25,10 +25,9 @@
                     </constraints>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TTS-CL-cax">
-                    <rect key="frame" x="98" y="29" width="100" height="20"/>
+                    <rect key="frame" x="98" y="29" width="189" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="UkF-Oq-YmX"/>
-                        <constraint firstAttribute="width" constant="100" id="pi4-V5-LkG"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
@@ -149,6 +148,7 @@
                 <constraint firstItem="eZV-eo-1DM" firstAttribute="leading" secondItem="9mm-ah-1Nz" secondAttribute="trailing" constant="2" id="q5D-yO-ksG"/>
                 <constraint firstItem="0H3-TP-hMA" firstAttribute="centerY" secondItem="9mm-ah-1Nz" secondAttribute="centerY" id="qiZ-FT-vt9"/>
                 <constraint firstItem="6GR-7N-AR9" firstAttribute="leading" secondItem="3S7-Gj-yn5" secondAttribute="trailing" constant="2" id="r1c-jW-eqS"/>
+                <constraint firstAttribute="trailing" secondItem="TTS-CL-cax" secondAttribute="trailing" constant="33" id="r2P-EJ-LqB"/>
                 <constraint firstItem="TTS-CL-cax" firstAttribute="centerY" secondItem="QkW-a5-L3Z" secondAttribute="centerY" id="rQG-AZ-uGP"/>
                 <constraint firstItem="eZV-eo-1DM" firstAttribute="centerY" secondItem="9mm-ah-1Nz" secondAttribute="centerY" id="s6q-wm-XHM"/>
                 <constraint firstItem="86d-Xd-mWx" firstAttribute="centerY" secondItem="R2Y-pb-dLk" secondAttribute="centerY" id="uQ5-PF-aRY"/>
@@ -162,7 +162,7 @@
                 <outlet property="nextBtn" destination="GFa-Ku-dTM" id="ctW-Ir-BgG"/>
                 <outlet property="phoneFie" destination="TTS-CL-cax" id="JEJ-EM-02B"/>
             </connections>
-            <point key="canvasLocation" x="175" y="142"/>
+            <point key="canvasLocation" x="345" y="155"/>
         </view>
     </objects>
     <resources>

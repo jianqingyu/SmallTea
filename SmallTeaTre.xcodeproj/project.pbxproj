@@ -21,6 +21,7 @@
 		791A9FEF1F5FE158007FDC11 /* HomePageHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791A9FEE1F5FE158007FDC11 /* HomePageHeadView.xib */; };
 		792125B21F62B24B005F129B /* ShoppingSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 792125B01F62B24B005F129B /* ShoppingSearchVC.m */; };
 		792125B31F62B24B005F129B /* ShoppingSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792125B11F62B24B005F129B /* ShoppingSearchVC.xib */; };
+		797D23C81F70CCF300AFAFEC /* SaveUserInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 797D23C71F70CCF300AFAFEC /* SaveUserInfoTool.m */; };
 		798E08601F58F790005C1F2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E085F1F58F790005C1F2B /* main.m */; };
 		798E08631F58F790005C1F2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08621F58F790005C1F2B /* AppDelegate.m */; };
 		798E08691F58F790005C1F2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 798E08671F58F790005C1F2B /* Main.storyboard */; };
@@ -48,17 +49,11 @@
 		798E09121F58FC3E005C1F2B /* YQStatusPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08C11F58FC3E005C1F2B /* YQStatusPhotosView.m */; };
 		798E09131F58FC3E005C1F2B /* YQStatusPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08C31F58FC3E005C1F2B /* YQStatusPhotoView.m */; };
 		798E09141F58FC3E005C1F2B /* YQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08C51F58FC3E005C1F2B /* YQTextView.m */; };
-		798E09151F58FC3E005C1F2B /* LauchimageCustomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08C81F58FC3E005C1F2B /* LauchimageCustomVC.m */; };
-		798E09161F58FC3E005C1F2B /* LauchimageCustomVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 798E08C91F58FC3E005C1F2B /* LauchimageCustomVC.xib */; };
 		798E09171F58FC3E005C1F2B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08CB1F58FC3E005C1F2B /* LoginViewController.m */; };
 		798E09181F58FC3E005C1F2B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 798E08CC1F58FC3E005C1F2B /* LoginViewController.xib */; };
 		798E09191F58FC3E005C1F2B /* MainNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08CE1F58FC3E005C1F2B /* MainNavViewController.m */; };
 		798E091A1F58FC3E005C1F2B /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08D01F58FC3E005C1F2B /* MainTabViewController.m */; };
 		798E091B1F58FC3E005C1F2B /* NewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08D21F58FC3E005C1F2B /* NewfeatureViewController.m */; };
-		798E091C1F58FC3E005C1F2B /* PassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08D41F58FC3E005C1F2B /* PassWordViewController.m */; };
-		798E091D1F58FC3E005C1F2B /* PassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 798E08D51F58FC3E005C1F2B /* PassWordViewController.xib */; };
-		798E091E1F58FC3E005C1F2B /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08D71F58FC3E005C1F2B /* RegisterViewController.m */; };
-		798E091F1F58FC3E005C1F2B /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 798E08D81F58FC3E005C1F2B /* RegisterViewController.xib */; };
 		798E09201F58FC3E005C1F2B /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08DB1F58FC3E005C1F2B /* Account.m */; };
 		798E09211F58FC3E005C1F2B /* AccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08DD1F58FC3E005C1F2B /* AccountTool.m */; };
 		798E09221F58FC3E005C1F2B /* ArrayWithDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08DF1F58FC3E005C1F2B /* ArrayWithDict.m */; };
@@ -71,10 +66,8 @@
 		798E09291F58FC3E005C1F2B /* OrderNumTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08EE1F58FC3E005C1F2B /* OrderNumTool.m */; };
 		798E092A1F58FC3E005C1F2B /* PackagingTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08F01F58FC3E005C1F2B /* PackagingTool.m */; };
 		798E092B1F58FC3E005C1F2B /* YQItemTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08F21F58FC3E005C1F2B /* YQItemTool.m */; };
-		798E092C1F58FC3E005C1F2B /* BaseCusLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08F51F58FC3E005C1F2B /* BaseCusLoginView.m */; };
 		798E092D1F58FC3E005C1F2B /* CDRTranslucentSideBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08F71F58FC3E005C1F2B /* CDRTranslucentSideBar.m */; };
 		798E092E1F58FC3E005C1F2B /* CustomInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08F91F58FC3E005C1F2B /* CustomInvoice.m */; };
-		798E092F1F58FC3E005C1F2B /* CusTomLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08FB1F58FC3E005C1F2B /* CusTomLoginView.m */; };
 		798E09301F58FC3E005C1F2B /* CustomShapeBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08FD1F58FC3E005C1F2B /* CustomShapeBtn.m */; };
 		798E09311F58FC3E005C1F2B /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E08FF1F58FC3E005C1F2B /* CustomTextField.m */; };
 		798E09321F58FC3E005C1F2B /* ShowLoginViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E09011F58FC3E005C1F2B /* ShowLoginViewTool.m */; };
@@ -147,6 +140,8 @@
 		79953FE11F5EB777007A014D /* UserManagerMenuHrizontal.m in Sources */ = {isa = PBXBuildFile; fileRef = 79953FDC1F5EB777007A014D /* UserManagerMenuHrizontal.m */; };
 		79953FE21F5EB777007A014D /* UserManagerScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79953FDE1F5EB777007A014D /* UserManagerScrollPageView.m */; };
 		79953FE31F5EB777007A014D /* UserManagerTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79953FE01F5EB777007A014D /* UserManagerTableView.m */; };
+		799BDAFC1F6F545000D34818 /* HomeShopListInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 799BDAFB1F6F545000D34818 /* HomeShopListInfo.m */; };
+		79C29E851F6B78F5006BCAE5 /* ShoppingListInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C29E841F6B78F5006BCAE5 /* ShoppingListInfo.m */; };
 		79D4C8DB1F6645540012549F /* HomeShoppingDetailVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D4C8D91F6645540012549F /* HomeShoppingDetailVc.m */; };
 		79D4C8DC1F6645550012549F /* HomeShoppingDetailVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79D4C8DA1F6645540012549F /* HomeShoppingDetailVc.xib */; };
 		79D4C8E01F6649050012549F /* WareChooseNumVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D4C8DE1F6649050012549F /* WareChooseNumVc.m */; };
@@ -201,6 +196,8 @@
 		792125AF1F62B24B005F129B /* ShoppingSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingSearchVC.h; sourceTree = "<group>"; };
 		792125B01F62B24B005F129B /* ShoppingSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingSearchVC.m; sourceTree = "<group>"; };
 		792125B11F62B24B005F129B /* ShoppingSearchVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingSearchVC.xib; sourceTree = "<group>"; };
+		797D23C61F70CCF300AFAFEC /* SaveUserInfoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveUserInfoTool.h; sourceTree = "<group>"; };
+		797D23C71F70CCF300AFAFEC /* SaveUserInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveUserInfoTool.m; sourceTree = "<group>"; };
 		798E085B1F58F790005C1F2B /* SmallTeaTre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmallTeaTre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		798E085F1F58F790005C1F2B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		798E08611F58F790005C1F2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -252,9 +249,6 @@
 		798E08C31F58FC3E005C1F2B /* YQStatusPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YQStatusPhotoView.m; sourceTree = "<group>"; };
 		798E08C41F58FC3E005C1F2B /* YQTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YQTextView.h; sourceTree = "<group>"; };
 		798E08C51F58FC3E005C1F2B /* YQTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YQTextView.m; sourceTree = "<group>"; };
-		798E08C71F58FC3E005C1F2B /* LauchimageCustomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LauchimageCustomVC.h; sourceTree = "<group>"; };
-		798E08C81F58FC3E005C1F2B /* LauchimageCustomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LauchimageCustomVC.m; sourceTree = "<group>"; };
-		798E08C91F58FC3E005C1F2B /* LauchimageCustomVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LauchimageCustomVC.xib; sourceTree = "<group>"; };
 		798E08CA1F58FC3E005C1F2B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		798E08CB1F58FC3E005C1F2B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		798E08CC1F58FC3E005C1F2B /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -264,12 +258,6 @@
 		798E08D01F58FC3E005C1F2B /* MainTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabViewController.m; sourceTree = "<group>"; };
 		798E08D11F58FC3E005C1F2B /* NewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewfeatureViewController.h; sourceTree = "<group>"; };
 		798E08D21F58FC3E005C1F2B /* NewfeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewfeatureViewController.m; sourceTree = "<group>"; };
-		798E08D31F58FC3E005C1F2B /* PassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassWordViewController.h; sourceTree = "<group>"; };
-		798E08D41F58FC3E005C1F2B /* PassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassWordViewController.m; sourceTree = "<group>"; };
-		798E08D51F58FC3E005C1F2B /* PassWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassWordViewController.xib; sourceTree = "<group>"; };
-		798E08D61F58FC3E005C1F2B /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
-		798E08D71F58FC3E005C1F2B /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
-		798E08D81F58FC3E005C1F2B /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		798E08DA1F58FC3E005C1F2B /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		798E08DB1F58FC3E005C1F2B /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		798E08DC1F58FC3E005C1F2B /* AccountTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTool.h; sourceTree = "<group>"; };
@@ -295,14 +283,10 @@
 		798E08F01F58FC3E005C1F2B /* PackagingTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackagingTool.m; sourceTree = "<group>"; };
 		798E08F11F58FC3E005C1F2B /* YQItemTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YQItemTool.h; sourceTree = "<group>"; };
 		798E08F21F58FC3E005C1F2B /* YQItemTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YQItemTool.m; sourceTree = "<group>"; };
-		798E08F41F58FC3E005C1F2B /* BaseCusLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCusLoginView.h; sourceTree = "<group>"; };
-		798E08F51F58FC3E005C1F2B /* BaseCusLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCusLoginView.m; sourceTree = "<group>"; };
 		798E08F61F58FC3E005C1F2B /* CDRTranslucentSideBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDRTranslucentSideBar.h; sourceTree = "<group>"; };
 		798E08F71F58FC3E005C1F2B /* CDRTranslucentSideBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDRTranslucentSideBar.m; sourceTree = "<group>"; };
 		798E08F81F58FC3E005C1F2B /* CustomInvoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInvoice.h; sourceTree = "<group>"; };
 		798E08F91F58FC3E005C1F2B /* CustomInvoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInvoice.m; sourceTree = "<group>"; };
-		798E08FA1F58FC3E005C1F2B /* CusTomLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CusTomLoginView.h; sourceTree = "<group>"; };
-		798E08FB1F58FC3E005C1F2B /* CusTomLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CusTomLoginView.m; sourceTree = "<group>"; };
 		798E08FC1F58FC3E005C1F2B /* CustomShapeBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomShapeBtn.h; sourceTree = "<group>"; };
 		798E08FD1F58FC3E005C1F2B /* CustomShapeBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomShapeBtn.m; sourceTree = "<group>"; };
 		798E08FE1F58FC3E005C1F2B /* CustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextField.h; sourceTree = "<group>"; };
@@ -433,6 +417,10 @@
 		79953FDE1F5EB777007A014D /* UserManagerScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManagerScrollPageView.m; sourceTree = "<group>"; };
 		79953FDF1F5EB777007A014D /* UserManagerTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManagerTableView.h; sourceTree = "<group>"; };
 		79953FE01F5EB777007A014D /* UserManagerTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManagerTableView.m; sourceTree = "<group>"; };
+		799BDAFA1F6F545000D34818 /* HomeShopListInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeShopListInfo.h; sourceTree = "<group>"; };
+		799BDAFB1F6F545000D34818 /* HomeShopListInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeShopListInfo.m; sourceTree = "<group>"; };
+		79C29E831F6B78F4006BCAE5 /* ShoppingListInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListInfo.h; sourceTree = "<group>"; };
+		79C29E841F6B78F5006BCAE5 /* ShoppingListInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListInfo.m; sourceTree = "<group>"; };
 		79D4C8D81F6645540012549F /* HomeShoppingDetailVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeShoppingDetailVc.h; sourceTree = "<group>"; };
 		79D4C8D91F6645540012549F /* HomeShoppingDetailVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeShoppingDetailVc.m; sourceTree = "<group>"; };
 		79D4C8DA1F6645540012549F /* HomeShoppingDetailVc.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeShoppingDetailVc.xib; sourceTree = "<group>"; };
@@ -679,6 +667,8 @@
 				798E08F21F58FC3E005C1F2B /* YQItemTool.m */,
 				79F3559A1F66A42C0042ABA0 /* ShowHidenTabBar.h */,
 				79F3559B1F66A42C0042ABA0 /* ShowHidenTabBar.m */,
+				797D23C61F70CCF300AFAFEC /* SaveUserInfoTool.h */,
+				797D23C71F70CCF300AFAFEC /* SaveUserInfoTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -686,8 +676,6 @@
 		798E08F31F58FC3E005C1F2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				798E08F41F58FC3E005C1F2B /* BaseCusLoginView.h */,
-				798E08F51F58FC3E005C1F2B /* BaseCusLoginView.m */,
 				798E08F61F58FC3E005C1F2B /* CDRTranslucentSideBar.h */,
 				798E08F71F58FC3E005C1F2B /* CDRTranslucentSideBar.m */,
 				798E08F81F58FC3E005C1F2B /* CustomInvoice.h */,
@@ -701,8 +689,6 @@
 				799243E61F5D47790021CE90 /* ChooseStoreInfoView.h */,
 				799243E71F5D47790021CE90 /* ChooseStoreInfoView.m */,
 				799243E91F5D47950021CE90 /* ChooseStoreInfoView.xib */,
-				798E08FA1F58FC3E005C1F2B /* CusTomLoginView.h */,
-				798E08FB1F58FC3E005C1F2B /* CusTomLoginView.m */,
 				798E08FC1F58FC3E005C1F2B /* CustomShapeBtn.h */,
 				798E08FD1F58FC3E005C1F2B /* CustomShapeBtn.m */,
 				798E08FE1F58FC3E005C1F2B /* CustomTextField.h */,
@@ -915,6 +901,8 @@
 		798E09E51F5911ED005C1F2B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				799BDAFA1F6F545000D34818 /* HomeShopListInfo.h */,
+				799BDAFB1F6F545000D34818 /* HomeShopListInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -960,6 +948,8 @@
 		798E09EB1F5911F6005C1F2B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				79C29E831F6B78F4006BCAE5 /* ShoppingListInfo.h */,
+				79C29E841F6B78F5006BCAE5 /* ShoppingListInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1047,15 +1037,6 @@
 				799243EB1F5D61410021CE90 /* RigisterUserInfoVc.h */,
 				799243EC1F5D61410021CE90 /* RigisterUserInfoVc.m */,
 				799243ED1F5D61410021CE90 /* RigisterUserInfoVc.xib */,
-				798E08D31F58FC3E005C1F2B /* PassWordViewController.h */,
-				798E08D41F58FC3E005C1F2B /* PassWordViewController.m */,
-				798E08D51F58FC3E005C1F2B /* PassWordViewController.xib */,
-				798E08D61F58FC3E005C1F2B /* RegisterViewController.h */,
-				798E08D71F58FC3E005C1F2B /* RegisterViewController.m */,
-				798E08D81F58FC3E005C1F2B /* RegisterViewController.xib */,
-				798E08C71F58FC3E005C1F2B /* LauchimageCustomVC.h */,
-				798E08C81F58FC3E005C1F2B /* LauchimageCustomVC.m */,
-				798E08C91F58FC3E005C1F2B /* LauchimageCustomVC.xib */,
 			);
 			name = LoginControllers;
 			sourceTree = "<group>";
@@ -1130,7 +1111,7 @@
 				TargetAttributes = {
 					798E085A1F58F790005C1F2B = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = G857GDZJNU;
+						DevelopmentTeam = N7B8L3Y747;
 					};
 					798E08731F58F790005C1F2B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1173,7 +1154,6 @@
 				798E09181F58FC3E005C1F2B /* LoginViewController.xib in Resources */,
 				799243EA1F5D47950021CE90 /* ChooseStoreInfoView.xib in Resources */,
 				798E09AB1F58FC4E005C1F2B /* IQKeyboardManager.bundle in Resources */,
-				798E091F1F58FC3E005C1F2B /* RegisterViewController.xib in Resources */,
 				79D4C8E61F6674180012549F /* WareConfirmRedeemVc.xib in Resources */,
 				798E0A071F593F59005C1F2B /* CustomLoginV.xib in Resources */,
 				798E0A091F594319005C1F2B /* CustomRegisterV.xib in Resources */,
@@ -1182,8 +1162,6 @@
 				799243E51F5D404A0021CE90 /* ChooseStoreInfoVC.xib in Resources */,
 				799243BC1F5D38EC0021CE90 /* AssociatPhoneVC.xib in Resources */,
 				798E09E81F5911ED005C1F2B /* HomePageVC.xib in Resources */,
-				798E09161F58FC3E005C1F2B /* LauchimageCustomVC.xib in Resources */,
-				798E091D1F58FC3E005C1F2B /* PassWordViewController.xib in Resources */,
 				792125B31F62B24B005F129B /* ShoppingSearchVC.xib in Resources */,
 				79953FD21F5E8D30007A014D /* WareHouseListTableCell.xib in Resources */,
 				798E08A31F58FC2C005C1F2B /* NearbyNetworkView.xib in Resources */,
@@ -1288,8 +1266,6 @@
 				798E09101F58FC3E005C1F2B /* UIWindow+Extension.m in Sources */,
 				798E091B1F58FC3E005C1F2B /* NewfeatureViewController.m in Sources */,
 				798E09B31F58FC4E005C1F2B /* IQUIView+Hierarchy.m in Sources */,
-				798E092C1F58FC3E005C1F2B /* BaseCusLoginView.m in Sources */,
-				798E091C1F58FC3E005C1F2B /* PassWordViewController.m in Sources */,
 				79D4C8E01F6649050012549F /* WareChooseNumVc.m in Sources */,
 				798E09B61F58FC4E005C1F2B /* ALView+PureLayout.m in Sources */,
 				7902243D1F615920003525F2 /* ShopShareCustomView.m in Sources */,
@@ -1303,9 +1279,8 @@
 				799244001F5D66680021CE90 /* UserHelpViewController.m in Sources */,
 				798E09B01F58FC4E005C1F2B /* IQTextView.m in Sources */,
 				798E09E71F5911ED005C1F2B /* HomePageVC.m in Sources */,
-				798E092F1F58FC3E005C1F2B /* CusTomLoginView.m in Sources */,
 				798E09191F58FC3E005C1F2B /* MainNavViewController.m in Sources */,
-				798E09151F58FC3E005C1F2B /* LauchimageCustomVC.m in Sources */,
+				797D23C81F70CCF300AFAFEC /* SaveUserInfoTool.m in Sources */,
 				798E08A21F58FC2C005C1F2B /* NearbyNetworkView.m in Sources */,
 				798E08A91F58FC2C005C1F2B /* Reachability.m in Sources */,
 				79D4C8E91F6686BA0012549F /* CustomChoosePhotoV.m in Sources */,
@@ -1314,7 +1289,6 @@
 				798E0A021F593F2B005C1F2B /* CustomLoginV.m in Sources */,
 				799243F31F5D64170021CE90 /* UserStoreInfoVC.m in Sources */,
 				798E09B81F58FC4E005C1F2B /* NSLayoutConstraint+PureLayout.m in Sources */,
-				798E091E1F58FC3E005C1F2B /* RegisterViewController.m in Sources */,
 				798E09B21F58FC4E005C1F2B /* IQToolbar.m in Sources */,
 				798E08A41F58FC2C005C1F2B /* NetworkDetermineTool.m in Sources */,
 				79953FCC1F5E795B007A014D /* ShoppingListTableCell.m in Sources */,
@@ -1337,6 +1311,7 @@
 				798E090E1F58FC3E005C1F2B /* UIAlertController+supportedinterface.m in Sources */,
 				79953FE21F5EB777007A014D /* UserManagerScrollPageView.m in Sources */,
 				798E092A1F58FC3E005C1F2B /* PackagingTool.m in Sources */,
+				799BDAFC1F6F545000D34818 /* HomeShopListInfo.m in Sources */,
 				7992440A1F5D68B20021CE90 /* UserReSetViewC.m in Sources */,
 				798E092E1F58FC3E005C1F2B /* CustomInvoice.m in Sources */,
 				798E09361F58FC3E005C1F2B /* YQCustomBtn.m in Sources */,
@@ -1377,6 +1352,7 @@
 				798E09131F58FC3E005C1F2B /* YQStatusPhotoView.m in Sources */,
 				798E09AC1F58FC4E005C1F2B /* IQKeyboardManager.m in Sources */,
 				798E09281F58FC3E005C1F2B /* NewUIAlertTool.m in Sources */,
+				79C29E851F6B78F5006BCAE5 /* ShoppingListInfo.m in Sources */,
 				798E09F91F591271005C1F2B /* WareHouseVC.m in Sources */,
 				798E08A51F58FC2C005C1F2B /* NetworkView.m in Sources */,
 				799243E81F5D47790021CE90 /* ChooseStoreInfoView.m in Sources */,
@@ -1528,6 +1504,7 @@
 			baseConfigurationReference = 2C6695682F7DC08C302A2B70 /* Pods-SmallTeaTre.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1539,7 +1516,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.medium.SmallTeaTre;
+				PRODUCT_BUNDLE_IDENTIFIER = com.XMYX.SmallTea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1550,6 +1527,7 @@
 			baseConfigurationReference = 3DBDA6DC11C30C1B19B1ABCA /* Pods-SmallTeaTre.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1561,7 +1539,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.medium.SmallTeaTre;
+				PRODUCT_BUNDLE_IDENTIFIER = com.XMYX.SmallTea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

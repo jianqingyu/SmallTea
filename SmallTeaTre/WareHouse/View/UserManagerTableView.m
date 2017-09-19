@@ -10,8 +10,10 @@
 #import "WareHouseListTableCell.h"
 #import "WareHouseDetailVC.h"
 #import "WareConfirmRedeemVc.h"
+#import "ShoppingListInfo.h"
 @interface UserManagerTableView()<UITableViewDataSource,UITableViewDelegate>{
     int curPage;
+    int pageCount;
     int totalCount;//商品总数量
     NSMutableArray *_dataArray;
     UITableView *_mTableView;
@@ -26,6 +28,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         curPage = 1;
+        pageCount = 10;
         _dataArray = [NSMutableArray array];
         _mTableView = [[UITableView alloc]initWithFrame:CGRectZero
                                                 style:UITableViewStyleGrouped];
@@ -39,8 +42,7 @@
             make.right.equalTo(self).offset(0);
             make.bottom.equalTo(self).offset(0);
         }];
-        _dataArray = @[@"",@"",@"",@""].mutableCopy;
-//        [self setupHeaderRefresh];
+        [self setupHeaderRefresh];
     }
     return self;
 }
@@ -51,7 +53,7 @@
         if (isFir) {
             return;
         }
-//        [_mTableView.header beginRefreshing];
+        [_mTableView.header beginRefreshing];
     }
 }
 
@@ -69,10 +71,11 @@
 }
 
 - (void)setupFootRefresh{
+    
     MJRefreshAutoNormalFooter*footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self footerRereshing];
     }];
-    [footer setTitle:@"加载更多订单" forState:MJRefreshStateIdle];
+    [footer setTitle:@"上拉有惊喜" forState:MJRefreshStateIdle];
     [footer setTitle:@"好了，可以放松一下手指" forState:MJRefreshStatePulling];
     [footer setTitle:@"努力加载中，请稍候" forState:MJRefreshStateRefreshing];
     _mTableView.footer = footer;
@@ -93,64 +96,57 @@
     }
     [self getCommodityData];
 }
-#pragma mark - 网络数据
+
 - (void)getCommodityData{
-    if ([self.dict[@"netUrl"]length]==0) {
+    if ([self.dict[@"deportId"]length]==0) {
         [_mTableView.header endRefreshing];
         return;
     }
     isFir = YES;
     [SVProgressHUD show];
+    self.userInteractionEnabled = NO;
+    NSString *url = [NSString stringWithFormat:@"%@api/goods/page",baseNet];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"tokenKey"] = [AccountTool account].tokenKey;
-    params[@"cpage"] = @(curPage);
-    NSString *url = [NSString stringWithFormat:@"%@%@",baseNet,self.dict[@"netUrl"]];
-    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
+    params[@"index"] = @(curPage);
+    params[@"pageSize"] = @(pageCount);
+    params[@"deportId"] = _dict[@"deportId"];
+    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
         [_mTableView.header endRefreshing];
         [_mTableView.footer endRefreshing];
-        if ([response.code intValue]==0) {
+        if ([response.code isEqualToString:@"0000"]) {
             [self setupFootRefresh];
             if ([YQObjectBool boolForObject:response.result]){
-                switch ([self.dict[@"proId"]intValue]) {
-                    case 10:case 20:
-                        
-                        break;
-                    case 30:
-                        
-                        break;
-                    case 40:
-                        break;
-                    default:
-                        break;
-                }
-                [_mTableView reloadData];
+                [self setupListDataWithDict:response.result];
             }
+            [_mTableView reloadData];
+            self.userInteractionEnabled = YES;
             [SVProgressHUD dismiss];
         }
     } requestURL:url params:params];
 }
 
-//更新list数据
-- (void)setListData:(NSDictionary *)dicList and:(id)couDic{
-    if([YQObjectBool boolForObject:dicList]){
+- (void)setupListDataWithDict:(NSDictionary *)dict{
+    if([dict[@"result"] isKindOfClass:[NSArray class]]
+       && [dict[@"result"] count]>0){
         _mTableView.footer.state = MJRefreshStateIdle;
         curPage++;
-        totalCount = [couDic intValue];
-//        NSArray *seaArr = [OrderListNewInfo objectArrayWithKeyValuesArray:dicList];
-//        [_dataArray addObjectsFromArray:seaArr];
-        if(_dataArray.count>=totalCount){
+        totalCount = [dict[@"totalPage"]intValue];
+        NSArray *seaArr = [ShoppingListInfo objectArrayWithKeyValuesArray:dict[@"result"]];
+        [_dataArray addObjectsFromArray:seaArr];
+        if(curPage>totalCount){
             //已加载全部数据
             MJRefreshAutoNormalFooter*footer = (MJRefreshAutoNormalFooter*)_mTableView.footer;
             [footer setTitle:@"没有更多了" forState:MJRefreshStateNoMoreData];
             _mTableView.footer.state = MJRefreshStateNoMoreData;
         }
     }else{
-        //[self.tableView.header removeFromSuperview];
+        //[_mTableView.header removeFromSuperview];
         MJRefreshAutoNormalFooter*footer = (MJRefreshAutoNormalFooter*)_mTableView.footer;
         [footer setTitle:@"暂时没有商品" forState:MJRefreshStateNoMoreData];
         _mTableView.footer.state = MJRefreshStateNoMoreData;
     }
 }
+
 #pragma mark -- UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return _dataArray.count;
@@ -182,11 +178,20 @@
         WareConfirmRedeemVc *redVc = [WareConfirmRedeemVc new];
         [self.superNav pushViewController:redVc animated:YES];
     };
+    ShoppingListInfo *listInfo;
+    if (indexPath.section<_dataArray.count) {
+        listInfo = _dataArray[indexPath.section];
+    }
+    cell.listInfo = listInfo;
     return cell;
 }
 
 #pragma mark -- UITableDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ShoppingListInfo *listInfo;
+    if (indexPath.section<_dataArray.count) {
+        listInfo = _dataArray[indexPath.section];
+    }
     WareHouseDetailVC *detailVc = [WareHouseDetailVC new];
     [self.superNav pushViewController:detailVc animated:YES];
 }

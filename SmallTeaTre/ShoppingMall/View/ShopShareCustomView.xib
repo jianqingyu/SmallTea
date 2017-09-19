@@ -20,17 +20,26 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fe8-Bz-awE">
                     <rect key="frame" x="0.0" y="57" width="320" height="84"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npQ-mH-sS6">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npQ-mH-sS6">
                             <rect key="frame" x="256" y="0.0" width="35" height="35"/>
                             <state key="normal" image="icon_weibo"/>
+                            <connections>
+                                <action selector="shareClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="gfS-KF-oTZ"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CvP-8F-dvk">
                             <rect key="frame" x="105" y="0.0" width="35" height="35"/>
                             <state key="normal" image="icon_firend"/>
+                            <connections>
+                                <action selector="shareClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="5VU-Hk-gQF"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQV-rH-dqr">
                             <rect key="frame" x="181" y="0.0" width="35" height="35"/>
                             <state key="normal" image="QQ"/>
+                            <connections>
+                                <action selector="shareClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="lsJ-6c-NEH"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qiI-2r-ehW">
                             <rect key="frame" x="160" y="0.0" width="1" height="84"/>
@@ -42,6 +51,9 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9M-B1-8Q1">
                             <rect key="frame" x="30" y="0.0" width="35" height="35"/>
                             <state key="normal" image="wechat"/>
+                            <connections>
+                                <action selector="shareClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="gxt-gi-r5z"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jur-gL-Krd">
                             <rect key="frame" x="33" y="45" width="30" height="18"/>
@@ -61,7 +73,7 @@
                             <color key="textColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="微博" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1Y-bC-taP">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微博" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1Y-bC-taP">
                             <rect key="frame" x="259" y="45" width="30" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -124,7 +136,13 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="530" y="470"/>
+            <connections>
+                <outletCollection property="btns" destination="N9M-B1-8Q1" id="zPa-Kh-AAA"/>
+                <outletCollection property="btns" destination="CvP-8F-dvk" id="Nmq-7j-4xT"/>
+                <outletCollection property="btns" destination="OQV-rH-dqr" id="1Sz-W1-Iao"/>
+                <outletCollection property="btns" destination="npQ-mH-sS6" id="ycV-37-tGr"/>
+            </connections>
+            <point key="canvasLocation" x="514" y="393"/>
         </view>
     </objects>
     <resources>

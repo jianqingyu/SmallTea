@@ -10,12 +10,12 @@
 #import "ShowLoginViewTool.h"
 #import "NetworkDetermineTool.h"
 #import "UserEditPasswordVC.h"
+#import "SaveUserInfoTool.h"
 #import "MainNavViewController.h"
 @interface CustomLoginV()
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-
-
 @end
+
 @implementation CustomLoginV
 
 + (CustomLoginV *)createLoginView{
@@ -45,6 +45,14 @@
 }
 
 - (IBAction)loginClick:(UIButton *)sender {
+    if (self.phoneFie.text.length==0) {
+        [MBProgressHUD showError:@"请输入手机号"];
+        return;
+    }
+    if (self.passFie.text.length==0) {
+        [MBProgressHUD showError:@"请输入密码"];
+        return;
+    }
     if (![NetworkDetermineTool isExistenceNet]) {
         [MBProgressHUD showError:@"网络断开、请联网"];
         return;
@@ -53,16 +61,20 @@
     sender.enabled = NO;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"loginName"] = self.phoneFie.text;
-    params[@"password"] = self.passFie.text;
+    params[@"passwordReal"] = self.passFie.text;
     NSString *logUrl = [NSString stringWithFormat:@"%@api/user/login",baseNet];
-    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
-        if ([response.code isEqualToString:@"0000"]) {
-            params[@"tokenKey"] = response.result[@"tokenKey"];
-            params[@"isNorm"] = [AccountTool account].isNorm;
-            params[@"isNoShow"] = [AccountTool account].isNoShow;
+    [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+            params[@"mobile"] = response.result[@"mobile"];
             Account *account = [Account accountWithDict:params];
             //自定义类型存储用NSKeyedArchiver
             [AccountTool saveAccount:account];
+            SaveUserInfoTool *save = [SaveUserInfoTool shared];
+            save.mobile = response.result[@"mobile"];
+            save.id = response.result[@"id"];
+            save.nickName = response.result[@"nickName"];
+            save.shopId = response.result[@"nickName"];
+            save.imgUrl = response.result[@"imgUrl"];
             if (self.btnBack) {
                 self.btnBack(1);
             }
@@ -75,15 +87,17 @@
 }
 
 - (IBAction)weixinClick:(id)sender {
-    if (self.btnBack) {
-        self.btnBack(2);
-    }
+    [MBProgressHUD showError:@"暂未开通"];
+//    if (self.btnBack) {
+//        self.btnBack(2);
+//    }
 }
 
 - (IBAction)qqClick:(id)sender {
-    if (self.btnBack) {
-        self.btnBack(3);
-    }
+    [MBProgressHUD showError:@"暂未开通"];
+//    if (self.btnBack) {
+//        self.btnBack(3);
+//    }
 }
 
 @end

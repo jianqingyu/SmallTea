@@ -28,9 +28,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.height = 135;
+    [self.headView setLayerWithW:45 andColor:[UIColor whiteColor] andBackW:2];
     [self creatBaseView];
+    [self loadHomeData];
 }
-
+#pragma mark -- 上传头像
 - (void)creatBaseView{
     CustomBackgroundView *bView = [CustomBackgroundView createBackView];
     bView.hidden = YES;
@@ -95,33 +97,32 @@
         self.baView.hidden = isHi;
     }];
 }
-//- (void)loadUserInfoData{
-//    [SVProgressHUD show];
-//    NSString *regiUrl = [NSString stringWithFormat:@"%@userModifyPage",baseUrl];
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    params[@"tokenKey"] = [AccountTool account].tokenKey;
-//    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
-//        if ([response.error intValue]==0) {
-//            if ([YQObjectBool boolForObject:response.data]) {
-//                self.masterInfo = [MasterCountInfo objectWithKeyValues:response.data];
-//                if ([YQObjectBool boolForObject:response.data[@"headPic"]]) {
-//                    self.url = response.data[@"headPic"];
-//                }
-//                if ([YQObjectBool boolForObject:response.data[@"userName"]]) {
-//                    self.mutDic[@"用户名"] = response.data[@"userName"];
-//                }
-//                if ([YQObjectBool boolForObject:response.data[@"phone"]]) {
-//                    self.mutDic[@"修改手机号码"] = response.data[@"phone"];
-//                }
-//                if ([YQObjectBool boolForObject:response.data[@"address"]]) {
-//                    self.mutDic[@"管理地址"] = response.data[@"address"];
-//                }
-//                [self.tableView reloadData];
-//            }
-//        }
-//        [SVProgressHUD dismiss];
-//    } requestURL:regiUrl params:params];
-//}
+
+- (void)loadHomeData{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *userId;
+    if ([[SaveUserInfoTool shared].id isKindOfClass:[NSString class]]) {
+        userId = [SaveUserInfoTool shared].id;
+    }
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/user/info/%@",baseNet,userId];
+    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+            [self setBaseView:response.result];
+        }else{
+            NSString *str = response.msg?response.msg:@"查询失败";
+            SHOWALERTVIEW(str);
+        }
+    } requestURL:netUrl params:params];
+}
+
+- (void)setBaseView:(NSDictionary *)dic{
+    NSString *url = [NSString stringWithFormat:@"%@%@",baseNet,dic[@"imgUrl"]];
+    [self.headView sd_setImageWithURL:[NSURL URLWithString:url]
+                   placeholderImage:DefaultImage];
+    self.phoneLab.text = dic[@"mobile"];
+    self.nameLab.text = dic[@"nickName"];
+}
+
 - (IBAction)openImage:(id)sender {
     [self shareShopClick];
 }
@@ -134,29 +135,6 @@
 - (IBAction)editPass:(id)sender {
     UserEditPasswordVC *editPass = [UserEditPasswordVC new];
     [self.navigationController pushViewController:editPass animated:YES];
-}
-
-- (UIImageView *)creatImageView{
-    CGFloat width = 70;
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,width,width)];
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    //设置头像
-    if (self.image) {
-        imageView.image = self.image;
-    }else{
-        [imageView sd_setImageWithURL:[NSURL URLWithString:self.url]placeholderImage:
-         [UIImage imageNamed:@"head_nor"]];
-    }
-    [imageView setLayerWithW:35 andColor:[UIColor whiteColor] andBackW:3.0f];
-    return imageView;
-}
-
-- (void)creatUIAlertView{
-    [NewUIAlertTool creatActionSheetPhoto:^{
-        [self openAlbum];
-    } andCamera:^{
-        [self openCamera];
-    } andCon:self andView:nil];
 }
 
 //打开相机
@@ -188,23 +166,25 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *image = info[UIImagePickerControllerEditedImage];
     self.image = image;
     [picker dismissViewControllerAnimated:YES completion:^{
+        self.headView.image = image;
         [self loadUpDateImage:image];
     }];
 }
 //上传图片
 - (void)loadUpDateImage:(UIImage *)image{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    NSString *key = [AccountTool account].tokenKey;
-    NSString *url = [NSString stringWithFormat:@"%@userModifyHeadPicDo?tokenKey=%@",baseNet,key];
+    NSString *userId;
+    if ([[SaveUserInfoTool shared].id isKindOfClass:[NSString class]]) {
+        userId = [SaveUserInfoTool shared].id;
+    }
+    NSString *url = [NSString stringWithFormat:@"%@/api/user/head_img/upload/%@",baseNet,userId];
     [CommonUsedTool loadUpDate:^(NSDictionary *response, NSError *error) {
-        NSString *imageStr;
-        if ([response[@"error"]intValue]==0) {
-            if ([YQObjectBool boolForObject:response[@"data"][@"headPic"]]) {
-                imageStr = response[@"data"][@"headPic"];
-            }
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if ([response[@"code"] isEqualToString:@"0000"]) {
+            //            "userId": "e4b370f4fc2b4530ab26436aca136e6c",
+            //            "imgUrl": "/file/head/image/2017/img_20170917.png"
+            if ([YQObjectBool boolForObject:response[@"result"]]) {
                 
-            }];
+            }
         }
     } image:image Dic:params Url:url];
 }

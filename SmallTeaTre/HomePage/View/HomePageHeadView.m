@@ -8,6 +8,11 @@
 
 #import "HomePageHeadView.h"
 #import "HYBLoopScrollView.h"
+#import "MainProtocolVC.h"
+#import "ShowLoginViewTool.h"
+@interface HomePageHeadView()
+@property (weak, nonatomic) IBOutlet UILabel *messLab;
+@end
 @implementation HomePageHeadView
 
 + (HomePageHeadView *)createHeadView{
@@ -25,9 +30,7 @@
 
 - (void)setLoopScrollView:(NSArray *)arr{
     HYBLoopScrollView *loop = [HYBLoopScrollView loopScrollViewWithFrame:
-                               CGRectMake(0, 0, SDevWidth, 204) imageUrls:arr];
-//    [loop.pageControl setValue:[UIImage imageNamed:@"banner_s"] forKeyPath:@"pageImage"];
-//    [loop.pageControl setValue:[UIImage imageNamed:@"banner_m"] forKeyPath:@"currentPageImage"];
+                               CGRectMake(0, 0, SDevWidth, SDevWidth*0.53) imageUrls:arr];
     loop.timeInterval = 3.0;
     loop.didSelectItemBlock = ^(NSInteger atIndex,HYBLoadImageView  *sender){
         
@@ -39,12 +42,23 @@
 - (void)setInfoArr:(NSArray *)infoArr{
     if (infoArr) {
         _infoArr = infoArr;
-        NSMutableArray *mutA = [NSMutableArray new];
-        for (NSDictionary *dic in _infoArr) {
-            [mutA addObject:dic[@"pic"]];
-        }
-        [self setLoopScrollView:mutA];
+        [self setLoopScrollView:_infoArr];
     }
+}
+
+- (void)setMessDic:(NSDictionary *)messDic{
+    if (messDic) {
+        _messDic = messDic;
+        self.messLab.text = _messDic[@"title"];
+    }
+}
+
+- (IBAction)topClick:(id)sender {
+    UIViewController *vc = [ShowLoginViewTool getCurrentVC];
+    MainProtocolVC *pro = [MainProtocolVC new];
+    pro.title = _messDic[@"title"];
+    pro.content = _messDic[@"content"];
+    [vc.navigationController pushViewController:pro animated:YES];
 }
 
 @end

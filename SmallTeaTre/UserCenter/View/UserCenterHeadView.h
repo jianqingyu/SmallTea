@@ -10,4 +10,5 @@
 
 @interface UserCenterHeadView : UIView
 + (UserCenterHeadView *)createHeadView;
+- (void)setUserInfo;
 @end

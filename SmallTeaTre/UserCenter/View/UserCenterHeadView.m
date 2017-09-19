@@ -7,7 +7,10 @@
 //
 
 #import "UserCenterHeadView.h"
-
+@interface UserCenterHeadView()
+@property (weak, nonatomic) IBOutlet UIImageView *headView;
+@property (weak, nonatomic) IBOutlet UILabel *nickname;
+@end
 @implementation UserCenterHeadView
 
 + (UserCenterHeadView *)createHeadView{
@@ -23,8 +26,16 @@
     self = [super init];
     if (self) {
         self = [[NSBundle mainBundle]loadNibNamed:@"UserCenterHeadView" owner:nil options:nil][0];
+        [self.headView setLayerWithW:45 andColor:[UIColor whiteColor] andBackW:2];
     }
     return self;
+}
+
+- (void)setUserInfo{
+    self.nickname.text = [SaveUserInfoTool shared].nickName;
+    NSString *url = [NSString stringWithFormat:@"%@%@",baseNet,[SaveUserInfoTool shared].imgUrl];
+    [self.headView sd_setImageWithURL:[NSURL URLWithString:url]
+                   placeholderImage:DefaultImage];
 }
 
 @end

@@ -16,6 +16,7 @@
 #import <Foundation/Foundation.h>
 #import "Md5PassWord.h"
 #import "Macro.h"
+#import "SaveUserInfoTool.h"
 #import "OrderNumTool.h"
 #import "CommonUtils.h"
 #import "AFNetworking.h"

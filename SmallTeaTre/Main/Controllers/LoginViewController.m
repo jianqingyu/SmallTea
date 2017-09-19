@@ -9,8 +9,6 @@
 #import "LoginViewController.h"
 #import "MainTabViewController.h"
 #import "MainNavViewController.h"
-#import "RegisterViewController.h"
-#import "PassWordViewController.h"
 #import "IQKeyboardManager.h"
 #import "CustomLoginV.h"
 #import "ChooseStoreInfoVC.h"
@@ -36,8 +34,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    NSString *name = [AccountTool account].userName;
-    NSString *password = [AccountTool account].password;
+    NSString *name = [AccountTool account].loginName;
+    NSString *password = [AccountTool account].passwordReal;
     self.loginView.phoneFie.text = name;
     self.loginView.passFie.text = password;
 }
@@ -54,7 +52,7 @@
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
             window.rootViewController = [[MainTabViewController alloc]init];
         }else if (staue==2){
-            [self presentAssociatPhone];
+            [self loadQQ];
         }else{
             [self presentAssociatPhone];
         }
@@ -119,20 +117,6 @@
     self.regisBtn.enabled = isChange;
     self.loginView.hidden = !isChange;
     self.regisView.hidden = isChange;
-}
-
-- (void)registerClick{
-    RegisterViewController *regiVC = [[RegisterViewController alloc]init];
-    MainNavViewController *naviVC = [[MainNavViewController alloc]initWithRootViewController:regiVC];
-    [self presentViewController:naviVC animated:YES completion:nil];
-}
-
-- (void)forgotKeyClick{
-    PassWordViewController *passVc = [[PassWordViewController alloc]init];
-    passVc.title = @"忘记密码";
-    passVc.isForgot = YES;
-    MainNavViewController *naviVC = [[MainNavViewController alloc]initWithRootViewController:passVc];
-    [self presentViewController:naviVC animated:YES completion:nil];
 }
 
 @end

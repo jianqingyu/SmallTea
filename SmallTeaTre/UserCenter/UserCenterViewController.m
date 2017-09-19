@@ -10,10 +10,10 @@
 #import "UserCenterListCell.h"
 #import "UserCenterHeadView.h"
 #import "LoginViewController.h"
-#import <ShareSDK/ShareSDK.h>
+#import "ShowHidenTabBar.h"
 #import "CustomBackgroundView.h"
 #import "ShopShareCustomView.h"
-#import "ShowHidenTabBar.h"
+#import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 @interface UserCenterViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate>
 @property(strong,nonatomic) UITableView *tableView;
@@ -150,6 +150,7 @@
         make.right.equalTo(hView).offset(0);
         make.bottom.equalTo(hView).offset(-10);
     }];
+    [headV setUserInfo];
     self.tableView.tableHeaderView = hView;
 }
 
@@ -226,28 +227,6 @@
     BaseViewController *instance = [[newClass alloc] init];
     instance.title = dic[@"title"];
     [self.navigationController pushViewController:instance animated:YES];
-}
-
-- (void)setShare:(UITableViewCell *)cell{
-    //创建分享参数（必要）
-    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-    NSArray *arr = @[@(SSDKPlatformTypeSinaWeibo),
-                     @(SSDKPlatformTypeWechat),
-                     @(SSDKPlatformTypeQQ)];
-//    [shareParams SSDKSetupShareParamsByText:self.shareDic[@"des"]
-//                                     images:[UIImage imageNamed:@"iOSCode"]
-//                                        url:[NSURL URLWithString:self.shareDic[@"url"]]
-//                                      title:self.shareDic[@"title"]
-//                                       type:SSDKContentTypeAuto];
-//    [shareParams SSDKSetupShareParamsByText:@"分享内容"
-//                                     images:images //传入要分享的图片
-//                                        url:[NSURL URLWithString:@"http://mob.com"]
-//                                      title:@"分享标题"
-//                                       type:SSDKContentTypeAuto];
-    //进行分享
-    [ShareSDK share:SSDKPlatformTypeSinaWeibo //传入分享的平台类型
-         parameters:shareParams
-     onStateChanged:nil];
 }
 
 @end

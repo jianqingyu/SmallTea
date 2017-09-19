@@ -10,4 +10,6 @@
 
 @interface MainProtocolVC : BaseViewController
 @property (nonatomic,assign)BOOL isFir;
+@property (nonatomic,  copy)NSString *typeId;
+@property (nonatomic,  copy)NSString *content;
 @end

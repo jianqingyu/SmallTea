@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShoppingListInfo.h"
 typedef void (^ShopListBack)(int staue,BOOL isSel);
 @interface ShoppingListTableCell : UITableViewCell
+@property (nonatomic,strong)ShoppingListInfo *listInfo;
+@property (nonatomic,  copy)ShopListBack back;
 + (id)cellWithTableView:(UITableView *)tableView;
-@property (nonatomic, copy)ShopListBack back;
+
 @end

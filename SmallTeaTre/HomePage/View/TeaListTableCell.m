@@ -40,11 +40,40 @@
     return self;
 }
 
+- (void)setListInfo:(ShoppingListInfo *)listInfo{
+    if (listInfo) {
+        _listInfo = listInfo;
+        NSString *url = [NSString stringWithFormat:@"%@%@",baseNet,_listInfo.imgUrl];
+        [self.teaImg sd_setImageWithURL:[NSURL URLWithString:url]
+                       placeholderImage:DefaultImage];
+        self.titleLab.text = _listInfo.goodsName;
+        self.listLab.text = [NSString stringWithFormat:@"%@ %@",_listInfo.deportName,_listInfo.typeName];
+        self.styleLab.text = _listInfo.tagName;
+        NSString *str = _listInfo.introduction;
+        str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //去除掉首尾的空白字符和换行字符
+        str = [str stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        str = [str stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        self.infoLab.text = str;
+    }
+}
+
 - (IBAction)favClick:(UIButton *)sender {
     sender.selected = !sender.selected;
-    if (self.back) {
-        self.back(1,sender.selected);
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if ([[SaveUserInfoTool shared].id isKindOfClass:[NSString class]]) {
+        params[@"userId"] = [SaveUserInfoTool shared].id;
     }
+    params[@"goodsId"] = _listInfo.id;
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/user/goods/like",baseNet];
+    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]) {
+            [MBProgressHUD showSuccess:@"收藏成功"];
+        }else{
+            NSString *str = response.msg?response.msg:@"收藏失败";
+            SHOWALERTVIEW(str);
+        }
+        sender.enabled = YES;
+    } requestURL:netUrl params:params];
 }
 
 - (IBAction)shareClick:(id)sender {

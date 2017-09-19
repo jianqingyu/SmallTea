@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface HomeShoppingDetailVc : BaseViewController
-@property (nonatomic, copy)NSString *url;
+@property (nonatomic, copy) NSString *url;
 @end

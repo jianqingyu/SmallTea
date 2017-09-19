@@ -77,7 +77,7 @@
         [self.navigationController pushViewController:numVc animated:YES];
         return;
     }
-    [NewUIAlertTool show:self.dic with:self back:^{
+    [NewUIAlertTool show:self.dic back:^{
         
     }];
 }

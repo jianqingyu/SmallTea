@@ -21,8 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    titleArray = @[@{@"title":@"云南",@"netUrl":@"ModelOrderWaitCheckList",@"proId":@"10"},
-                   @{@"title":@"华南仓",@"netUrl":@"ModelOrderProduceListPage",@"proId":@"20"}],
+    titleArray = @[@{@"title":@"云南仓",@"deportId":@"0002"},
+                   @{@"title":@"华南仓",@"deportId":@"0001"}],
     [self initCustomView];
 }
 

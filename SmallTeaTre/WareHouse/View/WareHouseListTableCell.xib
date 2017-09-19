@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -126,6 +126,7 @@
                 <outlet property="dateLab" destination="QpS-JO-4dm" id="U9F-tw-nUR"/>
                 <outlet property="numLab" destination="HKd-7I-EfK" id="H0F-wf-Nvc"/>
                 <outlet property="sPriceLab" destination="yD7-D1-20n" id="fhe-0C-3A1"/>
+                <outlet property="styBtn" destination="v3i-6V-Wp0" id="Mtt-RR-sNl"/>
                 <outlet property="teaImg" destination="IzS-B0-tpT" id="RGz-BW-OBY"/>
                 <outlet property="wareSta" destination="z43-32-HdO" id="Lbc-qe-iZ3"/>
                 <outlet property="wareTLab" destination="Oq7-kA-4TF" id="2Qv-fM-LiQ"/>

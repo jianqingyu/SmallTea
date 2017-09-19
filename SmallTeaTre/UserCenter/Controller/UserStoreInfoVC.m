@@ -9,6 +9,10 @@
 #import "UserStoreInfoVC.h"
 
 @interface UserStoreInfoVC ()
+@property (weak, nonatomic) IBOutlet UILabel *storeName;
+@property (weak, nonatomic) IBOutlet UILabel *storeAdd;
+@property (weak, nonatomic) IBOutlet UILabel *storeTel;
+@property (weak, nonatomic) IBOutlet UILabel *storeTime;
 
 @end
 
@@ -16,22 +20,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self loadHomeData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)loadHomeData{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *userId;
+    if ([[SaveUserInfoTool shared].id isKindOfClass:[NSString class]]) {
+        userId = [SaveUserInfoTool shared].id;
+    }
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/shop/%@",baseNet,userId];
+    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+            [self setBaseView:response.result];
+        }else{
+            NSString *str = response.msg?response.msg:@"查询失败";
+            SHOWALERTVIEW(str);
+        }
+    } requestURL:netUrl params:params];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setBaseView:(NSDictionary *)dic{
+    self.storeName.text = dic[@"shopName"];
+    self.storeAdd.text = dic[@"address"];
+    self.storeTel.text = dic[@"tel"];
+    self.storeTime.text = [NSString stringWithFormat:@"%@-%@",dic[@"busiStartTime"],dic[@"busiEndTime"]];
 }
-*/
 
 @end

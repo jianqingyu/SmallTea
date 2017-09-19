@@ -15,6 +15,7 @@
 @property (weak,  nonatomic) IBOutlet UIButton *nextBtn;
 @property (weak,  nonatomic) UIView *baView;
 @property (weak,  nonatomic) ChooseStoreInfoView *infoView;
+@property (weak, nonatomic) IBOutlet UILabel *storeLab;
 @property (assign,nonatomic) CGFloat height;
 @end
 
@@ -42,9 +43,10 @@
     
     ChooseStoreInfoView *infoV = [ChooseStoreInfoView createLoginView];
     [self.view addSubview:infoV];
-    infoV.storeBack = ^(NSString *stoId,BOOL isYes){
+    infoV.storeBack = ^(NSDictionary *store,BOOL isYes){
         if (isYes) {
-            self.mutDic[@"shopId"] = stoId;
+            self.mutDic[@"shopId"] = store[@"id"];
+            self.storeLab.text = store[@"shopName"];
         }
         [self changeStoreView:NO];
     };
@@ -91,6 +93,9 @@
 }
 
 - (IBAction)nextClick:(id)sender {
+    if (![YQObjectBool boolForObject:self.mutDic[@"shopId"]]) {
+        [MBProgressHUD showSuccess:@"请选择门店"];
+    }
     RigisterUserInfoVc *infoVc = [RigisterUserInfoVc new];
     infoVc.dic = self.mutDic.copy;
     infoVc.isFir = YES;

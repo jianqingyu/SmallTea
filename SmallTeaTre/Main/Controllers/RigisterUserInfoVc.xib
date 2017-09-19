@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RigisterUserInfoVc">
             <connections>
+                <outlet property="headView" destination="Mn9-fq-1mI" id="slA-oA-ppc"/>
                 <outlet property="nameFie" destination="ci8-S5-zLd" id="ygL-df-hDY"/>
                 <outlet property="passFie" destination="s5b-6d-9gI" id="TI5-Tf-9H1"/>
                 <outlet property="rigisBtn" destination="b8z-FX-pRi" id="bKJ-xj-nB1"/>
@@ -21,12 +22,16 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmb-ED-Sa2">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_toux" translatesAutoresizingMaskIntoConstraints="NO" id="Mn9-fq-1mI">
-                            <rect key="frame" x="115" y="20" width="91" height="91"/>
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_toux" translatesAutoresizingMaskIntoConstraints="NO" id="Mn9-fq-1mI">
+                            <rect key="frame" x="115" y="20" width="90" height="90"/>
+                            <gestureRecognizers/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="91" id="9xD-ib-Efh"/>
-                                <constraint firstAttribute="width" constant="91" id="vu5-lx-T06"/>
+                                <constraint firstAttribute="height" constant="90" id="9xD-ib-Efh"/>
+                                <constraint firstAttribute="width" constant="90" id="vu5-lx-T06"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="1Oo-2P-ccH" appends="YES" id="UZW-4F-HhV"/>
+                            </connections>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rz-Lf-L1O">
                             <rect key="frame" x="33" y="130" width="30" height="18"/>
@@ -68,7 +73,7 @@
                                 <constraint firstAttribute="height" constant="20" id="llF-HK-lpQ"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8z-FX-pRi">
                             <rect key="frame" x="33" y="239" width="254" height="35"/>
@@ -116,8 +121,13 @@
                 <constraint firstAttribute="bottom" secondItem="fmb-ED-Sa2" secondAttribute="bottom" id="auq-Jc-Jzo"/>
                 <constraint firstItem="fmb-ED-Sa2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yAF-aB-rRj"/>
             </constraints>
-            <point key="canvasLocation" x="354" y="341"/>
+            <point key="canvasLocation" x="45" y="355"/>
         </view>
+        <tapGestureRecognizer id="1Oo-2P-ccH">
+            <connections>
+                <action selector="openImage:" destination="-1" id="lZP-ZR-NLB"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="icon_toux" width="91" height="91"/>

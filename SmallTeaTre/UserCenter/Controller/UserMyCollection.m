@@ -7,10 +7,11 @@
 //
 
 #import "UserMyCollection.h"
+#import "ShoppingListInfo.h"
 #import "ShoppingListTableCell.h"
 @interface UserMyCollection ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)UITableView *tableView;
-
+@property (nonatomic,strong)NSArray *dataArray;
 @end
 
 @implementation UserMyCollection
@@ -23,20 +24,20 @@
 }
 
 - (void)loadHomeData{
-    //    [SVProgressHUD show];
-    //    NSString *regiUrl = [NSString stringWithFormat:@"%@userAdminPage",baseUrl];
-    //    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    //    params[@"tokenKey"] = [AccountTool account].tokenKey;
-    //    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
-    //        if ([response.error intValue]==0) {
-    //            [self creatCusTomHeadView:response.data];
-    //            if ([YQObjectBool boolForObject:response.data[@"userInfo"]]) {
-    //            }
-    //        }else{
-    //            [MBProgressHUD showError:response.message];
-    //        }
-    //        [SVProgressHUD dismiss];
-    //    } requestURL:regiUrl params:params];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if ([[SaveUserInfoTool shared].id isKindOfClass:[NSString class]]) {
+        params[@"userId"] = [SaveUserInfoTool shared].id;
+    }
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/user/goods/likes",baseNet];
+    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+            self.dataArray = [ShoppingListInfo objectArrayWithKeyValuesArray:response.result];
+            [self.tableView reloadData];
+        }else{
+            NSString *str = response.msg?response.msg:@"查询失败";
+            SHOWALERTVIEW(str);
+        }
+    } requestURL:netUrl params:params];
 }
 
 - (void)setupTableView{
@@ -56,7 +57,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    return self.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -81,6 +82,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ShoppingListTableCell *teaCell = [ShoppingListTableCell cellWithTableView:tableView];
+    ShoppingListInfo *listInfo;
+    if (indexPath.section<_dataArray.count) {
+        listInfo = _dataArray[indexPath.section];
+    }
+    teaCell.listInfo = listInfo;
     return teaCell;
 }
 

@@ -30,9 +30,11 @@
     //3.发送请求
     [mgr POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData *data = UIImageJPEGRepresentation(image, 0.5);
-        [formData appendPartWithFileData:data name:@"attachment" fileName:fileName mimeType:@"image/jpg"];
+        [formData appendPartWithFileData:data name:@"file" fileName:fileName mimeType:@"image/jpg"];
     } success:^(NSURLSessionDataTask *task, NSDictionary * responseObject) {
-        [MBProgressHUD showSuccess:responseObject[@"message"]];
+        if ([responseObject[@"msg"] isKindOfClass:[NSString class]]) {
+            [MBProgressHUD showSuccess:responseObject[@"msg"]];
+        }
         if (callback) {
             callback(responseObject,nil);
         }

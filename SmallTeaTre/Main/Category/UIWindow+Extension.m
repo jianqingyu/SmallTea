@@ -10,7 +10,6 @@
 #import "MainTabViewController.h"
 #import "MainNavViewController.h"
 #import "LoginViewController.h"
-#import "LauchimageCustomVC.h"
 #import "NewfeatureViewController.h"
 @implementation UIWindow (Extension)
 

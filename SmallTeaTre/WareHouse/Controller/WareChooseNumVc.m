@@ -24,7 +24,7 @@
 }
 
 - (IBAction)sureClick:(id)sender {
-    [NewUIAlertTool show:self.dic with:self back:^{
+    [NewUIAlertTool show:self.dic back:^{
         
     }];
 }

@@ -13,10 +13,16 @@
 #import "ShoppingListTableCell.h"
 #import "HomeShoppingDetailVc.h"
 #import "ShowHidenTabBar.h"
-@interface ShoppingMallVC ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
+#import "ShoppingListInfo.h"
+@interface ShoppingMallVC ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>{
+    int curPage;
+    int pageCount;
+    int totalCount;//商品总数量
+}
 @property (weak,  nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic,strong) UITableView *tableView;
 @property (assign,nonatomic) CGFloat height;
+@property (nonatomic,strong) NSMutableArray *dataArray;
 @property (weak,  nonatomic) CustomBackgroundView *baView;
 @property (weak,  nonatomic) ShopShareCustomView *shareView;
 @end
@@ -30,7 +36,7 @@
     [self.searchBar setBackgroundImage:backImg];
     self.searchBar.delegate = self;
     [self setupTableView];
-    [self loadHomeData];
+    [self setupHeaderRefresh];
     self.height = 190;
     [self creatBaseView];
 }
@@ -102,24 +108,9 @@
     [self.searchBar resignFirstResponder];
 }
 
-- (void)loadHomeData{
-    //    [SVProgressHUD show];
-    //    NSString *regiUrl = [NSString stringWithFormat:@"%@userAdminPage",baseUrl];
-    //    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    //    params[@"tokenKey"] = [AccountTool account].tokenKey;
-    //    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
-    //        if ([response.error intValue]==0) {
-    //            [self creatCusTomHeadView:response.data];
-    //            if ([YQObjectBool boolForObject:response.data[@"userInfo"]]) {
-    //            }
-    //        }else{
-    //            [MBProgressHUD showError:response.message];
-    //        }
-    //        [SVProgressHUD dismiss];
-    //    } requestURL:regiUrl params:params];
-}
-
 - (void)setupTableView{
+    self.dataArray = [NSMutableArray new];
+    pageCount = 10;
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = DefaultColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -135,8 +126,92 @@
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
 }
 
+#pragma mark -- 网络请求
+- (void)setupHeaderRefresh{
+    // 刷新功能
+    MJRefreshStateHeader*header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self headerRereshing];
+    }];
+    [header setTitle:@"用力往下拉我!!!" forState:MJRefreshStateIdle];
+    [header setTitle:@"快放开我!!!" forState:MJRefreshStatePulling];
+    [header setTitle:@"努力刷新中..." forState:MJRefreshStateRefreshing];
+    _tableView.header = header;
+    [self.tableView.header beginRefreshing];
+}
+
+- (void)setupFootRefresh{
+    
+    MJRefreshAutoNormalFooter*footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self footerRereshing];
+    }];
+    [footer setTitle:@"上拉有惊喜" forState:MJRefreshStateIdle];
+    [footer setTitle:@"好了，可以放松一下手指" forState:MJRefreshStatePulling];
+    [footer setTitle:@"努力加载中，请稍候" forState:MJRefreshStateRefreshing];
+    _tableView.footer = footer;
+}
+#pragma mark - refresh
+- (void)headerRereshing{
+    [self loadNewRequestWith:YES];
+}
+
+- (void)footerRereshing{
+    [self loadNewRequestWith:NO];
+}
+
+- (void)loadNewRequestWith:(BOOL)isPullRefresh{
+    if (isPullRefresh){
+        curPage = 1;
+        [self.dataArray removeAllObjects];
+    }
+    [self getCommodityData];
+}
+
+- (void)getCommodityData{
+    [SVProgressHUD show];
+    self.view.userInteractionEnabled = NO;
+    NSString *url = [NSString stringWithFormat:@"%@api/goods/page",baseNet];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"index"] = @(curPage);
+    params[@"pageSize"] = @(pageCount);
+    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+        [self.tableView.header endRefreshing];
+        [self.tableView.footer endRefreshing];
+        if ([response.code isEqualToString:@"0000"]) {
+            [self setupFootRefresh];
+            if ([YQObjectBool boolForObject:response.result]){
+                [self setupListDataWithDict:response.result];
+            }
+            [self.tableView reloadData];
+            self.view.userInteractionEnabled = YES;
+            [SVProgressHUD dismiss];
+        }
+    } requestURL:url params:params];
+}
+
+- (void)setupListDataWithDict:(NSDictionary *)dict{
+    if([dict[@"result"] isKindOfClass:[NSArray class]]
+       && [dict[@"result"] count]>0){
+        self.tableView.footer.state = MJRefreshStateIdle;
+        curPage++;
+        totalCount = [dict[@"totalPage"]intValue];
+        NSArray *seaArr = [ShoppingListInfo objectArrayWithKeyValuesArray:dict[@"result"]];
+        [_dataArray addObjectsFromArray:seaArr];
+        if(curPage>totalCount){
+            //已加载全部数据
+            MJRefreshAutoNormalFooter*footer = (MJRefreshAutoNormalFooter*)_tableView.footer;
+            [footer setTitle:@"没有更多了" forState:MJRefreshStateNoMoreData];
+            self.tableView.footer.state = MJRefreshStateNoMoreData;
+        }
+    }else{
+        //[self.tableView.header removeFromSuperview];
+        MJRefreshAutoNormalFooter*footer = (MJRefreshAutoNormalFooter*)_tableView.footer;
+        [footer setTitle:@"暂时没有商品" forState:MJRefreshStateNoMoreData];
+        _tableView.footer.state = MJRefreshStateNoMoreData;
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    return self.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -162,26 +237,27 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ShoppingListTableCell *teaCell = [ShoppingListTableCell cellWithTableView:tableView];
     teaCell.back = ^(int staue,BOOL isYes){
-        if (staue==1) {
-            [self favShopClick:isYes];
-        }else{
+        if (staue==2){
             [self shareShopClick];
         }
     };
+    ShoppingListInfo *listInfo;
+    if (indexPath.section<self.dataArray.count) {
+        listInfo = self.dataArray[indexPath.section];
+    }
+    teaCell.listInfo = listInfo;
     return teaCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    HomeShoppingDetailVc *detail = [HomeShoppingDetailVc new];
-//    //    ProductInfo *proInfo;
-//    //    if (indexPath.row<self.dataArray.count) {
-//    //        proInfo = self.dataArray[indexPath.row];
-//    //    }
-//    [self.navigationController pushViewController:detail animated:YES];
-}
-
-- (void)favShopClick:(BOOL)isYes{
-    
+    ShoppingListInfo *listInfo;
+    if (indexPath.section<self.dataArray.count) {
+        listInfo = self.dataArray[indexPath.section];
+    }
+    HomeShoppingDetailVc *detail = [HomeShoppingDetailVc new];
+    detail.title = listInfo.goodsName;
+    detail.url = listInfo.informationUrl;
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 @end

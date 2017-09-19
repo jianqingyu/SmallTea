@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -29,14 +29,24 @@
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b13-Yo-ES9">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                            <connections>
+                                <action selector="topClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="7Qo-nS-T9y"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="1Zr-ZO-Bet" firstAttribute="leading" secondItem="aj0-sd-TKW" secondAttribute="leading" constant="107" id="0a1-cO-sqD"/>
                         <constraint firstItem="nw6-Uj-ViV" firstAttribute="centerY" secondItem="aj0-sd-TKW" secondAttribute="centerY" id="9sN-o8-7aY"/>
+                        <constraint firstItem="b13-Yo-ES9" firstAttribute="top" secondItem="aj0-sd-TKW" secondAttribute="top" id="FDs-Tq-2a5"/>
                         <constraint firstItem="1yR-ti-Tae" firstAttribute="centerY" secondItem="aj0-sd-TKW" secondAttribute="centerY" id="KDe-Dy-Q6D"/>
+                        <constraint firstAttribute="trailing" secondItem="b13-Yo-ES9" secondAttribute="trailing" id="MWQ-Do-PTh"/>
                         <constraint firstAttribute="height" constant="40" id="Oko-tf-v6n"/>
                         <constraint firstItem="1yR-ti-Tae" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1Zr-ZO-Bet" secondAttribute="trailing" priority="900" id="Tmi-i6-7cz"/>
+                        <constraint firstItem="b13-Yo-ES9" firstAttribute="leading" secondItem="aj0-sd-TKW" secondAttribute="leading" id="TnV-oj-6Lj"/>
+                        <constraint firstAttribute="bottom" secondItem="b13-Yo-ES9" secondAttribute="bottom" id="Wge-Ah-pQ8"/>
                         <constraint firstItem="1Zr-ZO-Bet" firstAttribute="centerY" secondItem="aj0-sd-TKW" secondAttribute="centerY" id="cpO-Y6-gN4"/>
                         <constraint firstAttribute="trailing" secondItem="1yR-ti-Tae" secondAttribute="trailing" constant="16" id="kof-fR-7AG"/>
                         <constraint firstItem="nw6-Uj-ViV" firstAttribute="leading" secondItem="aj0-sd-TKW" secondAttribute="leading" constant="16" id="q4S-U6-crg"/>
@@ -51,6 +61,9 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="messLab" destination="1Zr-ZO-Bet" id="rxi-2X-N2o"/>
+            </connections>
             <point key="canvasLocation" x="381" y="173"/>
         </view>
     </objects>

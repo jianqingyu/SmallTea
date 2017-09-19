@@ -55,7 +55,7 @@
 #define BarColor CUSTOM_COLOR(245,245,247)
 #define BordColor CUSTOM_COLOR(218,218,218)
 //基础接口
-#define baseNet @"http://www.bestfeng.xin:81/xcb/"
+#define baseNet @"http://www.bestfeng.wang:81/xcb/"
 //网络接口
 //#define baseUrl [NSString stringWithFormat:@"%@aproxy/",baseNet]
 //支付宝支付网址
