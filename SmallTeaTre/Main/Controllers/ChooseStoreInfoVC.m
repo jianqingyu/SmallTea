@@ -10,7 +10,7 @@
 #import "MainNavViewController.h"
 #import "ChooseStoreInfoView.h"
 #import "RigisterUserInfoVc.h"
-#import "ChooseStoreInfoView.h"
+#import "IQKeyboardManager.h"
 @interface ChooseStoreInfoVC ()
 @property (weak,  nonatomic) IBOutlet UIButton *nextBtn;
 @property (weak,  nonatomic) UIView *baView;
@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [self.nextBtn setLayerWithW:4 andColor:BordColor andBackW:0.0001];
     self.height = 270;
     [self creatBaseView];
@@ -94,7 +95,8 @@
 
 - (IBAction)nextClick:(id)sender {
     if (![YQObjectBool boolForObject:self.mutDic[@"shopId"]]) {
-        [MBProgressHUD showSuccess:@"请选择门店"];
+        [MBProgressHUD showError:@"请选择门店"];
+        return;
     }
     RigisterUserInfoVc *infoVc = [RigisterUserInfoVc new];
     infoVc.dic = self.mutDic.copy;

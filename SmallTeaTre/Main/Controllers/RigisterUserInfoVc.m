@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人资料";
+    self.nameFie.text = [SaveUserInfoTool shared].nickName;
     [self.headView setLayerWithW:self.headView.width/2 andColor:BordColor andBackW:0.0001];
     self.height = 135;
     [self creatBaseView];
@@ -124,33 +125,48 @@
     params[@"loginName"] = _dic[@"phone"];
     params[@"mobile"] = _dic[@"phone"];
     params[@"nickName"] = self.nameFie.text;
-    params[@"passwordReal"] = self.passFie.text;
+    params[@"password"] = self.passFie.text;
     params[@"shopId"] = _dic[@"shopId"];
     if (self.imgUrl.length>0) {
         params[@"imgUrl"] = self.imgUrl;
     }
     NSString *netUrl = [NSString stringWithFormat:@"%@api/user/register/%@/%@",baseNet,_dic[@"biz"],_dic[@"code"]];
     [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
-        if ([response.code isEqualToString:@"0000"]) {
-            SaveUserInfoTool *save = [SaveUserInfoTool shared];
-            save.id = response.result[@"id"];
-            save.imgUrl = response.result[@"id"];
-            save.nickName = response.result[@"nickName"];
-            save.shopId = response.result[@"shopId"];
-            Account *account = [Account accountWithDict:params];
-            //自定义类型存储用NSKeyedArchiver
-            [AccountTool saveAccount:account];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UIWindow *window = [UIApplication sharedApplication].keyWindow;
-                window.rootViewController = [[MainTabViewController alloc]init];
-            });
-        }else{
-            NSString *str = response.msg?response.msg:@"注册失败";
-            SHOWALERTVIEW(str);
+        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+            [self saveUserInfo:params and:response];
         }
+        NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作成功";
+        [MBProgressHUD showError:str];
         sender.enabled = YES;
     } requestURL:netUrl params:params];
 }
+
+- (void)saveUserInfo:(NSDictionary *)params and:(BaseResponse *)response{
+    Account *account = [Account accountWithDict:params];
+    //自定义类型存储用NSKeyedArchiver
+    [AccountTool saveAccount:account];
+    SaveUserInfoTool *save = [SaveUserInfoTool shared];
+    save.id = response.result[@"id"];
+    save.nickName = response.result[@"nickName"];
+    save.shopId = response.result[@"shopId"];
+    save.imgUrl = response.result[@"imgUrl"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        window.rootViewController = [[MainTabViewController alloc]init];
+    });
+}
+
+//- (void)loginUserInfo{
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    params[@"loginName"] = _dic[@"phone"];
+//    params[@"password"] = self.passFie.text;
+//    NSString *logUrl = [NSString stringWithFormat:@"%@api/user/login",baseNet];
+//    [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
+//        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+//            
+//        }
+//    } requestURL:logUrl params:params];
+//}
 
 //打开相机
 - (void)openCamera{
@@ -188,15 +204,10 @@
 //上传图片
 - (void)loadUpDateImage:(UIImage *)image{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    NSString *userId;
-    if ([[SaveUserInfoTool shared].id isKindOfClass:[NSString class]]) {
-        userId = [SaveUserInfoTool shared].id;
-    }
+    NSString *userId = @"-1";
     NSString *url = [NSString stringWithFormat:@"%@/api/user/head_img/upload/%@",baseNet,userId];
     [CommonUsedTool loadUpDate:^(NSDictionary *response, NSError *error) {
         if ([response[@"code"] isEqualToString:@"0000"]) {
-//            "userId": "e4b370f4fc2b4530ab26436aca136e6c",
-//            "imgUrl": "/file/head/image/2017/img_20170917.png"
             if ([YQObjectBool boolForObject:response[@"result"]]) {
                 self.imgUrl = response[@"result"][@"imgUrl"];
             }

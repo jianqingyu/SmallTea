@@ -12,6 +12,7 @@
 #import "NearbyNetworkView.h"
 #import "Reachability.h"
 #import "HomePageVC.h"
+#import "IQKeyboardManager.h"
 @interface BaseViewController ()
 @property (nonatomic,assign)BOOL isSel;
 @property (nonatomic,strong)NetworkDetermineTool *netTool;
@@ -24,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     App;
     app.loadBack = ^(BOOL isYes){

@@ -48,7 +48,7 @@
                         "myimg.width = maxwidth;"
                         "}"
                         "}\";"
-                        "document.getElementsByTagName('p')[0].appendChild(script);",SDevWidth-20];
+                        "document.getElementsByTagName('p')[0].appendChild(script);",SDevWidth-15];
     //添加JS
     [webView stringByEvaluatingJavaScriptFromString:script];
     //添加调用JS执行的语句

@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
-
+#import "WareListInfo.h"
 @interface WareChooseNumVc : BaseViewController
-
+@property (nonatomic,strong)WareListInfo *info;
+@property (nonatomic,assign)BOOL isSel;
 @end

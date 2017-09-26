@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface SaveUserInfoTool : NSObject
-+ (instancetype)shared;
 @property (nonatomic,copy)NSString *id;
 @property (nonatomic,copy)NSString *mobile;
 @property (nonatomic,copy)NSString *nickName;
 @property (nonatomic,copy)NSString *shopId;
 @property (nonatomic,copy)NSString *imgUrl;
++ (instancetype)shared;
+- (void)clearAllData;
 @end

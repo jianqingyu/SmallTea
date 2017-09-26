@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface HomeShopListInfo : NSObject
+#import "BaseModelInfo.h"
+@interface HomeShopListInfo : BaseModelInfo
 @property (nonatomic, copy)NSString *id;
 @property (nonatomic, copy)NSString *title;
 @property (nonatomic, copy)NSString *imgUrl;

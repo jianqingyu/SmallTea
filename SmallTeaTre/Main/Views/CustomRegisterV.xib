@@ -30,7 +30,7 @@
                         <constraint firstAttribute="height" constant="20" id="UkF-Oq-YmX"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验证码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2Y-pb-dLk">
                     <rect key="frame" x="33" y="82" width="45" height="18"/>
@@ -55,7 +55,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFa-Ku-dTM">
-                    <rect key="frame" x="33" y="166" width="254" height="35"/>
+                    <rect key="frame" x="33" y="155" width="254" height="35"/>
                     <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="en6-rr-Uyw"/>
@@ -80,27 +80,27 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mm-ah-1Nz">
-                    <rect key="frame" x="33" y="124" width="11" height="22"/>
+                    <rect key="frame" x="33" y="124" width="11" height="11"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="11" id="hmp-ud-gdG"/>
-                        <constraint firstAttribute="height" constant="22" id="uC7-7U-QwL"/>
+                        <constraint firstAttribute="height" constant="11" id="uC7-7U-QwL"/>
                     </constraints>
-                    <state key="normal" image="icon_sel"/>
+                    <state key="normal" backgroundImage="icon_sel"/>
                     <state key="selected" image="icon_sel2"/>
                     <connections>
                         <action selector="chooseClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="7KG-0M-oMJ"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同意" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZV-eo-1DM">
-                    <rect key="frame" x="46" y="128" width="24" height="15"/>
+                    <rect key="frame" x="46" y="122" width="24" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0H3-TP-hMA">
-                    <rect key="frame" x="72" y="121" width="61" height="27"/>
+                    <rect key="frame" x="72" y="116" width="72" height="27"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="xx服务协议">
+                    <state key="normal" title="用户注册协议">
                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -108,17 +108,20 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="及" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3S7-Gj-yn5">
-                    <rect key="frame" x="135" y="128" width="12" height="15"/>
+                    <rect key="frame" x="146" y="122" width="12" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6GR-7N-AR9">
-                    <rect key="frame" x="149" y="121" width="61" height="27"/>
+                    <rect key="frame" x="160" y="116" width="72" height="27"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="xx服务协议">
+                    <state key="normal" title="仓储管理协议">
                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="saveClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="xxw-QN-L39"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -162,7 +165,7 @@
                 <outlet property="nextBtn" destination="GFa-Ku-dTM" id="ctW-Ir-BgG"/>
                 <outlet property="phoneFie" destination="TTS-CL-cax" id="JEJ-EM-02B"/>
             </connections>
-            <point key="canvasLocation" x="345" y="155"/>
+            <point key="canvasLocation" x="218" y="221"/>
         </view>
     </objects>
     <resources>

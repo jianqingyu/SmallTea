@@ -60,9 +60,10 @@
     static NSString *Id = @"customCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Id];
     if (cell==nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Id];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Id];
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.textLabel.textColor = CUSTOM_COLOR(40, 40, 40);
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
     NSDictionary *dic;
     if (indexPath.row<self.list.count) {

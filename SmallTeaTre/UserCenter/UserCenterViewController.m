@@ -14,11 +14,13 @@
 #import "CustomBackgroundView.h"
 #import "ShopShareCustomView.h"
 #import <ShareSDK/ShareSDK.h>
+#import "MainTabViewController.h"
 #import <ShareSDKConnector/ShareSDKConnector.h>
 @interface UserCenterViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate>
 @property(strong,nonatomic) UITableView *tableView;
 @property(nonatomic,  copy) NSArray *list;
 @property (assign,nonatomic) CGFloat height;
+@property (weak,  nonatomic) UserCenterHeadView *userHV;
 @property (weak,  nonatomic) CustomBackgroundView *baView;
 @property (weak,  nonatomic) ShopShareCustomView *shareView;
 @end
@@ -29,14 +31,23 @@
     [super viewDidLoad];
     self.list = @[@{@"image":@"icon_store_info",@"title":@"门店信息",@"vc":@"UserStoreInfoVC"},
                   @{@"image":@"icon_fav",@"title":@"我的收藏",@"vc":@"UserMyCollection"},
+                  @{@"image":@"icon_order",@"title":@"我的订单",@"vc":@"UserMyOrderListVC"},
                   @{@"image":@"icon_share_2",@"title":@"分享小茶宝",@"vc":@"UserShare"},
                   @{@"image":@"icon_help",@"title":@"使用帮助及协议",@"vc":@"UserHelpViewController"},
                   @{@"image":@"icon_me",@"title":@"关于我们",@"vc":@"UserAboutUsVc"},
                   @{@"image":@"icon_set",@"title":@"设置",@"vc":@"UserReSetViewC"}];
     [self setupTableView];
-    [self loadHomeData];
     self.height = 190;
     [self creatBaseView];
+}
+
+- (NSDictionary *)shareDic{
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    params[@"title"] = @"小茶宝";
+    params[@"des"] = @"详情地址";
+    params[@"image"] = @"";
+    params[@"url"] = @"";
+    return params.copy;
 }
 
 - (void)creatBaseView{
@@ -53,6 +64,11 @@
     
     ShopShareCustomView *infoV = [ShopShareCustomView creatCustomView];
     [self.view addSubview:infoV];
+    infoV.back = ^(BOOL isYes){
+        if (self.height == 48) {
+            [self changeStoreView:YES];
+        }
+    };
     [infoV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view).offset(self.height);
@@ -60,6 +76,7 @@
         make.height.mas_equalTo(190);
     }];
     self.shareView = infoV;
+    self.shareView.shareDic = [self shareDic];
 }
 
 - (void)shareShopClick {
@@ -96,29 +113,15 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.delegate = self;
+    if (self.userHV) {
+        [self.userHV setUserInfo];
+    }
 }
 
 - (void)navigationController:(UINavigationController *)navigationController
       willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     BOOL isShowHomePage = [viewController isKindOfClass:[self class]];
     [self.navigationController setNavigationBarHidden:isShowHomePage animated:YES];
-}
-
-- (void)loadHomeData{
-    //    [SVProgressHUD show];
-    //    NSString *regiUrl = [NSString stringWithFormat:@"%@userAdminPage",baseUrl];
-    //    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    //    params[@"tokenKey"] = [AccountTool account].tokenKey;
-    //    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
-    //        if ([response.error intValue]==0) {
-    //            [self creatCusTomHeadView:response.data];
-    //            if ([YQObjectBool boolForObject:response.data[@"userInfo"]]) {
-    //            }
-    //        }else{
-    //            [MBProgressHUD showError:response.message];
-    //        }
-    //        [SVProgressHUD dismiss];
-    //    } requestURL:regiUrl params:params];
 }
 
 - (void)setupTableView{
@@ -151,6 +154,7 @@
         make.bottom.equalTo(hView).offset(-10);
     }];
     [headV setUserInfo];
+    self.userHV = headV;
     self.tableView.tableHeaderView = hView;
 }
 
@@ -175,8 +179,16 @@
 }
 
 - (void)cancelClick{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    window.rootViewController = [[LoginViewController alloc]init];
+    NSString *url = [NSString stringWithFormat:@"%@api/user/logout",baseNet];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]) {
+            SaveUserInfoTool *save = [SaveUserInfoTool shared];
+            [save clearAllData];
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            window.rootViewController = [[LoginViewController alloc]init];
+        }
+    } requestURL:url params:params];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -191,21 +203,6 @@
     UserCenterListCell *cell = [UserCenterListCell cellWithTableView:tableView];
     cell.dic = self.list[indexPath.row];
     return cell;
-}
-
-- (void)setCell{
-//    NSString *Id = @"centerCell";
-//    UITableViewCell *customCell = [tableView dequeueReusableCellWithIdentifier:Id];
-//    if (customCell==nil) {
-//        customCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Id];
-//        customCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//        customCell.textLabel.font = [UIFont systemFontOfSize:14];
-//        customCell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    }
-//    NSDictionary *dic = self.list[indexPath.row];
-//    customCell.imageView.image = [UIImage imageNamed:dic[@"image"]];
-//    customCell.textLabel.text = dic[@"title"];
-//    return customCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -33,7 +33,7 @@
     if (self) {
         self = [[NSBundle mainBundle]loadNibNamed:@"TeaListTableCell" owner:nil options:nil][0];
         [self.teaImg setLayerWithW:35 andColor:BordColor andBackW:0.00001];
-        [self.styleLab setLayerWithW:6 andColor:BordColor andBackW:0.0001];
+        [self.styleLab setLayerWithW:2 andColor:BordColor andBackW:0.0001];
         [self.favBtn setLayerWithW:2 andColor:BordColor andBackW:0.5];
         [self.shareBtn setLayerWithW:2 andColor:BordColor andBackW:0.5];
     }
@@ -43,12 +43,17 @@
 - (void)setListInfo:(ShoppingListInfo *)listInfo{
     if (listInfo) {
         _listInfo = listInfo;
+        self.favBtn.selected = _listInfo.isStored;
         NSString *url = [NSString stringWithFormat:@"%@%@",baseNet,_listInfo.imgUrl];
         [self.teaImg sd_setImageWithURL:[NSURL URLWithString:url]
                        placeholderImage:DefaultImage];
         self.titleLab.text = _listInfo.goodsName;
         self.listLab.text = [NSString stringWithFormat:@"%@ %@",_listInfo.deportName,_listInfo.typeName];
-        self.styleLab.text = _listInfo.tagName;
+        NSString *style = @"";
+        if (_listInfo.tagName.length>0) {
+            style = [NSString stringWithFormat:@" %@    ",_listInfo.tagName];
+        }
+        self.styleLab.text = style;
         NSString *str = _listInfo.introduction;
         str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //去除掉首尾的空白字符和换行字符
         str = [str stringByReplacingOccurrencesOfString:@"\r" withString:@""];
@@ -59,19 +64,16 @@
 
 - (IBAction)favClick:(UIButton *)sender {
     sender.selected = !sender.selected;
+    NSString *str = sender.selected?@"like":@"unlike";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if ([[SaveUserInfoTool shared].id isKindOfClass:[NSString class]]) {
         params[@"userId"] = [SaveUserInfoTool shared].id;
     }
     params[@"goodsId"] = _listInfo.id;
-    NSString *netUrl = [NSString stringWithFormat:@"%@api/user/goods/like",baseNet];
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/user/goods/%@",baseNet,str];
     [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
-        if ([response.code isEqualToString:@"0000"]) {
-            [MBProgressHUD showSuccess:@"收藏成功"];
-        }else{
-            NSString *str = response.msg?response.msg:@"收藏失败";
-            SHOWALERTVIEW(str);
-        }
+        NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作成功";
+        [MBProgressHUD showSuccess:str];
         sender.enabled = YES;
     } requestURL:netUrl params:params];
 }

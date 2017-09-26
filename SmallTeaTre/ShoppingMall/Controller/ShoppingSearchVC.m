@@ -100,6 +100,9 @@
     
     ShopShareCustomView *infoV = [ShopShareCustomView creatCustomView];
     [self.view addSubview:infoV];
+    infoV.back = ^(BOOL isYes){
+        [self changeStoreView:YES];
+    };
     [infoV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view).offset(self.height);
@@ -202,7 +205,7 @@
     }
     [SVProgressHUD show];
     self.view.userInteractionEnabled = NO;
-    NSString *url = [NSString stringWithFormat:@"%@api/goods/page",baseNet];
+    NSString *url = [NSString stringWithFormat:@"%@api/goods/shop/page",baseNet];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"index"] = @(curPage);
     params[@"pageSize"] = @(pageCount);
@@ -270,17 +273,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ShoppingListTableCell *teaCell = [ShoppingListTableCell cellWithTableView:tableView];
-    teaCell.back = ^(int staue,BOOL isYes){
-        if (staue==2) {
-            [self shareShopClick];
-        }
-    };
     ShoppingListInfo *listInfo;
     if (indexPath.section<self.dataArray.count) {
         listInfo = self.dataArray[indexPath.section];
-        teaCell.listInfo = listInfo;
+        
     }
+    teaCell.listInfo = listInfo;
+    teaCell.back = ^(int staue,BOOL isYes){
+        if (staue==2) {
+            self.shareView.shareDic = [self dicWithList:listInfo];
+            [self shareShopClick];
+        }
+    };
     return teaCell;
+}
+
+- (NSDictionary *)dicWithList:(ShoppingListInfo *)listInfo{
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    params[@"title"] = listInfo.goodsName;
+    params[@"des"] = listInfo.introduction;
+    params[@"image"] = listInfo.imgUrl;
+    params[@"url"] = listInfo.informationUrl;
+    return params.copy;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

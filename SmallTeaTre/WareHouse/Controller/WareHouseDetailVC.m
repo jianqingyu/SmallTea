@@ -13,14 +13,17 @@
 @interface WareHouseDetailVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btns;
 @property (nonatomic,strong)UITableView *tableView;
-@property (nonatomic,   copy) NSDictionary *dic;
+@property (nonatomic,  copy)NSArray *dicArr;
 @end
 
 @implementation WareHouseDetailVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dic = @{@"title":@"请与客户联系",@"message":@""};
+    self.dicArr = @[@{@"title":@"请与客服联系仓库线下提货"},
+                    @{@"title":@"请与客服联系仓库线下续存"},
+                    @{@"title":@"购买时间未满三年，禁止操作"},
+                    @{@"title":@"已满三年，请与客服联系买家"}];
     [self setupTableView];
 }
 
@@ -42,7 +45,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return _arr.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -67,19 +70,45 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WareHouseListTableCell *cell = [WareHouseListTableCell cellWithTableView:tableView];
+    WareListInfo *listInfo;
+    if (indexPath.section<_arr.count) {
+        listInfo = _arr[indexPath.section];
+    }
+    cell.listInfo = listInfo;
     return cell;
 }
 
 - (IBAction)bottomClick:(UIButton *)sender {
+    WareListInfo *listInfo = _arr[0];
     NSInteger idex = [self.btns indexOfObject:sender];
     if (idex==3) {
         WareChooseNumVc *numVc = [WareChooseNumVc new];
+        numVc.info = listInfo;
         [self.navigationController pushViewController:numVc animated:YES];
         return;
     }
-    [NewUIAlertTool show:self.dic back:^{
-        
-    }];
+    NSDictionary *dic = self.dicArr[idex];
+    if (idex==2) {
+        if ([self compareNowAndOldTime:listInfo]) {
+            dic = self.dicArr[3];
+        }
+    }
+    [NewUIAlertTool show:dic back:nil];
+}
+
+- (BOOL)compareNowAndOldTime:(WareListInfo *)listInfo{
+    NSTimeInterval second = listInfo.createTime.longLongValue / 1000.0;
+    // 时间戳 -> NSDate *
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:second];
+    NSDate *now = [NSDate date];
+    NSCalendar *gregorian = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    unsigned int unitFlags = NSCalendarUnitYear;
+    NSDateComponents *comps = [gregorian components:unitFlags fromDate:now toDate:date options:0];
+    if ([comps year]>=3) {
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 @end

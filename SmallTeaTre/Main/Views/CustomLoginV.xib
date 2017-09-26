@@ -30,7 +30,7 @@
                         <constraint firstAttribute="height" constant="20" id="MRX-Xc-mv1"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScR-6u-PmE">
                     <rect key="frame" x="33" y="72" width="30" height="18"/>
@@ -149,7 +149,7 @@
                 <outlet property="passFie" destination="uNl-lj-xiE" id="wR9-Dy-tmq"/>
                 <outlet property="phoneFie" destination="K6g-Je-MfA" id="io4-LV-2UD"/>
             </connections>
-            <point key="canvasLocation" x="57" y="211"/>
+            <point key="canvasLocation" x="320" y="202"/>
         </view>
     </objects>
     <resources>

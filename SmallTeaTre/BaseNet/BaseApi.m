@@ -16,6 +16,10 @@
                 params:(NSMutableDictionary*)params{
     [[RequestClient sharedClient] GET:requestURL parameters:params success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         BaseResponse *result = [self setValue:responseObject];
+        if ([result.code isEqualToString:@"1000"]) {
+            [self backToLoginView];
+            return ;
+        }
         callback(result,nil);
         [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -46,12 +50,8 @@
                                              params:(NSMutableDictionary*)params{
     [[RequestClient sharedClient] GET:requestURL parameters:params success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         BaseResponse *result = [self setValue:responseObject];
-        if ([result.code intValue]==2) {
-            UIViewController *vc = [ShowLoginViewTool getCurrentVC];
-            LoginViewController *login = [LoginViewController new];
-            login.noLogin = YES;
-            [vc presentViewController:login animated:YES completion:nil];
-            [SVProgressHUD dismiss];
+        if ([result.code isEqualToString:@"1000"]) {
+            [self backToLoginView];
             return ;
         }
         callback(result,nil);
@@ -70,6 +70,10 @@
                                             params:(NSMutableDictionary*)params{
     [[RequestClient sharedClient] POST:requestURL parameters:params success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         BaseResponse *result = [self setValue:responseObject];
+        if ([result.code isEqualToString:@"1000"]) {
+            [self backToLoginView];
+            return ;
+        }
         callback(result,nil);
         [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -86,6 +90,10 @@
                  params:(NSMutableDictionary*)params{
     [[RequestClient sharedPostClient] POST:requestURL parameters:params success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         BaseResponse *result = [self setValue:responseObject];
+        if ([result.code isEqualToString:@"1000"]) {
+            [self backToLoginView];
+            return ;
+        }
         callback(result,nil);
         [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -95,6 +103,13 @@
             callback(nil,error);
         }
     }];
+}
+
++ (void)backToLoginView{
+    [MBProgressHUD showError:@"需要登录"];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    window.rootViewController = [[LoginViewController alloc]init];
+    [SVProgressHUD dismiss];
 }
 
 + (BaseResponse *)setValue:(NSDictionary *)dic{

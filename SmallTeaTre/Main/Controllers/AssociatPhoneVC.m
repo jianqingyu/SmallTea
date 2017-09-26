@@ -8,7 +8,7 @@
 
 #import "AssociatPhoneVC.h"
 #import "CustomRegisterV.h"
-#import "ChooseStoreInfoVC.h"
+#import "IQKeyboardManager.h"
 @interface AssociatPhoneVC ()
 @property (nonatomic, weak)CustomRegisterV *regisView;
 @end
@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [self creatRegisterView];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "HomePageVC.h"
+#import "MainTabViewController.h"
 #import "TeaListTableCell.h"
 #import "HYBLoopScrollView.h"
 #import "HomePageHeadView.h"
@@ -18,13 +19,17 @@
 #import "ShoppingListInfo.h"
 @interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,
 UINavigationControllerDelegate>{
-    int curPage;
     int pageCount;
+    int onePage;
+    int oneCount;
+    int curPage;
     int totalCount;//商品总数量
 }
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,  weak) HomePageHeadView *headView;
-@property(nonatomic,strong) NSArray *dataArray;
+@property(nonatomic,strong) NSMutableArray *oneData;
+@property(nonatomic,strong) NSMutableArray *twoData;
+@property(nonatomic,strong) NSMutableArray *dataArray;
 @property (assign,nonatomic) CGFloat height;
 @property (weak,  nonatomic) CustomBackgroundView *baView;
 @property (weak,  nonatomic) ShopShareCustomView *shareView;
@@ -35,15 +40,17 @@ UINavigationControllerDelegate>{
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = DefaultColor;
-    self.dataArray = @[@[].mutableCopy,@[].mutableCopy];
     pageCount = 10;
+    self.view.backgroundColor = DefaultColor;
+    self.oneData = @[].mutableCopy;
+    self.twoData = @[].mutableCopy;
     [self setupTableView];
     [self setupHeaderRefresh];
     self.height = 190;
     [self creatBaseView];
     [self loadHomeHead];
     [self loadMessage];
+    [self loadNewTea];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -65,6 +72,11 @@ UINavigationControllerDelegate>{
     
     ShopShareCustomView *infoV = [ShopShareCustomView creatCustomView];
     [self.view addSubview:infoV];
+    infoV.back = ^(BOOL isYes){
+        if (self.height == 48) {
+            [self changeStoreView:YES];
+        }
+    };
     [infoV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view).offset(self.height);
@@ -105,35 +117,6 @@ UINavigationControllerDelegate>{
     }];
 }
 
-#pragma mark -- 检查新版本
-- (void)loadNewVersion{
-    NSString *url = [NSString stringWithFormat:@"%@currentVersion",baseNet];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"device"] = @"ios";
-    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
-        if ([response.code intValue]==0) {
-            self.versionDic = response.result;
-            [self loadAlertView];
-        }
-    } requestURL:url params:params];
-}
-
-- (void)loadAlertView{
-    NSString *version = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
-    if (![version isEqualToString:self.versionDic[@"version"]]) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示"
-                            message:self.versionDic[@"message"] delegate:self
-                        cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    UIApplication *application = [UIApplication sharedApplication];
-    [application openURL:[NSURL URLWithString:self.versionDic[@"url"]]];
-    application = nil;
-}
-
 - (void)navigationController:(UINavigationController *)navigationController
       willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     BOOL isShowHomePage = [viewController isKindOfClass:[self class]];
@@ -158,7 +141,7 @@ UINavigationControllerDelegate>{
 - (void)loadHomeHead{
     NSString *url = [NSString stringWithFormat:@"%@api/ads/page",baseNet];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"index"] = @(curPage);
+    params[@"index"] = @1;
     params[@"pageSize"] = @3;
     [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]) {
@@ -173,14 +156,32 @@ UINavigationControllerDelegate>{
 - (void)loadMessage{
     NSString *url = [NSString stringWithFormat:@"%@api/notice/page",baseNet];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"index"] = @(curPage);
+    params[@"index"] = @1;
     params[@"pageSize"] = @1;
     [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]) {
             if ([YQObjectBool boolForObject:response.result]){
                 NSArray *arr = response.result[@"result"];
-                self.headView.messDic = arr[0];
+                if (arr.count>0) {
+                    self.headView.messDic = arr[0];
+                }
             }
+        }
+    } requestURL:url params:params];
+}
+
+- (void)loadNewTea{
+    NSString *url = [NSString stringWithFormat:@"%@api/goods/page",baseNet];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"tag"] = @"02";
+    params[@"index"] = @1;
+    params[@"pageSize"] = @5;
+    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]) {
+            if ([YQObjectBool boolForObject:response.result]){
+                [self setupListDataWithDict:response.result and:NO];
+            }
+            [self.tableView reloadData];
         }
     } requestURL:url params:params];
 }
@@ -220,9 +221,9 @@ UINavigationControllerDelegate>{
 - (void)loadNewRequestWith:(BOOL)isPullRefresh{
     if (isPullRefresh){
         curPage = 1;
-        for (NSMutableArray *mutA in self.dataArray) {
-            [mutA removeAllObjects];
-        }
+        [self.oneData removeAllObjects];
+        [self.twoData removeAllObjects];
+        [self loadNewTea];
     }
     [self getCommodityData];
 }
@@ -232,6 +233,7 @@ UINavigationControllerDelegate>{
     self.view.userInteractionEnabled = NO;
     NSString *url = [NSString stringWithFormat:@"%@api/goods/page",baseNet];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"tag"] = @"01";
     params[@"index"] = @(curPage);
     params[@"pageSize"] = @(pageCount);
     [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
@@ -240,36 +242,39 @@ UINavigationControllerDelegate>{
         if ([response.code isEqualToString:@"0000"]) {
             [self setupFootRefresh];
             if ([YQObjectBool boolForObject:response.result]){
-                [self setupListDataWithDict:response.result];
+                [self setupListDataWithDict:response.result and:YES];
             }
             [self.tableView reloadData];
-            self.view.userInteractionEnabled = YES;
-            [SVProgressHUD dismiss];
         }
+        self.view.userInteractionEnabled = YES;
     } requestURL:url params:params];
 }
 
-- (void)setupListDataWithDict:(NSDictionary *)dict{
-    if([dict[@"result"] isKindOfClass:[NSArray class]]
-       && [dict[@"result"] count]>0){
-        self.tableView.footer.state = MJRefreshStateIdle;
-        curPage++;
-        totalCount = [dict[@"totalPage"]intValue];
-        NSArray *seaArr = [ShoppingListInfo objectArrayWithKeyValuesArray:dict[@"result"]];
-        for (NSMutableArray *mutA in _dataArray) {
-            [mutA addObjectsFromArray:seaArr];
-        }
-        if(curPage>totalCount){
-            //已加载全部数据
+- (void)setupListDataWithDict:(NSDictionary *)dict and:(BOOL)isYes{
+    if (isYes) {
+        if([YQObjectBool boolForObject:dict[@"result"]]){
+            self.tableView.footer.state = MJRefreshStateIdle;
+            curPage++;
+            totalCount = [dict[@"totalPage"]intValue];
+            NSArray *seaArr = [ShoppingListInfo objectArrayWithKeyValuesArray:dict[@"result"]];
+            [self.twoData addObjectsFromArray:seaArr];
+            if(curPage>totalCount){
+                //已加载全部数据
+                MJRefreshAutoNormalFooter*footer = (MJRefreshAutoNormalFooter*)_tableView.footer;
+                [footer setTitle:@"" forState:MJRefreshStateNoMoreData];
+                self.tableView.footer.state = MJRefreshStateNoMoreData;
+            }
+        }else{
+            //[self.tableView.header removeFromSuperview];
             MJRefreshAutoNormalFooter*footer = (MJRefreshAutoNormalFooter*)_tableView.footer;
-            [footer setTitle:@"没有更多了" forState:MJRefreshStateNoMoreData];
-            self.tableView.footer.state = MJRefreshStateNoMoreData;
+            [footer setTitle:@"暂时没有商品" forState:MJRefreshStateNoMoreData];
+            _tableView.footer.state = MJRefreshStateNoMoreData;
         }
     }else{
-        //[self.tableView.header removeFromSuperview];
-        MJRefreshAutoNormalFooter*footer = (MJRefreshAutoNormalFooter*)_tableView.footer;
-        [footer setTitle:@"暂时没有商品" forState:MJRefreshStateNoMoreData];
-        _tableView.footer.state = MJRefreshStateNoMoreData;
+        if([YQObjectBool boolForObject:dict[@"result"]]){
+            NSArray *arr = [ShoppingListInfo objectArrayWithKeyValuesArray:dict[@"result"]];
+            self.oneData = arr.mutableCopy;
+        }
     }
 }
 
@@ -312,12 +317,11 @@ UINavigationControllerDelegate>{
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.dataArray.count;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *arr = self.dataArray[section];
-    return arr.count;
+    return section?self.twoData.count:self.oneData.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -325,17 +329,25 @@ UINavigationControllerDelegate>{
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 18.0f;
+    CGFloat height = 0.0001f;
+    if (section==0&&self.oneData.count>0) {
+        height = 18.0f;
+    }
+    if (section==1&&self.twoData.count>0) {
+        height = 18.0f;
+    }
+    return height;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    NSString *title = section?@"热门茶叶":@"新茶上架";
     UIView *hView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SDevWidth, 18)];
     UIView *heView = [[UIView alloc]initWithFrame:CGRectMake(9.5, 0,SDevWidth-19, 18)];
     [heView setLayerWithW:0.001 andColor:DefaultColor andBackW:0.5];
     heView.backgroundColor = [UIColor whiteColor];
     
     UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SDevWidth-30, 18)];
-    lab.text = @"新茶上架";
+    lab.text = title;
     lab.font = [UIFont systemFontOfSize:11];
     lab.backgroundColor = [UIColor whiteColor];
     [hView addSubview:heView];
@@ -343,38 +355,57 @@ UINavigationControllerDelegate>{
     return hView;
 }
 
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//    if (section==1) {
+//        return [UIView new];
+//    }
+//    UIView *hView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SDevWidth, 29)];
+//    UIButton *footBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    footBtn.frame = CGRectMake(9.5, 0,SDevWidth-19, 24);
+//    footBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+//    [footBtn setTitle:@"加载更多" forState:UIControlStateNormal];
+//    [footBtn setTitleColor:CUSTOM_COLOR(40, 40, 40) forState:UIControlStateNormal];
+//    [footBtn addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
+//    [hView addSubview:footBtn];
+//    return hView;
+//}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.00001f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TeaListTableCell *teaCell = [TeaListTableCell cellWithTableView:tableView];
-    NSArray *arr;
+    NSArray *arr = indexPath.section?self.twoData:self.oneData;
     ShoppingListInfo *listInfo;
-    if (indexPath.section<_dataArray.count) {
-        arr = _dataArray[indexPath.section];
-        if (indexPath.row<arr.count) {
-            listInfo = arr[indexPath.row];
-        }
+    if (indexPath.row<arr.count) {
+        listInfo = arr[indexPath.row];
     }
     teaCell.listInfo = listInfo;
     teaCell.back = ^(int staue,BOOL isYes){
         if (staue==2) {
+            self.shareView.shareDic = [self dicWithList:listInfo];
             [self shareShopClick];
         }
     };
     return teaCell;
 }
 
+- (NSDictionary *)dicWithList:(ShoppingListInfo *)listInfo{
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    params[@"title"] = listInfo.goodsName;
+    params[@"des"] = listInfo.introduction;
+    params[@"image"] = listInfo.imgUrl;
+    params[@"url"] = listInfo.informationUrl;
+    return params.copy;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HomeShoppingDetailVc *detail = [HomeShoppingDetailVc new];
-    NSArray *arr;
+    NSArray *arr = indexPath.section?self.twoData:self.oneData;
     ShoppingListInfo *listInfo;
-    if (indexPath.section<_dataArray.count) {
-        arr = _dataArray[indexPath.section];
-        if (indexPath.row<arr.count) {
-            listInfo = arr[indexPath.row];
-        }
+    if (indexPath.row<arr.count) {
+        listInfo = arr[indexPath.row];
     }
     detail.title = listInfo.goodsName;
     detail.url = listInfo.informationUrl;

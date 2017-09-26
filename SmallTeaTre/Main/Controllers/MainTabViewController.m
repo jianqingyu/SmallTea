@@ -10,6 +10,7 @@
 #import "MainNavViewController.h"
 #import "HomePageVC.h"
 #import "WareHouseVC.h"
+#import "LoginViewController.h"
 #import "ShoppingMallVC.h"
 #import "NetworkDetermineTool.h"
 #import "UserCenterViewController.h"
@@ -41,6 +42,10 @@
      [self.tabBar setBackgroundImage:backImg];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationTouch object:nil userInfo:@{UserInfoTab:@""}];
+}
+
 - (void)addChildVcWithVC:(UIViewController *)vc Title:(NSString *)title
             imageName:(NSString *)imageName selectImage:(NSString *)selectImage{
     vc.title = title;
@@ -50,12 +55,12 @@
     
     NSMutableDictionary *selectDict = [NSMutableDictionary dictionary];
     selectDict[NSForegroundColorAttributeName] = CUSTOM_COLOR(114, 27, 6);
-    selectDict[NSFontAttributeName] = [UIFont boldSystemFontOfSize:9];
+    selectDict[NSFontAttributeName] = [UIFont boldSystemFontOfSize:11];
     [vc.tabBarItem setTitleTextAttributes:selectDict forState:UIControlStateSelected];
     
     NSMutableDictionary *norDict = [NSMutableDictionary dictionary];
     norDict[NSForegroundColorAttributeName] = [UIColor blackColor];
-    norDict[NSFontAttributeName] = [UIFont boldSystemFontOfSize:9];
+    norDict[NSFontAttributeName] = [UIFont boldSystemFontOfSize:11];
     [vc.tabBarItem setTitleTextAttributes:norDict forState:UIControlStateNormal];
     
     MainNavViewController *nav = [[MainNavViewController alloc]initWithRootViewController:vc];
@@ -64,6 +69,12 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController
                  shouldSelectViewController:(UIViewController *)viewController{
+    NSString *userId = [SaveUserInfoTool shared].id;
+    if (userId.length==0) {
+        [MBProgressHUD showError:@"需要登录"];
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        window.rootViewController = [[LoginViewController alloc]init];
+    }
     if (![NetworkDetermineTool isExistenceNet]) {
         [NetworkDetermineTool changeSupNaviWithNav:(MainNavViewController *)viewController];
     }

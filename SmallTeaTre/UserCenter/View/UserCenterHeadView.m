@@ -35,7 +35,7 @@
     self.nickname.text = [SaveUserInfoTool shared].nickName;
     NSString *url = [NSString stringWithFormat:@"%@%@",baseNet,[SaveUserInfoTool shared].imgUrl];
     [self.headView sd_setImageWithURL:[NSURL URLWithString:url]
-                   placeholderImage:DefaultImage];
+                   placeholderImage:DefaultHead];
 }
 
 @end

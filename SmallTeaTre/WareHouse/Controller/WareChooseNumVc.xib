@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -67,7 +67,7 @@
                 <constraint firstItem="UE1-kO-MSq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uW7-pI-Ln9"/>
                 <constraint firstItem="UE1-kO-MSq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="5" id="x5U-3M-Qoi"/>
             </constraints>
-            <point key="canvasLocation" x="418" y="298"/>
+            <point key="canvasLocation" x="352" y="266"/>
         </view>
     </objects>
 </document>

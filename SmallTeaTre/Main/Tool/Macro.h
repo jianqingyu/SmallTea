@@ -55,21 +55,21 @@
 #define BarColor CUSTOM_COLOR(245,245,247)
 #define BordColor CUSTOM_COLOR(218,218,218)
 //基础接口
-#define baseNet @"http://www.bestfeng.wang:81/xcb/"
+//#define baseNet @"http://www.bestfeng.wang:81/xcb/"
 //网络接口
-//#define baseUrl [NSString stringWithFormat:@"%@aproxy/",baseNet]
+#define baseNet @"http://119.23.209.140:81/xcb/"
 //支付宝支付网址
 #define ZFBStonePay [NSString stringWithFormat:@"%@Payment/GetAilpayStoneOrderPayStr",baseNet]
 #define ZFBPay [NSString stringWithFormat:@"%@Payment/GetAilpayModelOrderPayStr",baseNet]
 //微信支付网址
 #define WXStonePay [NSString stringWithFormat:@"%@Payment/GetWxpayStoneParameter",baseNet]
 #define WXPay [NSString stringWithFormat:@"%@Payment/GetWxpayModelParameter",baseNet]
-/**选择地址通知名字*/
+/**选择地址通知*/
 #define NotificationName @"NotificationChangeCity"
 #define UserInfoName @"userinfoCityName"
-/**选择裸钻通知名字*/
-#define NotificationDriName @"NotificationChangeDri"
-#define UserInfoDriName @"userinfoDriName"
+/**点击tab通知*/
+#define NotificationTouch @"NotificationTouch"
+#define UserInfoTab @"UserinfoTouch"
 /**管理地址通知*/
 #define NotificationCaseType @"NotificationManagerCaseType"
 #define UserInfoCaseType @"UserinfoManagerCaseType"
@@ -78,7 +78,8 @@
 #define ListNum @"UserinfoList"
 
 //默认图片
-#define DefaultImage [UIImage imageNamed:@"iosDefalut"]
+#define DefaultHead [UIImage imageNamed:@"icon_toux"]
+#define DefaultImage [UIImage imageNamed:@"shop_loading"]
 //iosDefalut anios
 typedef enum{
     UIImageSplitType80 = 80,

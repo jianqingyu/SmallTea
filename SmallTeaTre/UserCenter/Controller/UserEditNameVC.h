@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+typedef void (^EditNickBack)(BOOL isSel);
 @interface UserEditNameVC : BaseViewController
-
+@property (nonatomic, copy)EditNickBack back;
 @end

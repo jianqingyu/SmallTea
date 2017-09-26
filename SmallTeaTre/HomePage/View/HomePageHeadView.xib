@@ -23,9 +23,13 @@
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_right" translatesAutoresizingMaskIntoConstraints="NO" id="1yR-ti-Tae">
                             <rect key="frame" x="298" y="15" width="6" height="11"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="6" id="fFS-hC-2Ox"/>
+                                <constraint firstAttribute="height" constant="11" id="kB0-7z-2M3"/>
+                            </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="恭喜陈先生获得价值5000元抵用券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Zr-ZO-Bet">
-                            <rect key="frame" x="107" y="12" width="187" height="15"/>
+                            <rect key="frame" x="108" y="12" width="187" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -35,21 +39,31 @@
                                 <action selector="topClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="7Qo-nS-T9y"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gec-bm-cS4">
+                            <rect key="frame" x="95" y="10" width="1" height="20"/>
+                            <color key="backgroundColor" red="0.93725490199999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="bSH-fX-tjo"/>
+                                <constraint firstAttribute="width" constant="1" id="naH-VK-lWp"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="1Zr-ZO-Bet" firstAttribute="leading" secondItem="aj0-sd-TKW" secondAttribute="leading" constant="107" id="0a1-cO-sqD"/>
                         <constraint firstItem="nw6-Uj-ViV" firstAttribute="centerY" secondItem="aj0-sd-TKW" secondAttribute="centerY" id="9sN-o8-7aY"/>
                         <constraint firstItem="b13-Yo-ES9" firstAttribute="top" secondItem="aj0-sd-TKW" secondAttribute="top" id="FDs-Tq-2a5"/>
                         <constraint firstItem="1yR-ti-Tae" firstAttribute="centerY" secondItem="aj0-sd-TKW" secondAttribute="centerY" id="KDe-Dy-Q6D"/>
                         <constraint firstAttribute="trailing" secondItem="b13-Yo-ES9" secondAttribute="trailing" id="MWQ-Do-PTh"/>
                         <constraint firstAttribute="height" constant="40" id="Oko-tf-v6n"/>
-                        <constraint firstItem="1yR-ti-Tae" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1Zr-ZO-Bet" secondAttribute="trailing" priority="900" id="Tmi-i6-7cz"/>
+                        <constraint firstItem="gec-bm-cS4" firstAttribute="centerY" secondItem="aj0-sd-TKW" secondAttribute="centerY" id="RMC-pb-M8n"/>
                         <constraint firstItem="b13-Yo-ES9" firstAttribute="leading" secondItem="aj0-sd-TKW" secondAttribute="leading" id="TnV-oj-6Lj"/>
                         <constraint firstAttribute="bottom" secondItem="b13-Yo-ES9" secondAttribute="bottom" id="Wge-Ah-pQ8"/>
+                        <constraint firstItem="gec-bm-cS4" firstAttribute="leading" secondItem="nw6-Uj-ViV" secondAttribute="trailing" constant="13" id="Z7C-2l-tmi"/>
+                        <constraint firstItem="1Zr-ZO-Bet" firstAttribute="leading" secondItem="gec-bm-cS4" secondAttribute="trailing" constant="12" id="cQV-26-aXx"/>
                         <constraint firstItem="1Zr-ZO-Bet" firstAttribute="centerY" secondItem="aj0-sd-TKW" secondAttribute="centerY" id="cpO-Y6-gN4"/>
                         <constraint firstAttribute="trailing" secondItem="1yR-ti-Tae" secondAttribute="trailing" constant="16" id="kof-fR-7AG"/>
                         <constraint firstItem="nw6-Uj-ViV" firstAttribute="leading" secondItem="aj0-sd-TKW" secondAttribute="leading" constant="16" id="q4S-U6-crg"/>
+                        <constraint firstItem="1yR-ti-Tae" firstAttribute="leading" secondItem="1Zr-ZO-Bet" secondAttribute="trailing" constant="3" id="wPp-yb-xev"/>
                     </constraints>
                 </view>
             </subviews>
@@ -62,9 +76,10 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="conBtn" destination="b13-Yo-ES9" id="1VF-xV-uMb"/>
                 <outlet property="messLab" destination="1Zr-ZO-Bet" id="rxi-2X-N2o"/>
             </connections>
-            <point key="canvasLocation" x="381" y="173"/>
+            <point key="canvasLocation" x="468" y="181"/>
         </view>
     </objects>
     <resources>

@@ -7,10 +7,11 @@
 //
 
 #import "UserManagerTableView.h"
+#import "WareChooseNumVc.h"
 #import "WareHouseListTableCell.h"
 #import "WareHouseDetailVC.h"
 #import "WareConfirmRedeemVc.h"
-#import "ShoppingListInfo.h"
+#import "WareListInfo.h"
 @interface UserManagerTableView()<UITableViewDataSource,UITableViewDelegate>{
     int curPage;
     int pageCount;
@@ -34,6 +35,7 @@
                                                 style:UITableViewStyleGrouped];
         _mTableView.delegate = self;
         _mTableView.dataSource = self;
+        _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _mTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
         [self addSubview:_mTableView];
         [_mTableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -105,11 +107,11 @@
     isFir = YES;
     [SVProgressHUD show];
     self.userInteractionEnabled = NO;
-    NSString *url = [NSString stringWithFormat:@"%@api/goods/page",baseNet];
+    NSString *url = [NSString stringWithFormat:@"%@api/store/list",baseNet];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"index"] = @(curPage);
     params[@"pageSize"] = @(pageCount);
-    params[@"deportId"] = _dict[@"deportId"];
+    params[@"storeType"] = _dict[@"deportId"];
     [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
         [_mTableView.header endRefreshing];
         [_mTableView.footer endRefreshing];
@@ -119,9 +121,8 @@
                 [self setupListDataWithDict:response.result];
             }
             [_mTableView reloadData];
-            self.userInteractionEnabled = YES;
-            [SVProgressHUD dismiss];
         }
+        self.userInteractionEnabled = YES;
     } requestURL:url params:params];
 }
 
@@ -131,7 +132,7 @@
         _mTableView.footer.state = MJRefreshStateIdle;
         curPage++;
         totalCount = [dict[@"totalPage"]intValue];
-        NSArray *seaArr = [ShoppingListInfo objectArrayWithKeyValuesArray:dict[@"result"]];
+        NSArray *seaArr = [WareListInfo objectArrayWithKeyValuesArray:dict[@"result"]];
         [_dataArray addObjectsFromArray:seaArr];
         if(curPage>totalCount){
             //已加载全部数据
@@ -174,11 +175,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WareHouseListTableCell *cell = [WareHouseListTableCell cellWithTableView:tableView];
-    cell.reBack = ^(BOOL isYes){
-        WareConfirmRedeemVc *redVc = [WareConfirmRedeemVc new];
-        [self.superNav pushViewController:redVc animated:YES];
-    };
-    ShoppingListInfo *listInfo;
+//    cell.reBack = ^(BOOL isYes){
+//        WareConfirmRedeemVc *redVc = [WareConfirmRedeemVc new];
+//        [self.superNav pushViewController:redVc animated:YES];
+//    };
+    WareListInfo *listInfo;
     if (indexPath.section<_dataArray.count) {
         listInfo = _dataArray[indexPath.section];
     }
@@ -188,12 +189,41 @@
 
 #pragma mark -- UITableDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ShoppingListInfo *listInfo;
+    WareListInfo *listInfo;
     if (indexPath.section<_dataArray.count) {
         listInfo = _dataArray[indexPath.section];
     }
-    WareHouseDetailVC *detailVc = [WareHouseDetailVC new];
-    [self.superNav pushViewController:detailVc animated:YES];
+    [self gotoNextViewControll:listInfo];
+}
+//跳到下一步
+- (void)gotoNextViewControll:(WareListInfo *)listInfo{
+    switch (listInfo.transStatus) {
+//        case 0:{
+//            WareChooseNumVc *wareVc = [WareChooseNumVc new];
+//            wareVc.isSel = YES;
+//            [self.superNav pushViewController:wareVc animated:YES];
+//        }
+//            break;
+        case 1:case 3:case 6:{
+            WareConfirmRedeemVc *redVc = [WareConfirmRedeemVc new];
+            redVc.back = ^(BOOL isYes){
+                [_mTableView.header beginRefreshing];
+            };
+            redVc.info = listInfo;
+            [self.superNav pushViewController:redVc animated:YES];
+        }
+            break;
+        case 8:{
+            WareHouseDetailVC *detailVc = [WareHouseDetailVC new];
+            detailVc.title = listInfo.goodsName;
+            detailVc.arr = @[listInfo];
+            [self.superNav pushViewController:detailVc animated:YES];
+        }
+            break;
+        default:
+            [MBProgressHUD showError:listInfo.transStatusName];
+            break;
+    }
 }
 
 @end

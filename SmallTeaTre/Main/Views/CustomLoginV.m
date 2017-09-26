@@ -11,6 +11,7 @@
 #import "NetworkDetermineTool.h"
 #import "UserEditPasswordVC.h"
 #import "SaveUserInfoTool.h"
+#import "AssociatPhoneVC.h"
 #import "MainNavViewController.h"
 @interface CustomLoginV()
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
@@ -58,10 +59,12 @@
         return;
     }
     [SVProgressHUD show];
+    [self.phoneFie resignFirstResponder];
+    [self.passFie resignFirstResponder];
     sender.enabled = NO;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"loginName"] = self.phoneFie.text;
-    params[@"passwordReal"] = self.passFie.text;
+    params[@"password"] = self.passFie.text;
     NSString *logUrl = [NSString stringWithFormat:@"%@api/user/login",baseNet];
     [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
@@ -70,34 +73,31 @@
             //自定义类型存储用NSKeyedArchiver
             [AccountTool saveAccount:account];
             SaveUserInfoTool *save = [SaveUserInfoTool shared];
-            save.mobile = response.result[@"mobile"];
             save.id = response.result[@"id"];
             save.nickName = response.result[@"nickName"];
-            save.shopId = response.result[@"nickName"];
+            save.shopId = response.result[@"shopId"];
             save.imgUrl = response.result[@"imgUrl"];
             if (self.btnBack) {
                 self.btnBack(1);
             }
         }else{
             NSString *str = response.msg?response.msg:@"登录失败";
-            SHOWALERTVIEW(str);
+            [MBProgressHUD showError:str];
         }
         sender.enabled = YES;
     } requestURL:logUrl params:params];
 }
 
 - (IBAction)weixinClick:(id)sender {
-    [MBProgressHUD showError:@"暂未开通"];
-//    if (self.btnBack) {
-//        self.btnBack(2);
-//    }
+    if (self.btnBack) {
+        self.btnBack(2);
+    }
 }
 
 - (IBAction)qqClick:(id)sender {
-    [MBProgressHUD showError:@"暂未开通"];
-//    if (self.btnBack) {
-//        self.btnBack(3);
-//    }
+    if (self.btnBack) {
+        self.btnBack(3);
+    }
 }
 
 @end

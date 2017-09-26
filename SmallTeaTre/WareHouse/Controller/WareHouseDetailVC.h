@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface WareHouseDetailVC : BaseViewController
-
+@property (nonatomic, copy)NSArray *arr;
 @end

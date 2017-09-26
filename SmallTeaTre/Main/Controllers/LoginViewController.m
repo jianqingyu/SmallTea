@@ -35,7 +35,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     NSString *name = [AccountTool account].loginName;
-    NSString *password = [AccountTool account].passwordReal;
+    NSString *password = [AccountTool account].password;
     self.loginView.phoneFie.text = name;
     self.loginView.passFie.text = password;
 }
@@ -45,21 +45,17 @@
     [self.view addSubview:loginV];
     loginV.btnBack = ^(int staue){
         if (staue==1) {
-            if (_noLogin) {
-                [self dismissViewControllerAnimated:YES completion:nil];
-                return;
-            }
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
             window.rootViewController = [[MainTabViewController alloc]init];
-        }else if (staue==2){
-            [self loadQQ];
-        }else{
-            [self presentAssociatPhone];
+        }else if(staue==2){
+            [self loadWeiXinAndQQ:SSDKPlatformTypeWechat];
+        }else if (staue==3){
+            [self loadWeiXinAndQQ:SSDKPlatformTypeQQ];
         }
     };
     [loginV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(0);
-        make.top.equalTo(self.view).offset(160);
+        make.top.equalTo(self.view).offset(165);
         make.right.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view).offset(0);
     }];
@@ -71,27 +67,37 @@
     [self.view addSubview:regisV];
     [regisV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(0);
-        make.top.equalTo(self.view).offset(160);
+        make.top.equalTo(self.view).offset(165);
         make.right.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view).offset(0);
     }];
     self.regisView = regisV;
 }
 
-- (void)loadQQ{
+- (void)loadWeiXinAndQQ:(SSDKPlatformType)type{
+    [SVProgressHUD show];
+    if ([ShareSDK hasAuthorized:type]) {
+        [ShareSDK cancelAuthorize:type];
+    }
     //例如QQ的登录
-    [ShareSDK getUserInfo:SSDKPlatformTypeQQ  //SSDKPlatformTypeWechat
-           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
-     {
-         if (state == SSDKResponseStateSuccess){
-             NSLog(@"uid=%@",user.uid);
-             NSLog(@"%@",user.credential);
-             NSLog(@"token=%@",user.credential.token);
-             NSLog(@"nickname=%@",user.nickname);
-         }else{
-             NSLog(@"%@",error);
-         }
-     }];
+    [ShareSDK getUserInfo:type  //SSDKPlatformTypeWechat
+           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error){
+               if (state == SSDKResponseStateSuccess){
+                   //验证成功，主线程处理UI
+                   [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                       SaveUserInfoTool *data = [SaveUserInfoTool shared];
+                       data.nickName = user.nickname;
+                       [self presentAssociatPhone];
+                   }];
+//                        NSLog(@"uid=%@",user.uid);
+//                        NSLog(@"%@",user.credential);
+//                        NSLog(@"token=%@",user.credential.token);
+//                        NSLog(@"nickname=%@",user.nickname);
+               }else{
+                   [MBProgressHUD showError:@"取消"];
+               }
+               [SVProgressHUD dismiss];
+           }];
 }
 
 - (void)presentAssociatPhone{

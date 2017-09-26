@@ -7,7 +7,7 @@
 //
 
 #import "UserAboutUsVc.h"
-
+#import "UserAboutInfo.h"
 @interface UserAboutUsVc ()
 @property (weak, nonatomic) IBOutlet UILabel *aboutLab;
 @property (weak, nonatomic) IBOutlet UILabel *verLab;
@@ -28,20 +28,21 @@
         userId = [SaveUserInfoTool shared].id;
     }
     NSString *netUrl = [NSString stringWithFormat:@"%@api/app/info",baseNet];
-    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
-            [self setBaseView:response.result];
+            UserAboutInfo *info = [UserAboutInfo objectWithKeyValues:response.result];
+            [self setBaseView:info];
         }else{
             NSString *str = response.msg?response.msg:@"查询失败";
-            SHOWALERTVIEW(str);
+            [MBProgressHUD showError:str];
         }
     } requestURL:netUrl params:params];
 }
 
-- (void)setBaseView:(NSDictionary *)dic{
-    self.aboutLab.text = dic[@"app_introduction"];
-    self.verLab.text = [NSString stringWithFormat:@"版本号:%@",dic[@"app_ios_version"]];
-    self.telLab.text = [NSString stringWithFormat:@"客服电话:%@",dic[@"customer_service_phone"]];
+- (void)setBaseView:(UserAboutInfo *)info{
+    self.aboutLab.text = info.app_introduction;
+    self.verLab.text = [NSString stringWithFormat:@"版本号:%@",info.app_ios_version];
+    self.telLab.text = [NSString stringWithFormat:@"客服电话:%@",info.customer_service_phone];
 }
 
 @end

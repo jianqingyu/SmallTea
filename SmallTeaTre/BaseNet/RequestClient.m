@@ -18,11 +18,6 @@
         _sharedClient.requestSerializer.timeoutInterval = 30;
 //       NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
 //         _sharedClient.requestSerializer.stringEncoding = enc;
-        //设置请求头
-//        AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
-//        [requestSerializer setValue:@"application/json;charset=utf-8"  forHTTPHeaderField:@"Content-Type"];
-//        [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//        _sharedClient.requestSerializer = requestSerializer;
     });
     return _sharedClient;
 }
@@ -37,7 +32,7 @@
         _sharedClient.requestSerializer.timeoutInterval = 30;
         //设置请求头
         AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
-        [requestSerializer setValue:@"application/json;charset=utf-8"  forHTTPHeaderField:@"Content-Type"];
+        [requestSerializer setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
         [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         _sharedClient.requestSerializer = requestSerializer;
     });

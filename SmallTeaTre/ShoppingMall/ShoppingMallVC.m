@@ -8,6 +8,7 @@
 
 #import "ShoppingMallVC.h"
 #import "ShoppingSearchVC.h"
+#import "MainTabViewController.h"
 #import "CustomBackgroundView.h"
 #import "ShopShareCustomView.h"
 #import "ShoppingListTableCell.h"
@@ -21,8 +22,8 @@
 }
 @property (weak,  nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic,strong) UITableView *tableView;
-@property (assign,nonatomic) CGFloat height;
 @property (nonatomic,strong) NSMutableArray *dataArray;
+@property (assign,nonatomic) CGFloat height;
 @property (weak,  nonatomic) CustomBackgroundView *baView;
 @property (weak,  nonatomic) ShopShareCustomView *shareView;
 @end
@@ -32,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = DefaultColor;
-    UIImage *backImg = [CommonUtils createImageWithColor:CUSTOM_COLOR(200, 200, 200)];
+    UIImage *backImg = [CommonUtils createImageWithColor:CUSTOM_COLOR(210, 210, 210)];
     [self.searchBar setBackgroundImage:backImg];
     self.searchBar.delegate = self;
     [self setupTableView];
@@ -55,6 +56,11 @@
     
     ShopShareCustomView *infoV = [ShopShareCustomView creatCustomView];
     [self.view addSubview:infoV];
+    infoV.back = ^(BOOL isYes){
+        if (self.height == 48) {
+            [self changeStoreView:YES];
+        }
+    };
     [infoV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view).offset(self.height);
@@ -97,8 +103,7 @@
     }];
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     ShoppingSearchVC *searchVc = [ShoppingSearchVC new];
     [self.navigationController pushViewController:searchVc animated:YES];
 }
@@ -169,7 +174,7 @@
 - (void)getCommodityData{
     [SVProgressHUD show];
     self.view.userInteractionEnabled = NO;
-    NSString *url = [NSString stringWithFormat:@"%@api/goods/page",baseNet];
+    NSString *url = [NSString stringWithFormat:@"%@api/goods/shop/page",baseNet];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"index"] = @(curPage);
     params[@"pageSize"] = @(pageCount);
@@ -182,9 +187,8 @@
                 [self setupListDataWithDict:response.result];
             }
             [self.tableView reloadData];
-            self.view.userInteractionEnabled = YES;
-            [SVProgressHUD dismiss];
         }
+        self.view.userInteractionEnabled = YES;
     } requestURL:url params:params];
 }
 
@@ -236,17 +240,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ShoppingListTableCell *teaCell = [ShoppingListTableCell cellWithTableView:tableView];
-    teaCell.back = ^(int staue,BOOL isYes){
-        if (staue==2){
-            [self shareShopClick];
-        }
-    };
     ShoppingListInfo *listInfo;
     if (indexPath.section<self.dataArray.count) {
         listInfo = self.dataArray[indexPath.section];
     }
     teaCell.listInfo = listInfo;
+    teaCell.back = ^(int staue,BOOL isYes){
+        if (staue==2){
+            self.shareView.shareDic = [self dicWithList:listInfo];
+            [self shareShopClick];
+        }
+    };
     return teaCell;
+}
+
+- (NSDictionary *)dicWithList:(ShoppingListInfo *)listInfo{
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    params[@"title"] = listInfo.goodsName;
+    params[@"des"] = listInfo.introduction;
+    params[@"image"] = listInfo.imgUrl;
+    params[@"url"] = listInfo.informationUrl;
+    return params.copy;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

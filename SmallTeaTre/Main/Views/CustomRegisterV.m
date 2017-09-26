@@ -50,15 +50,15 @@
     }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"phoneNumber"] = self.phoneFie.text;
-    NSString *logUrl = [NSString stringWithFormat:@"%@api/sms/send",baseNet];
+    NSString *logUrl = [NSString stringWithFormat:@"%@api/sms/send/register",baseNet];
     [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
         if ([YQObjectBool boolForObject:response.result]&&[response.code isEqualToString:@"0000"]) {
             self.biz = response.result[@"bizId"];
         }else{
             [self.getCodeBtn resetBtn];
-            NSString *str = response.msg?response.msg:@"获取验证码失败";
-            [MBProgressHUD showError:str];
         }
+        NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作成功";
+        [MBProgressHUD showError:str];
     } requestURL:logUrl params:params];
 }
 
@@ -85,13 +85,12 @@
     params[@"bizId"] = self.biz;
     params[@"code"] = self.codeFie.text;
     NSString *logUrl = [NSString stringWithFormat:@"%@api/sms/verify",baseNet];
-    [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
+    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]) {
             [self presentChooseStore];
-        }else{
-            NSString *str = response.msg?response.msg:@"验证失败";
-            [MBProgressHUD showError:str];
         }
+        NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作成功";
+        [MBProgressHUD showError:str];
     } requestURL:logUrl params:params];
 }
 //跳转到选择门店
@@ -110,6 +109,18 @@
 - (IBAction)proClick:(id)sender {
     UIViewController *vc = [ShowLoginViewTool getCurrentVC];
     MainProtocolVC *pro = [MainProtocolVC new];
+    pro.typeId = @"0001";
+    pro.title = @"用户注册协议";
+    pro.isFir = YES;
+    MainNavViewController *main = [[MainNavViewController alloc]initWithRootViewController:pro];
+    [vc presentViewController:main animated:YES completion:nil];
+}
+
+- (IBAction)saveClick:(id)sender {
+    UIViewController *vc = [ShowLoginViewTool getCurrentVC];
+    MainProtocolVC *pro = [MainProtocolVC new];
+    pro.typeId = @"0002";
+    pro.title = @"仓储管理协议";
     pro.isFir = YES;
     MainNavViewController *main = [[MainNavViewController alloc]initWithRootViewController:pro];
     [vc presentViewController:main animated:YES completion:nil];

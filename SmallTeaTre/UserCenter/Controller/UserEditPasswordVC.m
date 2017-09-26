@@ -8,6 +8,7 @@
 
 #import "UserEditPasswordVC.h"
 #import "ZBButten.h"
+#import "LoginViewController.h"
 @interface UserEditPasswordVC ()
 @property (weak, nonatomic) IBOutlet UILabel *phoneLab;
 @property (weak, nonatomic) IBOutlet UITextField *codeFie;
@@ -23,6 +24,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"重置密码";
+    NSString *phone = [AccountTool account].mobile;
+    NSString *str4 = [phone stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"xxxx"];
+    self.phoneLab.text = str4;
     [self.loginBtn setLayerWithW:4 andColor:BordColor andBackW:0.0001];
     if (self.isFir) {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_back"] style:UIBarButtonItemStyleDone target:self action:@selector(back)];
@@ -43,21 +47,21 @@
 - (void)requestCheckWord{
     NSString *phone = [AccountTool account].mobile;
     if (phone.length<11){
-        [MBProgressHUD showError:@"手机号输入有误"];
+        [MBProgressHUD showError:@"手机号有误"];
         [self.codeBtn resetBtn];
         return;
     }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"phoneNumber"] = phone;
-    NSString *logUrl = [NSString stringWithFormat:@"%@api/sms/send",baseNet];
+    NSString *logUrl = [NSString stringWithFormat:@"%@api/sms/send/password",baseNet];
     [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
-        if ([YQObjectBool boolForObject:response.result]&&[response.code isEqualToString:@"0000"]) {
+        if ([YQObjectBool boolForObject:response.result[@"bizId"]]&&[response.code isEqualToString:@"0000"]) {
             self.biz = response.result[@"bizId"];
         }else{
             [self.codeBtn resetBtn];
-            NSString *str = response.msg?response.msg:@"获取验证码失败";
-            [MBProgressHUD showError:str];
         }
+        NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作成功";
+        [MBProgressHUD showError:str];
     } requestURL:logUrl params:params];
 }
 
@@ -80,18 +84,27 @@
     params[@"phoneNumber"] = [AccountTool account].mobile;
     params[@"password"] = self.passwordFie.text;
     params[@"rePassword"] = self.surePassFie.text;
-    NSString *netUrl = [NSString stringWithFormat:@"%@api/user/register/%@/%@",baseNet,bizCode,self.codeFie.text];
-    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/user/reset_password/%@/%@",baseNet,bizCode,self.codeFie.text];
+    [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]) {
-//            params[@"userId"] = response.result[@"id"];
-//            params[@"isNorm"] = [AccountTool account].isNorm;
-//            Account *account = [Account accountWithDict:params];
-//            //自定义类型存储用NSKeyedArchiver
-//            [AccountTool saveAccount:account];
-        }else{
-            NSString *str = response.msg?response.msg:@"注册失败";
-            SHOWALERTVIEW(str);
+            NSString *url = [NSString stringWithFormat:@"%@api/user/logout",baseNet];
+            NSMutableDictionary *params = [NSMutableDictionary dictionary];
+            [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
+                if ([response.code isEqualToString:@"0000"]) {
+                    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+                    window.rootViewController = [[LoginViewController alloc]init];
+                    SaveUserInfoTool *save = [SaveUserInfoTool shared];
+                    [save clearAllData];
+                }
+            } requestURL:url params:params];
+            params[@"loginName"] = [AccountTool account].mobile;
+            params[@"password"] = @"";
+            Account *account = [Account accountWithDict:params];
+            //自定义类型存储用NSKeyedArchiver
+            [AccountTool saveAccount:account];
         }
+        NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作成功";
+        [MBProgressHUD showError:str];
         sender.enabled = YES;
     } requestURL:netUrl params:params];
 }

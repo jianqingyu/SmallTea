@@ -17,7 +17,7 @@
 - (id)initWithAccountDict:(NSDictionary *)dict{
     if (self = [super init]) {
         self.loginName = dict[@"loginName"];
-        self.passwordReal = dict[@"passwordReal"];
+        self.password = dict[@"password"];
         self.mobile    = dict[@"mobile"];
     }
     return self;
@@ -27,7 +27,7 @@
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     [aCoder encodeObject:self.loginName forKey:@"loginName"];
-    [aCoder encodeObject:self.passwordReal forKey:@"passwordReal"];
+    [aCoder encodeObject:self.password forKey:@"password"];
     [aCoder encodeObject:self.mobile forKey:@"mobile"];
 }
 /**
@@ -36,7 +36,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super init]) {
         self.loginName = [aDecoder decodeObjectForKey:@"loginName"];
-        self.passwordReal = [aDecoder decodeObjectForKey:@"passwordReal"];
+        self.password = [aDecoder decodeObjectForKey:@"password"];
         self.mobile    = [aDecoder decodeObjectForKey:@"mobile"];
     }
     return self;

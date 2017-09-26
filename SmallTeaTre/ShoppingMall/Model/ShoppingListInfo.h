@@ -18,13 +18,14 @@
 @property (nonatomic, copy)NSString *imgUrl;
 @property (nonatomic, copy)NSString *unit;
 @property (nonatomic, copy)NSString *createTime;
+@property (nonatomic, copy)NSString *orderStatusName;
 @property (nonatomic,assign)float price;
 @property (nonatomic, copy)NSString *deportName;
 @property (nonatomic, copy)NSString *id;
 @property (nonatomic, copy)NSString *goodsName;
 @property (nonatomic, copy)NSString *tag;
 @property (nonatomic, copy)NSString *introduction;
-
+@property (nonatomic,assign)BOOL isStored;
 @property (nonatomic, copy)NSString *goodsDesc;
 @property (nonatomic, copy)NSString *status;
 @property (nonatomic, copy)NSString *statusName;

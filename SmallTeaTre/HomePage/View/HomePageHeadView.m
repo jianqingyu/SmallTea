@@ -11,6 +11,7 @@
 #import "MainProtocolVC.h"
 #import "ShowLoginViewTool.h"
 @interface HomePageHeadView()
+@property (weak, nonatomic) IBOutlet UIButton *conBtn;
 @property (weak, nonatomic) IBOutlet UILabel *messLab;
 @end
 @implementation HomePageHeadView
@@ -54,6 +55,16 @@
 }
 
 - (IBAction)topClick:(id)sender {
+    self.conBtn.enabled = NO;
+    [self performSelector:@selector(changeButtonStatus)withObject:nil afterDelay:1.0f];//防止重复点击
+    [self openConfirmOrder];
+}
+
+- (void)changeButtonStatus{
+    self.conBtn.enabled = YES;
+}
+
+- (void)openConfirmOrder{
     UIViewController *vc = [ShowLoginViewTool getCurrentVC];
     MainProtocolVC *pro = [MainProtocolVC new];
     pro.title = _messDic[@"title"];

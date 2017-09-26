@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ShoppingListInfo.h"
+#import "WareListInfo.h"
+#import "UserOrderListInfo.h"
 typedef void (^WareListBack)(BOOL isSel);
 @interface WareHouseListTableCell : UITableViewCell
 + (id)cellWithTableView:(UITableView *)tableView;
 @property (nonatomic, copy)WareListBack reBack;
-@property (nonatomic,strong)ShoppingListInfo *listInfo;
+@property (nonatomic,strong)WareListInfo *listInfo;
+@property (nonatomic,strong)UserOrderListInfo *orderInfo;
 @end

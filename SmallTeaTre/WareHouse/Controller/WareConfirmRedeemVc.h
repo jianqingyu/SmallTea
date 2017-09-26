@@ -7,7 +7,9 @@
 //
 
 #import "BaseViewController.h"
-
+#import "WareListInfo.h"
+typedef void (^WareFirBack)(BOOL isSel);
 @interface WareConfirmRedeemVc : BaseViewController
-
+@property (nonatomic,strong)WareListInfo *info;
+@property (nonatomic,  copy)WareFirBack back;
 @end

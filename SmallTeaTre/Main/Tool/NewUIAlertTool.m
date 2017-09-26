@@ -38,15 +38,16 @@
 }
 
 + (void)show:(NSDictionary *)dic back:(void (^)(void))okBlock{
+    NSString *mes = [YQObjectBool boolForObject:dic[@"message"]]?dic[@"message"]:@"";
     // 初始化 添加 提示内容
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:dic[@"title"]
-                    message:dic[@"message"] preferredStyle:UIAlertControllerStyleAlert];
+                    message:mes preferredStyle:UIAlertControllerStyleAlert];
     // 添加 AlertAction 事件回调（三种类型：默认，取消，警告）
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault
                                     handler:^(UIAlertAction * _Nonnull action) {
-                                        if (okBlock) {
-                                            okBlock();
-                                        }
+            if (okBlock) {
+                okBlock();
+            }
         // 移除
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }];

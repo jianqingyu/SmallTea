@@ -20,4 +20,12 @@
     return alert;
 }
 
+- (void)clearAllData{
+    self.id = @"";
+    self.mobile = @"";
+    self.nickName = @"";
+    self.shopId = @"";
+    self.imgUrl = @"";
+}
+
 @end

@@ -14,7 +14,7 @@
 @implementation UIWindow (Extension)
 
 - (void)switchRootViewController{
-    NSString *key = @"CFBundleVersion";
+    NSString *key = @"CFBundleShortVersionString";
     //取出的版本
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults]objectForKey:key];
     //当前的版本

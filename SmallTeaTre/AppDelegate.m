@@ -7,17 +7,18 @@
 //
 
 #import "AppDelegate.h"
+#import "WXApi.h"
+#import "WeiboSDK.h"
 #import "CommonUtils.h"
 #import "Reachability.h"
 #import "ShowLoginViewTool.h"
 #import "UIWindow+Extension.h"
-#import <LocalAuthentication/LocalAuthentication.h>
+
 #import <ShareSDK/ShareSDK.h>
-#import <ShareSDKConnector/ShareSDKConnector.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
-#import "WXApi.h"
-#import "WeiboSDK.h"
+#import <ShareSDKConnector/ShareSDKConnector.h>
+#import <LocalAuthentication/LocalAuthentication.h>
 @interface AppDelegate (){
     Reachability *hostReach;
 }
@@ -76,17 +77,17 @@
          {
              case SSDKPlatformTypeSinaWeibo:
                  //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                 [appInfo SSDKSetupSinaWeiboByAppKey:@"3530641408"
-                                           appSecret:@"af152b77aa95aa8c2d2287b50377254c"
+                 [appInfo SSDKSetupSinaWeiboByAppKey:@"2341659063"
+                                           appSecret:@"31df936deb0b727abff9aace6eaaf07c"
                                          redirectUri:@"http://www.sharesdk.cn"
                                             authType:SSDKAuthTypeBoth];
                  break;
              case SSDKPlatformTypeWechat:
-                 [appInfo SSDKSetupWeChatByAppId:@"wx303dc6296f3aed55"
-                                       appSecret:@"2cb13f5188eea61860b7a62067785d92"];
+                 [appInfo SSDKSetupWeChatByAppId:@"wxce488c9ce08c20e3"
+                                       appSecret:@"203e4b15ebfc1a03475c2ad0809667ee"];
                  break;
              case SSDKPlatformTypeQQ:
-                 [appInfo SSDKSetupQQByAppId:@"1106339351"
+                 [appInfo SSDKSetupQQByAppId:@"1106339351"//QQ41F16617
                                       appKey:@"dXpXeg8jKculB0SS"
                                     authType:SSDKAuthTypeBoth];
                  break;
@@ -97,9 +98,12 @@
 }
 
 - (void)reachabilityChanged:(NSNotification *)note {
-//    Reachability* curReach = [note object];
-//    NetworkStatus status = [curReach currentReachabilityStatus];
-//    BOOL isYes = !(status == NotReachable);
+    Reachability* curReach = [note object];
+    NetworkStatus status = [curReach currentReachabilityStatus];
+    BOOL isYes = !(status == NotReachable);
+    if (self.loadBack) {
+        self.loadBack(isYes);
+    }
 }
 
 - (void)dealloc{

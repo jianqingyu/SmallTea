@@ -14,21 +14,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iosDefalut" translatesAutoresizingMaskIntoConstraints="NO" id="GGQ-hy-TIJ">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_shopD" translatesAutoresizingMaskIntoConstraints="NO" id="GGQ-hy-TIJ">
                         <rect key="frame" x="9" y="9" width="70" height="70"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="1OJ-bZ-H7U"/>
                             <constraint firstAttribute="height" constant="70" id="iq0-Yv-wBM"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E01231 古御风" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cb3-Jb-leR">
-                        <rect key="frame" x="88" y="9" width="99" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门新茶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9z-VK-kRE">
-                        <rect key="frame" x="192" y="9" width="50" height="11"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="热门新茶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9z-VK-kRE">
+                        <rect key="frame" x="218" y="9" width="36" height="11"/>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="hvJ-wI-MtS"/>
@@ -36,9 +30,14 @@
                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hvJ-wI-MtS"/>
+                            </mask>
+                        </variation>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXC-52-beB">
-                        <rect key="frame" x="290" y="9" width="25" height="25"/>
+                        <rect key="frame" x="287" y="9" width="28" height="28"/>
                         <state key="normal" image="icon_share"/>
                         <connections>
                             <action selector="shareClick:" destination="1Yh-ju-TOd" eventType="touchUpInside" id="Wzp-tC-BdX"/>
@@ -57,10 +56,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WO7-gf-SXG">
-                        <rect key="frame" x="264" y="9" width="25" height="25"/>
+                        <rect key="frame" x="256" y="9" width="28" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="25" id="997-pe-d8u"/>
-                            <constraint firstAttribute="height" constant="25" id="bGQ-GC-gvi"/>
+                            <constraint firstAttribute="width" constant="28" id="997-pe-d8u"/>
+                            <constraint firstAttribute="height" constant="28" id="bGQ-GC-gvi"/>
                         </constraints>
                         <state key="normal" image="icon_fav_s"/>
                         <state key="selected" image="icon_fav_m"/>
@@ -68,12 +67,19 @@
                             <action selector="favClick:" destination="1Yh-ju-TOd" eventType="touchUpInside" id="EAw-fD-lpd"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E01231 古御风古御风" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cb3-Jb-leR">
+                        <rect key="frame" x="88" y="9" width="125" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="WO7-gf-SXG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="I9z-VK-kRE" secondAttribute="trailing" constant="2" id="5SR-I5-8yB"/>
                     <constraint firstItem="d2K-pf-Og5" firstAttribute="top" secondItem="cb3-Jb-leR" secondAttribute="bottom" constant="1" id="6Zt-1M-iur"/>
                     <constraint firstItem="I9z-VK-kRE" firstAttribute="leading" secondItem="cb3-Jb-leR" secondAttribute="trailing" constant="5" id="G3U-5a-jkT"/>
                     <constraint firstItem="cb3-Jb-leR" firstAttribute="leading" secondItem="GGQ-hy-TIJ" secondAttribute="trailing" constant="9" id="H20-83-S2c"/>
-                    <constraint firstItem="fXC-52-beB" firstAttribute="leading" secondItem="WO7-gf-SXG" secondAttribute="trailing" constant="1" id="Ifd-05-Qx4"/>
+                    <constraint firstItem="fXC-52-beB" firstAttribute="leading" secondItem="WO7-gf-SXG" secondAttribute="trailing" constant="3" id="Ifd-05-Qx4"/>
                     <constraint firstItem="GGQ-hy-TIJ" firstAttribute="centerY" secondItem="qP9-8U-aBx" secondAttribute="centerY" id="JgM-cr-stD"/>
                     <constraint firstItem="GGQ-hy-TIJ" firstAttribute="leading" secondItem="qP9-8U-aBx" secondAttribute="leading" constant="9" id="N4b-nU-2pa"/>
                     <constraint firstItem="d2K-pf-Og5" firstAttribute="leading" secondItem="cb3-Jb-leR" secondAttribute="leading" id="PpG-de-s7s"/>
@@ -86,6 +92,7 @@
                     <constraint firstItem="fXC-52-beB" firstAttribute="top" secondItem="cb3-Jb-leR" secondAttribute="top" id="aI2-m9-yTS"/>
                     <constraint firstItem="fXC-52-beB" firstAttribute="height" secondItem="WO7-gf-SXG" secondAttribute="height" id="dv4-L5-SfG"/>
                     <constraint firstItem="I9z-VK-kRE" firstAttribute="top" secondItem="cb3-Jb-leR" secondAttribute="top" id="e7c-uW-QA9"/>
+                    <constraint firstItem="WO7-gf-SXG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cb3-Jb-leR" secondAttribute="trailing" constant="5" id="gLc-hX-kbN"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8UL-Eq-lYO" secondAttribute="trailing" constant="10" id="h1Q-Yy-DtO"/>
                     <constraint firstItem="cb3-Jb-leR" firstAttribute="top" secondItem="GGQ-hy-TIJ" secondAttribute="top" id="jGg-U8-3yS"/>
                     <constraint firstItem="fXC-52-beB" firstAttribute="width" secondItem="WO7-gf-SXG" secondAttribute="width" id="u2C-PQ-gI1"/>
@@ -106,13 +113,13 @@
                 <outlet property="teaImg" destination="GGQ-hy-TIJ" id="Jbw-Qg-cgL"/>
                 <outlet property="titleLab" destination="cb3-Jb-leR" id="C3i-h4-bGu"/>
             </connections>
-            <point key="canvasLocation" x="417" y="287"/>
+            <point key="canvasLocation" x="406" y="407.5"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="icon_fav_m" width="15" height="14"/>
         <image name="icon_fav_s" width="15" height="14"/>
         <image name="icon_share" width="16" height="16"/>
-        <image name="iosDefalut" width="250" height="250"/>
+        <image name="icon_shopD" width="70" height="70"/>
     </resources>
 </document>

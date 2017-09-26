@@ -105,12 +105,12 @@
         userId = [SaveUserInfoTool shared].id;
     }
     NSString *netUrl = [NSString stringWithFormat:@"%@api/user/info/%@",baseNet,userId];
-    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
             [self setBaseView:response.result];
         }else{
             NSString *str = response.msg?response.msg:@"查询失败";
-            SHOWALERTVIEW(str);
+            [MBProgressHUD showError:str];
         }
     } requestURL:netUrl params:params];
 }
@@ -118,7 +118,7 @@
 - (void)setBaseView:(NSDictionary *)dic{
     NSString *url = [NSString stringWithFormat:@"%@%@",baseNet,dic[@"imgUrl"]];
     [self.headView sd_setImageWithURL:[NSURL URLWithString:url]
-                   placeholderImage:DefaultImage];
+                   placeholderImage:DefaultHead];
     self.phoneLab.text = dic[@"mobile"];
     self.nameLab.text = dic[@"nickName"];
 }
@@ -129,6 +129,9 @@
 
 - (IBAction)editName:(id)sender {
     UserEditNameVC *editName = [UserEditNameVC new];
+    editName.back = ^(BOOL isYes){
+        [self loadHomeData];
+    };
     [self.navigationController pushViewController:editName animated:YES];
 }
 
@@ -173,17 +176,16 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info{
 //上传图片
 - (void)loadUpDateImage:(UIImage *)image{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    NSString *userId;
-    if ([[SaveUserInfoTool shared].id isKindOfClass:[NSString class]]) {
-        userId = [SaveUserInfoTool shared].id;
+    NSString *userId = [SaveUserInfoTool shared].id;
+    if (userId.length==0) {
+        userId = @"-1";
     }
     NSString *url = [NSString stringWithFormat:@"%@/api/user/head_img/upload/%@",baseNet,userId];
     [CommonUsedTool loadUpDate:^(NSDictionary *response, NSError *error) {
         if ([response[@"code"] isEqualToString:@"0000"]) {
-            //            "userId": "e4b370f4fc2b4530ab26436aca136e6c",
-            //            "imgUrl": "/file/head/image/2017/img_20170917.png"
             if ([YQObjectBool boolForObject:response[@"result"]]) {
-                
+                SaveUserInfoTool *save = [SaveUserInfoTool shared];
+                save.imgUrl = response[@"result"][@"imgUrl"];
             }
         }
     } image:image Dic:params Url:url];

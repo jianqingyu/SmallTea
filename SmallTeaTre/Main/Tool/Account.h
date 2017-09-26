@@ -10,7 +10,7 @@
 
 @interface Account : NSObject<NSCoding>
 @property (nonatomic,copy)NSString *loginName;
-@property (nonatomic,copy)NSString *passwordReal;
+@property (nonatomic,copy)NSString *password;
 @property (nonatomic,copy)NSString *mobile;
 + (instancetype)accountWithDict:(NSDictionary *)dict;
 

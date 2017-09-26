@@ -19,14 +19,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"选择质押数量";
-    self.dic = @{@"title":@"已提交质押申请，待审核",@"message":@""};
+    self.dic = @{@"title":@"已提交质押申请，待审核"};
     [self.sureBtn setLayerWithW:4 andColor:BordColor andBackW:0.0001];
+    if (self.isSel) {
+        [NewUIAlertTool show:self.dic back:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    }
 }
 
 - (IBAction)sureClick:(id)sender {
-    [NewUIAlertTool show:self.dic back:^{
-        
-    }];
+    [self applyStoreZy];
+}
+
+- (void)applyStoreZy{
+    if (self.numFie.text.length==0) {
+        [MBProgressHUD showError:@"请填写质押数量"];
+        return;
+    }
+    [self.numFie resignFirstResponder];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"goodsId"] = _info.goodsId;
+    params[@"quantity"] = self.numFie.text;
+    params[@"id"] = _info.id;
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/store/zy/apply",baseNet];
+    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]) {
+            [NewUIAlertTool show:self.dic back:^{
+                NSInteger idx = self.navigationController.viewControllers.count;
+                BaseViewController *vc = self.navigationController.viewControllers[idx-3];
+                [self.navigationController popToViewController:vc animated:YES];
+            }];
+            return;
+        }
+        NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作失败";
+        [MBProgressHUD showError:str];
+    } requestURL:netUrl params:params];
 }
 
 @end

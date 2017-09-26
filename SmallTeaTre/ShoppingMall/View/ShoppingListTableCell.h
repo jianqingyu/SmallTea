@@ -13,5 +13,5 @@ typedef void (^ShopListBack)(int staue,BOOL isSel);
 @property (nonatomic,strong)ShoppingListInfo *listInfo;
 @property (nonatomic,  copy)ShopListBack back;
 + (id)cellWithTableView:(UITableView *)tableView;
-
+@property (nonatomic,assign)BOOL isSel;
 @end

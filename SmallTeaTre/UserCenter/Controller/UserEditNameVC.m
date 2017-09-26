@@ -10,7 +10,6 @@
 
 @interface UserEditNameVC ()
 @property (weak, nonatomic) IBOutlet UITextField *nameFie;
-
 @end
 
 @implementation UserEditNameVC
@@ -33,7 +32,28 @@
 }
 
 - (void)btnClick:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.nameFie.text.length==0) {
+        [MBProgressHUD showError:@"请输入昵称"];
+        return;
+    }
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if ([[SaveUserInfoTool shared].id isKindOfClass:[NSString class]]) {
+        params[@"userId"] = [SaveUserInfoTool shared].id;
+    }
+    params[@"nickName"] = self.nameFie.text;
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/user/nick_update",baseNet];
+    [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]) {
+            SaveUserInfoTool *save = [SaveUserInfoTool shared];
+            save.nickName = params[@"nickName"];
+            if (self.back) {
+                self.back(YES);
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作成功";
+        [MBProgressHUD showError:str];
+    } requestURL:netUrl params:params];
 }
 
 @end
