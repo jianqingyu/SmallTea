@@ -149,6 +149,10 @@
 		79BF71871F74B57A0039309D /* UserAboutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF71861F74B57A0039309D /* UserAboutInfo.m */; };
 		79BF718A1F75064A0039309D /* BaseModelInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF71891F75064A0039309D /* BaseModelInfo.m */; };
 		79C29E851F6B78F5006BCAE5 /* ShoppingListInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C29E841F6B78F5006BCAE5 /* ShoppingListInfo.m */; };
+		79CE1DA71F7B363100804332 /* HomeMessageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CE1DA51F7B363100804332 /* HomeMessageListVC.m */; };
+		79CE1DA81F7B363100804332 /* HomeMessageListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79CE1DA61F7B363100804332 /* HomeMessageListVC.xib */; };
+		79CE1DAC1F7B4F0900804332 /* HomeBannerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CE1DAA1F7B4F0900804332 /* HomeBannerDetailVC.m */; };
+		79CE1DAD1F7B4F0900804332 /* HomeBannerDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79CE1DAB1F7B4F0900804332 /* HomeBannerDetailVC.xib */; };
 		79D4C8DB1F6645540012549F /* HomeShoppingDetailVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D4C8D91F6645540012549F /* HomeShoppingDetailVc.m */; };
 		79D4C8DC1F6645550012549F /* HomeShoppingDetailVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79D4C8DA1F6645540012549F /* HomeShoppingDetailVc.xib */; };
 		79D4C8E01F6649050012549F /* WareChooseNumVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D4C8DE1F6649050012549F /* WareChooseNumVc.m */; };
@@ -442,6 +446,12 @@
 		79BF71891F75064A0039309D /* BaseModelInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModelInfo.m; sourceTree = "<group>"; };
 		79C29E831F6B78F4006BCAE5 /* ShoppingListInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListInfo.h; sourceTree = "<group>"; };
 		79C29E841F6B78F5006BCAE5 /* ShoppingListInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListInfo.m; sourceTree = "<group>"; };
+		79CE1DA41F7B363100804332 /* HomeMessageListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMessageListVC.h; sourceTree = "<group>"; };
+		79CE1DA51F7B363100804332 /* HomeMessageListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMessageListVC.m; sourceTree = "<group>"; };
+		79CE1DA61F7B363100804332 /* HomeMessageListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeMessageListVC.xib; sourceTree = "<group>"; };
+		79CE1DA91F7B4F0900804332 /* HomeBannerDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBannerDetailVC.h; sourceTree = "<group>"; };
+		79CE1DAA1F7B4F0900804332 /* HomeBannerDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBannerDetailVC.m; sourceTree = "<group>"; };
+		79CE1DAB1F7B4F0900804332 /* HomeBannerDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeBannerDetailVC.xib; sourceTree = "<group>"; };
 		79D4C8D81F6645540012549F /* HomeShoppingDetailVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeShoppingDetailVc.h; sourceTree = "<group>"; };
 		79D4C8D91F6645540012549F /* HomeShoppingDetailVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeShoppingDetailVc.m; sourceTree = "<group>"; };
 		79D4C8DA1F6645540012549F /* HomeShoppingDetailVc.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeShoppingDetailVc.xib; sourceTree = "<group>"; };
@@ -928,6 +938,12 @@
 				79D4C8D81F6645540012549F /* HomeShoppingDetailVc.h */,
 				79D4C8D91F6645540012549F /* HomeShoppingDetailVc.m */,
 				79D4C8DA1F6645540012549F /* HomeShoppingDetailVc.xib */,
+				79CE1DA41F7B363100804332 /* HomeMessageListVC.h */,
+				79CE1DA51F7B363100804332 /* HomeMessageListVC.m */,
+				79CE1DA61F7B363100804332 /* HomeMessageListVC.xib */,
+				79CE1DA91F7B4F0900804332 /* HomeBannerDetailVC.h */,
+				79CE1DAA1F7B4F0900804332 /* HomeBannerDetailVC.m */,
+				79CE1DAB1F7B4F0900804332 /* HomeBannerDetailVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1194,6 +1210,7 @@
 				798E09AB1F58FC4E005C1F2B /* IQKeyboardManager.bundle in Resources */,
 				79D4C8E61F6674180012549F /* WareConfirmRedeemVc.xib in Resources */,
 				798E0A071F593F59005C1F2B /* CustomLoginV.xib in Resources */,
+				79CE1DAD1F7B4F0900804332 /* HomeBannerDetailVC.xib in Resources */,
 				798E0A091F594319005C1F2B /* CustomRegisterV.xib in Resources */,
 				790224351F60E714003525F2 /* UserEditPasswordVC.xib in Resources */,
 				798E09FF1F5933A2005C1F2B /* TeaListTableCell.xib in Resources */,
@@ -1201,6 +1218,7 @@
 				799243BC1F5D38EC0021CE90 /* AssociatPhoneVC.xib in Resources */,
 				798E09E81F5911ED005C1F2B /* HomePageVC.xib in Resources */,
 				792125B31F62B24B005F129B /* ShoppingSearchVC.xib in Resources */,
+				79CE1DA81F7B363100804332 /* HomeMessageListVC.xib in Resources */,
 				79953FD21F5E8D30007A014D /* WareHouseListTableCell.xib in Resources */,
 				798E08A31F58FC2C005C1F2B /* NearbyNetworkView.xib in Resources */,
 				799243F41F5D64170021CE90 /* UserStoreInfoVC.xib in Resources */,
@@ -1338,6 +1356,7 @@
 				798E09B11F58FC4E005C1F2B /* IQTitleBarButtonItem.m in Sources */,
 				798E09B41F58FC4E005C1F2B /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				798E08631F58F790005C1F2B /* AppDelegate.m in Sources */,
+				79CE1DAC1F7B4F0900804332 /* HomeBannerDetailVC.m in Sources */,
 				799243E41F5D404A0021CE90 /* ChooseStoreInfoVC.m in Sources */,
 				798E09FE1F5933A2005C1F2B /* TeaListTableCell.m in Sources */,
 				798E092D1F58FC3E005C1F2B /* CDRTranslucentSideBar.m in Sources */,
@@ -1347,6 +1366,7 @@
 				799243BB1F5D38EC0021CE90 /* AssociatPhoneVC.m in Sources */,
 				798E092B1F58FC3E005C1F2B /* YQItemTool.m in Sources */,
 				798E09AE1F58FC4E005C1F2B /* IQNSArray+Sort.m in Sources */,
+				79CE1DA71F7B363100804332 /* HomeMessageListVC.m in Sources */,
 				798E09A81F58FC4E005C1F2B /* HYBPageControl.m in Sources */,
 				798E090E1F58FC3E005C1F2B /* UIAlertController+supportedinterface.m in Sources */,
 				79953FE21F5EB777007A014D /* UserManagerScrollPageView.m in Sources */,
@@ -1564,7 +1584,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.XMYX.SmallTea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "53750a58-24f9-42cc-8792-dd2e130d9ead";
 			};
 			name = Debug;
 		};
@@ -1587,7 +1607,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.XMYX.SmallTea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "53750a58-24f9-42cc-8792-dd2e130d9ead";
 			};
 			name = Release;
 		};

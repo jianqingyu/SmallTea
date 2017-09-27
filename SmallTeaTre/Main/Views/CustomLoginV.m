@@ -69,6 +69,7 @@
     [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
             params[@"mobile"] = response.result[@"mobile"];
+            params[@"isLog"] = @YES;
             Account *account = [Account accountWithDict:params];
             //自定义类型存储用NSKeyedArchiver
             [AccountTool saveAccount:account];

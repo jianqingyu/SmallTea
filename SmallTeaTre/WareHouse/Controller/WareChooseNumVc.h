@@ -8,7 +8,9 @@
 
 #import "BaseViewController.h"
 #import "WareListInfo.h"
+typedef void (^ZYNumBack)(BOOL isSel);
 @interface WareChooseNumVc : BaseViewController
 @property (nonatomic,strong)WareListInfo *info;
 @property (nonatomic,assign)BOOL isSel;
+@property (nonatomic,  copy)ZYNumBack back;
 @end

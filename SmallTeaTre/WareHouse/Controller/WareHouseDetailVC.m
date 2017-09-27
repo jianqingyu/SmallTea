@@ -83,6 +83,11 @@
     NSInteger idex = [self.btns indexOfObject:sender];
     if (idex==3) {
         WareChooseNumVc *numVc = [WareChooseNumVc new];
+        numVc.back = ^(BOOL isYes){
+            if (self.back) {
+                self.back(YES);
+            }
+        };
         numVc.info = listInfo;
         [self.navigationController pushViewController:numVc animated:YES];
         return;

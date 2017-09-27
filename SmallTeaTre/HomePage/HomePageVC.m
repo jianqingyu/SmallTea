@@ -40,17 +40,55 @@ UINavigationControllerDelegate>{
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    pageCount = 10;
     self.view.backgroundColor = DefaultColor;
+    pageCount = 10;
     self.oneData = @[].mutableCopy;
     self.twoData = @[].mutableCopy;
-    [self setupTableView];
-    [self setupHeaderRefresh];
     self.height = 190;
     [self creatBaseView];
+    if ([AccountTool account].isLog) {
+        [self loginUser];
+    }else{
+        [self setBaseTableAndNet];
+    }
+}
+
+- (void)setBaseTableAndNet{
+    [self setupTableView];
+    [self setupHeaderRefresh];
     [self loadHomeHead];
     [self loadMessage];
     [self loadNewTea];
+}
+
+- (void)loginUser{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"loginName"] = [AccountTool account].loginName;
+    params[@"password"] = [AccountTool account].password;
+    NSString *logUrl = [NSString stringWithFormat:@"%@api/user/login",baseNet];
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        // 处理耗时操作的代码块...
+//    });
+    [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+            params[@"mobile"] = response.result[@"mobile"];
+            params[@"isLog"] = @YES;
+            Account *account = [Account accountWithDict:params];
+            [AccountTool saveAccount:account];
+            SaveUserInfoTool *save = [SaveUserInfoTool shared];
+            save.id = response.result[@"id"];
+            save.nickName = response.result[@"nickName"];
+            save.shopId = response.result[@"shopId"];
+            save.imgUrl = response.result[@"imgUrl"];
+            //通知主线程刷新
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setBaseTableAndNet];
+            });
+        }else{
+            NSString *str = response.msg?response.msg:@"登录失败";
+            [MBProgressHUD showError:str];
+        }
+    } requestURL:logUrl params:params];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -280,17 +318,7 @@ UINavigationControllerDelegate>{
 
 #pragma mark - 初始化图片
 - (void)creatCusTomHeadView:(id)arr{
-    NSMutableArray *pic  = @[].mutableCopy;
-    for (NSDictionary*dict in arr) {
-        NSString *str = [self UsingEncoding:dict[@"imgUrl"]];
-        if (str.length>0) {
-            [pic addObject:str];
-        }
-    }
-    if (pic.count==0) {
-        [pic addObject:@"pic"];
-    }
-    [self setupHeadView:pic.copy];
+    [self setupHeadView:arr];
 }
 
 - (NSString *)UsingEncoding:(NSString *)str{

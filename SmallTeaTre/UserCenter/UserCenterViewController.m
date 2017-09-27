@@ -183,6 +183,11 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]) {
+            params[@"loginName"] = [AccountTool account].loginName;
+            params[@"password"] = [AccountTool account].password;
+            params[@"mobile"] = [AccountTool account].mobile;
+            Account *account = [Account accountWithDict:params];
+            [AccountTool saveAccount:account];
             SaveUserInfoTool *save = [SaveUserInfoTool shared];
             [save clearAllData];
             UIWindow *window = [UIApplication sharedApplication].keyWindow;

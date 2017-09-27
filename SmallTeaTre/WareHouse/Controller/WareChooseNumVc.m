@@ -33,8 +33,9 @@
 }
 
 - (void)applyStoreZy{
-    if (self.numFie.text.length==0) {
-        [MBProgressHUD showError:@"请填写质押数量"];
+    int number = [self.numFie.text intValue];
+    if (number<1||number>[_info.quantity intValue]) {
+        [MBProgressHUD showError:@"请填写正确质押数量"];
         return;
     }
     [self.numFie resignFirstResponder];
@@ -45,6 +46,9 @@
     NSString *netUrl = [NSString stringWithFormat:@"%@api/store/zy/apply",baseNet];
     [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]) {
+            if (self.back) {
+                self.back(YES);
+            }
             [NewUIAlertTool show:self.dic back:^{
                 NSInteger idx = self.navigationController.viewControllers.count;
                 BaseViewController *vc = self.navigationController.viewControllers[idx-3];

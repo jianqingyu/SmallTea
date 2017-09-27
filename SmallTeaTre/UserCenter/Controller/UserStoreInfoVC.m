@@ -11,9 +11,9 @@
 @interface UserStoreInfoVC ()
 @property (weak, nonatomic) IBOutlet UILabel *storeName;
 @property (weak, nonatomic) IBOutlet UILabel *storeAdd;
-@property (weak, nonatomic) IBOutlet UILabel *storeTel;
+@property (weak, nonatomic) IBOutlet UIButton *storeTel;
 @property (weak, nonatomic) IBOutlet UILabel *storeTime;
-
+@property (copy, nonatomic) NSString *phone;
 @end
 
 @implementation UserStoreInfoVC
@@ -44,8 +44,15 @@
 - (void)setBaseView:(UserShopInfo *)info{
     self.storeName.text = info.shopName;
     self.storeAdd.text = info.address;
-    self.storeTel.text = info.tel;
+    [self.storeTel setTitle:info.tel forState:UIControlStateNormal];
+    self.storeTel.hidden = !info.tel.length;
+    self.phone = info.tel;
     self.storeTime.text = [NSString stringWithFormat:@"%@-%@",info.busiStartTime,info.busiEndTime];
+}
+
+- (IBAction)telClick:(id)sender {
+    NSURL* url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"tel:%@",_phone]];
+    [[UIApplication sharedApplication]openURL:url];
 }
 
 @end

@@ -12,6 +12,7 @@
 @property (nonatomic,copy)NSString *loginName;
 @property (nonatomic,copy)NSString *password;
 @property (nonatomic,copy)NSString *mobile;
+@property (nonatomic,copy)NSNumber *isLog;
 + (instancetype)accountWithDict:(NSDictionary *)dict;
 
 @end

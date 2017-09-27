@@ -215,6 +215,9 @@
             break;
         case 8:{
             WareHouseDetailVC *detailVc = [WareHouseDetailVC new];
+            detailVc.back = ^(BOOL isYes){
+                [_mTableView.header beginRefreshing];
+            };
             detailVc.title = listInfo.goodsName;
             detailVc.arr = @[listInfo];
             [self.superNav pushViewController:detailVc animated:YES];
