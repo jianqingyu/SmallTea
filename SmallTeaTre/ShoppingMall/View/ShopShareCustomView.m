@@ -49,13 +49,17 @@
     [SVProgressHUD show];
     //创建分享参数（必要）
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-    NSString *image = [NSString stringWithFormat:@"%@%@",baseNet,self.shareDic[@"image"]];
-    NSString *url = [NSString stringWithFormat:@"%@%@",baseNet,self.shareDic[@"url"]];
-    [shareParams SSDKSetupShareParamsByText:self.shareDic[@"des"]
-                                     images:[NSURL URLWithString:image]
-                                        url:[NSURL URLWithString:url]
-                                      title:self.shareDic[@"title"]
-                                       type:SSDKContentTypeAuto];
+    id image;
+    NSString *url;
+    if (self.isApp) {
+        image = self.shareDic[@"image"];
+        url = self.shareDic[@"url"];
+    }else{
+        NSString *str = [NSString stringWithFormat:@"%@%@",baseNet,self.shareDic[@"image"]];
+        image = [NSURL URLWithString:str];
+        url = [NSString stringWithFormat:@"%@%@",baseNet,self.shareDic[@"url"]];
+    }
+    NSString *des = self.shareDic[@"des"];
     SSDKPlatformType type;
     switch (idex) {
         case 0:
@@ -69,10 +73,16 @@
             break;
         case 3:
             type = SSDKPlatformTypeSinaWeibo;
+            des  = [NSString stringWithFormat:@"%@ %@",self.shareDic[@"des"],url];
             break;
         default:
             break;
     }
+    [shareParams SSDKSetupShareParamsByText:des
+                                     images:image
+                                        url:[NSURL URLWithString:url]
+                                      title:self.shareDic[@"title"]
+                                       type:SSDKContentTypeAuto];
     //进行分享 //传入分享的平台类型
     [ShareSDK share:type parameters:shareParams onStateChanged:nil];
     [SVProgressHUD dismiss];

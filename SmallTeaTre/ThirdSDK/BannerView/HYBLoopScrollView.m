@@ -59,7 +59,7 @@ NSString * const kCellIdentifier = @"ReuseCellIdentifier";
 // Record the previous page index, for we need to update to another page when
 // it is clicked at some point.
 @property (nonatomic, assign) NSInteger previousPageIndex;
-
+@property (nonatomic,   copy) NSArray          *imgArr;
 @end
 
 @implementation HYBLoopScrollView
@@ -83,7 +83,7 @@ NSString * const kCellIdentifier = @"ReuseCellIdentifier";
 + (instancetype)loopScrollViewWithFrame:(CGRect)frame imageUrls:(NSArray *)imageUrls {
   HYBLoopScrollView *loopView = [[HYBLoopScrollView alloc] initWithFrame:frame];
   loopView.imageUrls = imageUrls;
-  
+  loopView.imgArr = imageUrls;
   return loopView;
 }
 
@@ -177,7 +177,7 @@ NSString * const kCellIdentifier = @"ReuseCellIdentifier";
   if (self.alignment == kPageControlAlignCenter) {
     self.pageControl.originX = (self.width - self.pageControl.width) / 2.0;
   } else if (self.alignment == kPageControlAlignRight) {
-    self.pageControl.rightX = self.width - 30;
+    self.pageControl.rightX = self.width - _imgArr.count*10;
   }
   self.pageControl.originY = self.height - self.pageControl.height + 5;
 }

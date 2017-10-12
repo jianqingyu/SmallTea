@@ -167,6 +167,7 @@ UINavigationControllerDelegate>{
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
+    [self.view sendSubviewToBack:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(0);
         make.left.equalTo(self.view).offset(0);
@@ -180,7 +181,7 @@ UINavigationControllerDelegate>{
     NSString *url = [NSString stringWithFormat:@"%@api/ads/page",baseNet];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"index"] = @1;
-    params[@"pageSize"] = @3;
+    params[@"pageSize"] = @5;
     [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]) {
             if ([YQObjectBool boolForObject:response.result]){
@@ -213,7 +214,7 @@ UINavigationControllerDelegate>{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"tag"] = @"02";
     params[@"index"] = @1;
-    params[@"pageSize"] = @5;
+    params[@"pageSize"] = @3;
     [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]) {
             if ([YQObjectBool boolForObject:response.result]){

@@ -11,7 +11,6 @@
 #import "MainNavViewController.h"
 #import "IQKeyboardManager.h"
 #import "CustomLoginV.h"
-#import "ChooseStoreInfoVC.h"
 #import "CustomRegisterV.h"
 #import "AssociatPhoneVC.h"
 #import <ShareSDK/ShareSDK.h>

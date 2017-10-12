@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface OrderNumTool : NSObject
-+ (void)orderWithNum:(int)number andView:(UILabel *)sLab;
 + (NSString *)strWithPrice:(float)price;
++ (NSString *)strWithTime:(NSString *)time;
++ (void)orderWithNum:(int)number andView:(UILabel *)sLab;
 + (void)NSLoginWithStr:(NSString *)str andDic:(NSDictionary *)dic;
+
 @end

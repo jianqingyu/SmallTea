@@ -11,6 +11,7 @@
 @interface UserStoreInfoVC ()
 @property (weak, nonatomic) IBOutlet UILabel *storeName;
 @property (weak, nonatomic) IBOutlet UILabel *storeAdd;
+@property (weak, nonatomic) IBOutlet UILabel *storePhone;
 @property (weak, nonatomic) IBOutlet UIButton *storeTel;
 @property (weak, nonatomic) IBOutlet UILabel *storeTime;
 @property (copy, nonatomic) NSString *phone;
@@ -20,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.storeTel setLayerWithW:3 andColor:BordColor andBackW:0.0001];
     [self loadHomeData];
 }
 
@@ -44,7 +46,8 @@
 - (void)setBaseView:(UserShopInfo *)info{
     self.storeName.text = info.shopName;
     self.storeAdd.text = info.address;
-    [self.storeTel setTitle:info.tel forState:UIControlStateNormal];
+    self.storePhone.text = info.tel;
+    self.storePhone.hidden = !info.tel.length;
     self.storeTel.hidden = !info.tel.length;
     self.phone = info.tel;
     self.storeTime.text = [NSString stringWithFormat:@"%@-%@",info.busiStartTime,info.busiEndTime];

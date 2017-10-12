@@ -17,6 +17,7 @@
 @property (nonatomic, copy)NSString *typeName;
 @property (nonatomic, copy)NSString *orderStatusName;
 @property (nonatomic, copy)NSString *orderType;
+@property (nonatomic, copy)NSString *orderTypeName;
 @property (nonatomic, copy)NSString *imgUrl;
 @property (nonatomic, copy)NSString *unit;
 @property (nonatomic, copy)NSString *unitName;

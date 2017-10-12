@@ -11,4 +11,5 @@ typedef void (^ChStoInfoBack)(NSDictionary *store,BOOL isSel);
 @interface ChooseStoreInfoView : UIView
 + (ChooseStoreInfoView *)createLoginView;
 @property (nonatomic, copy)ChStoInfoBack storeBack;
+@property (nonatomic, copy)NSString *areaCode;
 @end

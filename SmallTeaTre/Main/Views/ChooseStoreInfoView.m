@@ -28,13 +28,19 @@
         self = [[NSBundle mainBundle]loadNibNamed:@"ChooseStoreInfoView" owner:nil options:nil][0];
         self.tableView.tableFooterView = [UIView new];
         self.tableView.bounces = NO;
-        [self loadHomeData];
     }
     return self;
 }
 
+- (void)setAreaCode:(NSString *)areaCode{
+    if (areaCode) {
+        _areaCode = areaCode;
+        [self loadHomeData];
+    }
+}
+
 - (void)loadHomeData{
-    NSString *url = [NSString stringWithFormat:@"%@api/shop/all",baseNet];
+    NSString *url = [NSString stringWithFormat:@"%@api/shop/all/%@",baseNet,_areaCode];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {

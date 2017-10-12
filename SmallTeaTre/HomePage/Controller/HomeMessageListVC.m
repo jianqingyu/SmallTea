@@ -8,6 +8,7 @@
 
 #import "HomeMessageListVC.h"
 #import "MainProtocolVC.h"
+#import "HomeMessageInfo.h"
 @interface HomeMessageListVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     int curPage;
@@ -112,7 +113,7 @@
         _mTableView.footer.state = MJRefreshStateIdle;
         curPage++;
         totalCount = [dict[@"totalPage"]intValue];
-        NSArray *seaArr = dict[@"result"];
+        NSArray *seaArr = [HomeMessageInfo objectArrayWithKeyValuesArray:dict[@"result"]];
         [_dataArray addObjectsFromArray:seaArr];
         if(curPage>totalCount){
             //已加载全部数据
@@ -140,27 +141,30 @@
     NSString *Id = @"centerCell";
     UITableViewCell *customCell = [tableView dequeueReusableCellWithIdentifier:Id];
     if (customCell==nil) {
-        customCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Id];
+        customCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Id];
         customCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         customCell.textLabel.font = [UIFont systemFontOfSize:14];
+        customCell.detailTextLabel.font = [UIFont systemFontOfSize:12];
         customCell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    NSDictionary *dic;
+    HomeMessageInfo *info;
     if (indexPath.row<_dataArray.count) {
-        dic = self.dataArray[indexPath.row];
+        info = self.dataArray[indexPath.row];
     }
-    customCell.textLabel.text = dic[@"title"];
+    customCell.textLabel.text = info.title;
+    NSString *string = [OrderNumTool strWithTime:info.createTime];
+    customCell.detailTextLabel.text = string;
     return customCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dic;
+    HomeMessageInfo *info;
     if (indexPath.row<_dataArray.count) {
-        dic = self.dataArray[indexPath.row];
+        info = self.dataArray[indexPath.row];
     }
     MainProtocolVC *pro = [MainProtocolVC new];
-    pro.title = dic[@"title"];
-    pro.content = dic[@"content"];
+    pro.title = info.title;
+    pro.content = info.content;
     [self.navigationController pushViewController:pro animated:YES];
 }
 

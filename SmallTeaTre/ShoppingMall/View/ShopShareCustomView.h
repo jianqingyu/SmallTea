@@ -11,5 +11,6 @@ typedef void (^ShareCancelBack)(BOOL isSel);
 @interface ShopShareCustomView : UIView
 + (id)creatCustomView;
 @property(nonatomic,copy)NSDictionary *shareDic;
-@property(nonatomic, copy)ShareCancelBack back;
+@property (nonatomic,assign)BOOL isApp;
+@property(nonatomic,   copy)ShareCancelBack back;
 @end

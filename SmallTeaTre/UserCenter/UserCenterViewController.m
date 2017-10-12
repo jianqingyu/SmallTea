@@ -44,9 +44,9 @@
 - (NSDictionary *)shareDic{
     NSMutableDictionary *params = [NSMutableDictionary new];
     params[@"title"] = @"小茶宝";
-    params[@"des"] = @"详情地址";
-    params[@"image"] = @"";
-    params[@"url"] = @"";
+    params[@"des"] = @"下载地址";
+    params[@"image"] = [UIImage imageNamed:@"logo"];
+    params[@"url"] = [@"https://itunes.apple.com/cn/app/小茶宝/id1286622636?l=zh&ls=1&mt=8"stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return params.copy;
 }
 
@@ -76,6 +76,7 @@
         make.height.mas_equalTo(190);
     }];
     self.shareView = infoV;
+    self.shareView.isApp = YES;
     self.shareView.shareDic = [self shareDic];
 }
 

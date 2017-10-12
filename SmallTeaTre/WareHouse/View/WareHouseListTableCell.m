@@ -7,7 +7,7 @@
 //
 
 #import "WareHouseListTableCell.h"
-
+#import "OrderNumTool.h"
 @interface WareHouseListTableCell()
 @property (weak, nonatomic) IBOutlet UIImageView *teaImg;
 @property (weak, nonatomic) IBOutlet UILabel *wareTLab;
@@ -51,12 +51,7 @@
         self.sPriceLab.text = [NSString stringWithFormat:@"茶叶单价:%0.2f/%@",_listInfo.price,_listInfo.unitName];
         self.numLab.text = [NSString stringWithFormat:@"成交总量:%@%@",_listInfo.quantity,_listInfo.unitName];
         self.allPriceLab.text = [NSString stringWithFormat:@"成交总金额:%0.2f元",_listInfo.total];
-        NSTimeInterval second = _listInfo.createTime.longLongValue / 1000.0;
-        // 时间戳 -> NSDate *
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:second];
-        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-        fmt.dateFormat = @"yyyy-MM-dd";
-        NSString *string = [fmt stringFromDate:date];
+        NSString *string = [OrderNumTool strWithTime:_listInfo.createTime];
         self.dateLab.text = [NSString stringWithFormat:@"购买日期:%@",string];
     }
 }
@@ -69,16 +64,11 @@
                        placeholderImage:DefaultImage];
         self.wareTLab.text = _orderInfo.goodsName;
         self.wareSta.text = [NSString stringWithFormat:@"%@ %@",_orderInfo.deportName,_orderInfo.typeName];
-        [self.styBtn setTitle:_orderInfo.orderStatusName forState:UIControlStateNormal];
+        [self.styBtn setTitle:_orderInfo.orderTypeName forState:UIControlStateNormal];
         self.sPriceLab.text = [NSString stringWithFormat:@"茶叶单价:%0.2f/%@",_orderInfo.price,_orderInfo.unitName];
         self.numLab.text = [NSString stringWithFormat:@"成交总量:%@%@",_orderInfo.quantity,_orderInfo.unitName];
         self.allPriceLab.text = [NSString stringWithFormat:@"成交总金额:%0.2f元",_orderInfo.total];
-        NSTimeInterval second = _orderInfo.createTime.longLongValue / 1000.0;
-        // 时间戳 -> NSDate *
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:second];
-        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-        fmt.dateFormat = @"yyyy-MM-dd";
-        NSString *string = [fmt stringFromDate:date];
+        NSString *string = [OrderNumTool strWithTime:_orderInfo.createTime];
         self.dateLab.text = [NSString stringWithFormat:@"购买日期:%@",string];
     }
 }

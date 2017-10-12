@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D1E729401B307C3E8070207 /* libPods-SmallTeaTreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 408214F0D5C56C85D8AF17BB /* libPods-SmallTeaTreTests.a */; };
+		35CB521DD109017A1DBE8340 /* libPods-SmallTeaTre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AC624B161A1F9DF6A14727 /* libPods-SmallTeaTre.a */; };
+		588185888371E2AD958B1C5D /* libPods-SmallTeaTreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE950B59D9F7785E2F76390 /* libPods-SmallTeaTreUITests.a */; };
 		7902242A1F60DCF9003525F2 /* UserCenterListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790224281F60DCF9003525F2 /* UserCenterListCell.m */; };
 		7902242B1F60DCF9003525F2 /* UserCenterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 790224291F60DCF9003525F2 /* UserCenterListCell.xib */; };
 		7902242F1F60E2D0003525F2 /* UserEditNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7902242D1F60E2D0003525F2 /* UserEditNameVC.m */; };
@@ -144,6 +147,11 @@
 		79953FE21F5EB777007A014D /* UserManagerScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79953FDE1F5EB777007A014D /* UserManagerScrollPageView.m */; };
 		79953FE31F5EB777007A014D /* UserManagerTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79953FE01F5EB777007A014D /* UserManagerTableView.m */; };
 		799BDAFC1F6F545000D34818 /* HomeShopListInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 799BDAFB1F6F545000D34818 /* HomeShopListInfo.m */; };
+		79A647EC1F8C573E009AC1B8 /* HomeMessageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A647EB1F8C573E009AC1B8 /* HomeMessageInfo.m */; };
+		79A647EF1F8C6B4D009AC1B8 /* CustomPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A647EE1F8C6B4D009AC1B8 /* CustomPickView.m */; };
+		79A647F21F8C771C009AC1B8 /* AddressListInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A647F11F8C771C009AC1B8 /* AddressListInfo.m */; };
+		79A647F51F8C7C9C009AC1B8 /* ChooseAddInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A647F41F8C7C9C009AC1B8 /* ChooseAddInfoView.m */; };
+		79A647F71F8C7D08009AC1B8 /* ChooseAddInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A647F61F8C7D08009AC1B8 /* ChooseAddInfoView.xib */; };
 		79BF71811F74B3BC0039309D /* UserShopInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF71801F74B3BC0039309D /* UserShopInfo.m */; };
 		79BF71841F74B4CF0039309D /* UserHelpProInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF71831F74B4CF0039309D /* UserHelpProInfo.m */; };
 		79BF71871F74B57A0039309D /* UserAboutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BF71861F74B57A0039309D /* UserAboutInfo.m */; };
@@ -164,7 +172,6 @@
 		79D4C8EE1F668B7B0012549F /* CustomBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D4C8ED1F668B7B0012549F /* CustomBackgroundView.m */; };
 		79F3559C1F66A42C0042ABA0 /* ShowHidenTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F3559B1F66A42C0042ABA0 /* ShowHidenTabBar.m */; };
 		79FF426D1F73421C005C6F74 /* UserOrderListInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FF426C1F73421C005C6F74 /* UserOrderListInfo.m */; };
-		BB12465B97F56199B518975F /* libPods-SmallTeaTre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F38A2932507DC360FBEB40CE /* libPods-SmallTeaTre.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,8 +192,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2C6695682F7DC08C302A2B70 /* Pods-SmallTeaTre.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallTeaTre.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmallTeaTre/Pods-SmallTeaTre.debug.xcconfig"; sourceTree = "<group>"; };
-		3DBDA6DC11C30C1B19B1ABCA /* Pods-SmallTeaTre.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallTeaTre.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmallTeaTre/Pods-SmallTeaTre.release.xcconfig"; sourceTree = "<group>"; };
+		1ACB5A4A53313CEFE0ED0FD6 /* Pods-SmallTeaTreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallTeaTreUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmallTeaTreUITests/Pods-SmallTeaTreUITests.release.xcconfig"; sourceTree = "<group>"; };
+		408214F0D5C56C85D8AF17BB /* libPods-SmallTeaTreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmallTeaTreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41E774C102D87C0CB3C7927D /* Pods-SmallTeaTre.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallTeaTre.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmallTeaTre/Pods-SmallTeaTre.debug.xcconfig"; sourceTree = "<group>"; };
+		50E05B21683F059467EE9ED3 /* Pods-SmallTeaTreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallTeaTreUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmallTeaTreUITests/Pods-SmallTeaTreUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		675F93EC8522989532C53ABD /* Pods-SmallTeaTre.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallTeaTre.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmallTeaTre/Pods-SmallTeaTre.release.xcconfig"; sourceTree = "<group>"; };
 		790224271F60DCF9003525F2 /* UserCenterListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCenterListCell.h; sourceTree = "<group>"; };
 		790224281F60DCF9003525F2 /* UserCenterListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterListCell.m; sourceTree = "<group>"; };
 		790224291F60DCF9003525F2 /* UserCenterListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCenterListCell.xib; sourceTree = "<group>"; };
@@ -436,6 +446,15 @@
 		79953FE01F5EB777007A014D /* UserManagerTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManagerTableView.m; sourceTree = "<group>"; };
 		799BDAFA1F6F545000D34818 /* HomeShopListInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeShopListInfo.h; sourceTree = "<group>"; };
 		799BDAFB1F6F545000D34818 /* HomeShopListInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeShopListInfo.m; sourceTree = "<group>"; };
+		79A647EA1F8C573E009AC1B8 /* HomeMessageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMessageInfo.h; sourceTree = "<group>"; };
+		79A647EB1F8C573E009AC1B8 /* HomeMessageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMessageInfo.m; sourceTree = "<group>"; };
+		79A647ED1F8C6B4D009AC1B8 /* CustomPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickView.h; sourceTree = "<group>"; };
+		79A647EE1F8C6B4D009AC1B8 /* CustomPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickView.m; sourceTree = "<group>"; };
+		79A647F01F8C771C009AC1B8 /* AddressListInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListInfo.h; sourceTree = "<group>"; };
+		79A647F11F8C771C009AC1B8 /* AddressListInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListInfo.m; sourceTree = "<group>"; };
+		79A647F31F8C7C9C009AC1B8 /* ChooseAddInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAddInfoView.h; sourceTree = "<group>"; };
+		79A647F41F8C7C9C009AC1B8 /* ChooseAddInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseAddInfoView.m; sourceTree = "<group>"; };
+		79A647F61F8C7D08009AC1B8 /* ChooseAddInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseAddInfoView.xib; sourceTree = "<group>"; };
 		79BF717F1F74B3BC0039309D /* UserShopInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserShopInfo.h; sourceTree = "<group>"; };
 		79BF71801F74B3BC0039309D /* UserShopInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserShopInfo.m; sourceTree = "<group>"; };
 		79BF71821F74B4CF0039309D /* UserHelpProInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHelpProInfo.h; sourceTree = "<group>"; };
@@ -470,7 +489,10 @@
 		79F3559B1F66A42C0042ABA0 /* ShowHidenTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowHidenTabBar.m; sourceTree = "<group>"; };
 		79FF426B1F73421C005C6F74 /* UserOrderListInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOrderListInfo.h; sourceTree = "<group>"; };
 		79FF426C1F73421C005C6F74 /* UserOrderListInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOrderListInfo.m; sourceTree = "<group>"; };
-		F38A2932507DC360FBEB40CE /* libPods-SmallTeaTre.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmallTeaTre.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8331E13ECECFA4B27DF01CCD /* Pods-SmallTeaTreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallTeaTreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmallTeaTreTests/Pods-SmallTeaTreTests.release.xcconfig"; sourceTree = "<group>"; };
+		A5AC624B161A1F9DF6A14727 /* libPods-SmallTeaTre.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmallTeaTre.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF18D25820F0DA9942BFCB53 /* Pods-SmallTeaTreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallTeaTreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmallTeaTreTests/Pods-SmallTeaTreTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CDE950B59D9F7785E2F76390 /* libPods-SmallTeaTreUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmallTeaTreUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -478,7 +500,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB12465B97F56199B518975F /* libPods-SmallTeaTre.a in Frameworks */,
+				35CB521DD109017A1DBE8340 /* libPods-SmallTeaTre.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +508,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D1E729401B307C3E8070207 /* libPods-SmallTeaTreTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,25 +516,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				588185888371E2AD958B1C5D /* libPods-SmallTeaTreUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		177233829693B2A27DD0B932 /* Pods */ = {
+		5F2322ABC49C38B02C450AF4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2C6695682F7DC08C302A2B70 /* Pods-SmallTeaTre.debug.xcconfig */,
-				3DBDA6DC11C30C1B19B1ABCA /* Pods-SmallTeaTre.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		2A7B5D72980ACEB0F07F24C6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F38A2932507DC360FBEB40CE /* libPods-SmallTeaTre.a */,
+				A5AC624B161A1F9DF6A14727 /* libPods-SmallTeaTre.a */,
+				408214F0D5C56C85D8AF17BB /* libPods-SmallTeaTreTests.a */,
+				CDE950B59D9F7785E2F76390 /* libPods-SmallTeaTreUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -523,8 +540,8 @@
 				798E08771F58F790005C1F2B /* SmallTeaTreTests */,
 				798E08821F58F790005C1F2B /* SmallTeaTreUITests */,
 				798E085C1F58F790005C1F2B /* Products */,
-				177233829693B2A27DD0B932 /* Pods */,
-				2A7B5D72980ACEB0F07F24C6 /* Frameworks */,
+				835CC5C6C40C04771D1CE34C /* Pods */,
+				5F2322ABC49C38B02C450AF4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -709,6 +726,8 @@
 		798E08F31F58FC3E005C1F2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				79A647ED1F8C6B4D009AC1B8 /* CustomPickView.h */,
+				79A647EE1F8C6B4D009AC1B8 /* CustomPickView.m */,
 				798E08F61F58FC3E005C1F2B /* CDRTranslucentSideBar.h */,
 				798E08F71F58FC3E005C1F2B /* CDRTranslucentSideBar.m */,
 				798E08F81F58FC3E005C1F2B /* CustomInvoice.h */,
@@ -719,6 +738,9 @@
 				798E0A031F593F40005C1F2B /* CustomRegisterV.h */,
 				798E0A041F593F40005C1F2B /* CustomRegisterV.m */,
 				798E0A081F594319005C1F2B /* CustomRegisterV.xib */,
+				79A647F31F8C7C9C009AC1B8 /* ChooseAddInfoView.h */,
+				79A647F41F8C7C9C009AC1B8 /* ChooseAddInfoView.m */,
+				79A647F61F8C7D08009AC1B8 /* ChooseAddInfoView.xib */,
 				799243E61F5D47790021CE90 /* ChooseStoreInfoView.h */,
 				799243E71F5D47790021CE90 /* ChooseStoreInfoView.m */,
 				799243E91F5D47950021CE90 /* ChooseStoreInfoView.xib */,
@@ -955,6 +977,10 @@
 				79BF71891F75064A0039309D /* BaseModelInfo.m */,
 				799BDAFA1F6F545000D34818 /* HomeShopListInfo.h */,
 				799BDAFB1F6F545000D34818 /* HomeShopListInfo.m */,
+				79A647EA1F8C573E009AC1B8 /* HomeMessageInfo.h */,
+				79A647EB1F8C573E009AC1B8 /* HomeMessageInfo.m */,
+				79A647F01F8C771C009AC1B8 /* AddressListInfo.h */,
+				79A647F11F8C771C009AC1B8 /* AddressListInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1095,6 +1121,19 @@
 			name = LoginControllers;
 			sourceTree = "<group>";
 		};
+		835CC5C6C40C04771D1CE34C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				41E774C102D87C0CB3C7927D /* Pods-SmallTeaTre.debug.xcconfig */,
+				675F93EC8522989532C53ABD /* Pods-SmallTeaTre.release.xcconfig */,
+				BF18D25820F0DA9942BFCB53 /* Pods-SmallTeaTreTests.debug.xcconfig */,
+				8331E13ECECFA4B27DF01CCD /* Pods-SmallTeaTreTests.release.xcconfig */,
+				50E05B21683F059467EE9ED3 /* Pods-SmallTeaTreUITests.debug.xcconfig */,
+				1ACB5A4A53313CEFE0ED0FD6 /* Pods-SmallTeaTreUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1102,12 +1141,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 798E08881F58F790005C1F2B /* Build configuration list for PBXNativeTarget "SmallTeaTre" */;
 			buildPhases = (
-				38A544DF03508D90FDF54D04 /* Check Pods Manifest.lock */,
+				22E0ABA1CDC0589B8BF5A365 /* [CP] Check Pods Manifest.lock */,
 				798E08571F58F790005C1F2B /* Sources */,
 				798E08581F58F790005C1F2B /* Frameworks */,
 				798E08591F58F790005C1F2B /* Resources */,
-				4F535C02C8271183CD815BB9 /* Embed Pods Frameworks */,
-				B81FF92840322067839CA754 /* Copy Pods Resources */,
+				2E9FEB1F3D33F4ADA281AA5E /* [CP] Embed Pods Frameworks */,
+				B987A4341C8545EEAD031BF4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1122,9 +1161,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 798E088B1F58F790005C1F2B /* Build configuration list for PBXNativeTarget "SmallTeaTreTests" */;
 			buildPhases = (
+				EC3E5A06B59EC69C57B60507 /* [CP] Check Pods Manifest.lock */,
 				798E08701F58F790005C1F2B /* Sources */,
 				798E08711F58F790005C1F2B /* Frameworks */,
 				798E08721F58F790005C1F2B /* Resources */,
+				4ADC64B34FDFACDEC703DE27 /* [CP] Embed Pods Frameworks */,
+				FCBA831586A6373E4D639EA8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1140,9 +1182,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 798E088E1F58F790005C1F2B /* Build configuration list for PBXNativeTarget "SmallTeaTreUITests" */;
 			buildPhases = (
+				500900726670BA27A916FE2C /* [CP] Check Pods Manifest.lock */,
 				798E087B1F58F790005C1F2B /* Sources */,
 				798E087C1F58F790005C1F2B /* Frameworks */,
 				798E087D1F58F790005C1F2B /* Resources */,
+				64AFD6FC8AB9E1DDAEA2DB72 /* [CP] Embed Pods Frameworks */,
+				D80F6379BD9E3CA9774F11CD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1203,6 +1248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				799244061F5D676B0021CE90 /* UserAboutUsVc.xib in Resources */,
+				79A647F71F8C7D08009AC1B8 /* ChooseAddInfoView.xib in Resources */,
 				799244011F5D66680021CE90 /* UserHelpViewController.xib in Resources */,
 				79953FD71F5EAA82007A014D /* WareHouseDetailVC.xib in Resources */,
 				798E09181F58FC3E005C1F2B /* LoginViewController.xib in Resources */,
@@ -1264,29 +1310,32 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		38A544DF03508D90FDF54D04 /* Check Pods Manifest.lock */ = {
+		22E0ABA1CDC0589B8BF5A365 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmallTeaTre-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4F535C02C8271183CD815BB9 /* Embed Pods Frameworks */ = {
+		2E9FEB1F3D33F4ADA281AA5E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1294,19 +1343,123 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmallTeaTre/Pods-SmallTeaTre-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B81FF92840322067839CA754 /* Copy Pods Resources */ = {
+		4ADC64B34FDFACDEC703DE27 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmallTeaTreTests/Pods-SmallTeaTreTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		500900726670BA27A916FE2C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmallTeaTreUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		64AFD6FC8AB9E1DDAEA2DB72 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmallTeaTreUITests/Pods-SmallTeaTreUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B987A4341C8545EEAD031BF4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SmallTeaTre/Pods-SmallTeaTre-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser/MWPhotoBrowser.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+				"${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/Required/ShareSDK.bundle",
+				"${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/PlatformSDK/QQSDK/TencentOpenApi_IOS_Bundle.bundle",
+				"${PODS_ROOT}/ShareSDK3/SDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK/WeiboSDK.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmallTeaTre/Pods-SmallTeaTre-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D80F6379BD9E3CA9774F11CD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmallTeaTreUITests/Pods-SmallTeaTreUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC3E5A06B59EC69C57B60507 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmallTeaTreTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCBA831586A6373E4D639EA8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmallTeaTreTests/Pods-SmallTeaTreTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1330,6 +1483,7 @@
 				79953FE31F5EB777007A014D /* UserManagerTableView.m in Sources */,
 				798E09F41F59125B005C1F2B /* ShoppingMallVC.m in Sources */,
 				798E09331F58FC3E005C1F2B /* SKTag.m in Sources */,
+				79A647F51F8C7C9C009AC1B8 /* ChooseAddInfoView.m in Sources */,
 				798E090D1F58FC3E005C1F2B /* StrWithIntTool.m in Sources */,
 				798E09341F58FC3E005C1F2B /* SKTagButton.m in Sources */,
 				798E09AF1F58FC4E005C1F2B /* IQSegmentedNextPrevious.m in Sources */,
@@ -1344,6 +1498,7 @@
 				798E09B71F58FC4E005C1F2B /* NSArray+PureLayout.m in Sources */,
 				798E09201F58FC3E005C1F2B /* Account.m in Sources */,
 				798E0A021F593F2B005C1F2B /* CustomLoginV.m in Sources */,
+				79A647EC1F8C573E009AC1B8 /* HomeMessageInfo.m in Sources */,
 				799243F31F5D64170021CE90 /* UserStoreInfoVC.m in Sources */,
 				798E09B81F58FC4E005C1F2B /* NSLayoutConstraint+PureLayout.m in Sources */,
 				798E09B21F58FC4E005C1F2B /* IQToolbar.m in Sources */,
@@ -1358,6 +1513,7 @@
 				798E08631F58F790005C1F2B /* AppDelegate.m in Sources */,
 				79CE1DAC1F7B4F0900804332 /* HomeBannerDetailVC.m in Sources */,
 				799243E41F5D404A0021CE90 /* ChooseStoreInfoVC.m in Sources */,
+				79A647EF1F8C6B4D009AC1B8 /* CustomPickView.m in Sources */,
 				798E09FE1F5933A2005C1F2B /* TeaListTableCell.m in Sources */,
 				798E092D1F58FC3E005C1F2B /* CDRTranslucentSideBar.m in Sources */,
 				790224391F6151EC003525F2 /* MainProtocolVC.m in Sources */,
@@ -1428,6 +1584,7 @@
 				798E09231F58FC3E005C1F2B /* CommonUsedTool.m in Sources */,
 				798E09271F58FC3E005C1F2B /* Md5PassWord.m in Sources */,
 				798E09B51F58FC4E005C1F2B /* IQUIWindow+Hierarchy.m in Sources */,
+				79A647F21F8C771C009AC1B8 /* AddressListInfo.m in Sources */,
 				79BF71841F74B4CF0039309D /* UserHelpProInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1567,7 +1724,7 @@
 		};
 		798E08891F58F790005C1F2B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C6695682F7DC08C302A2B70 /* Pods-SmallTeaTre.debug.xcconfig */;
+			baseConfigurationReference = 41E774C102D87C0CB3C7927D /* Pods-SmallTeaTre.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
@@ -1584,13 +1741,13 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.XMYX.SmallTea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "53750a58-24f9-42cc-8792-dd2e130d9ead";
+				PROVISIONING_PROFILE = "394f1918-8e5f-4ce4-a18b-7cea0d94f01a";
 			};
 			name = Debug;
 		};
 		798E088A1F58F790005C1F2B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DBDA6DC11C30C1B19B1ABCA /* Pods-SmallTeaTre.release.xcconfig */;
+			baseConfigurationReference = 675F93EC8522989532C53ABD /* Pods-SmallTeaTre.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
@@ -1607,12 +1764,13 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.XMYX.SmallTea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "53750a58-24f9-42cc-8792-dd2e130d9ead";
+				PROVISIONING_PROFILE = "394f1918-8e5f-4ce4-a18b-7cea0d94f01a";
 			};
 			name = Release;
 		};
 		798E088C1F58F790005C1F2B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF18D25820F0DA9942BFCB53 /* Pods-SmallTeaTreTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SmallTeaTreTests/Info.plist;
@@ -1625,6 +1783,7 @@
 		};
 		798E088D1F58F790005C1F2B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8331E13ECECFA4B27DF01CCD /* Pods-SmallTeaTreTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SmallTeaTreTests/Info.plist;
@@ -1637,6 +1796,7 @@
 		};
 		798E088F1F58F790005C1F2B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50E05B21683F059467EE9ED3 /* Pods-SmallTeaTreUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = SmallTeaTreUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1648,6 +1808,7 @@
 		};
 		798E08901F58F790005C1F2B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1ACB5A4A53313CEFE0ED0FD6 /* Pods-SmallTeaTreUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = SmallTeaTreUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

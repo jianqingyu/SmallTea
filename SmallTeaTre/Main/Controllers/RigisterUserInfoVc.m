@@ -112,6 +112,8 @@
 }
 
 - (IBAction)rigisterClick:(UIButton *)sender {
+    [self.nameFie resignFirstResponder];
+    [self.passFie resignFirstResponder];
     if (self.nameFie.text.length==0) {
         [MBProgressHUD showError:@"请输入昵称"];
         return;
@@ -141,7 +143,8 @@
     } requestURL:netUrl params:params];
 }
 
-- (void)saveUserInfo:(NSDictionary *)params and:(BaseResponse *)response{
+- (void)saveUserInfo:(NSMutableDictionary *)params and:(BaseResponse *)response{
+    params[@"isLog"] = @YES;
     Account *account = [Account accountWithDict:params];
     //自定义类型存储用NSKeyedArchiver
     [AccountTool saveAccount:account];

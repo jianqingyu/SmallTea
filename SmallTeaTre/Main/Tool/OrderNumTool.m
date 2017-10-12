@@ -23,10 +23,22 @@
 }
 
 + (NSString *)strWithPrice:(float)price{
+    //价格取整
     return [NSString stringWithFormat:@"￥%0.0f",price];
 }
 
++ (NSString *)strWithTime:(NSString *)time{
+    NSTimeInterval second = time.longLongValue / 1000.0;
+    // 时间戳 -> NSDate *
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:second];
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy-MM-dd";
+    NSString *string = [fmt stringFromDate:date];
+    return string;
+}
+
 + (void)NSLoginWithStr:(NSString *)str andDic:(NSDictionary *)dic{
+    //打印请求链接
     NSMutableArray *mutA = @[].mutableCopy;
     [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         NSString *str = [NSString stringWithFormat:@"%@=%@",key,obj];

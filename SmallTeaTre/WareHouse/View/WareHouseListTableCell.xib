@@ -104,6 +104,7 @@
                     <constraint firstItem="QpS-JO-4dm" firstAttribute="top" secondItem="HKd-7I-EfK" secondAttribute="bottom" constant="9" id="omQ-Hf-cO2"/>
                     <constraint firstItem="QpS-JO-4dm" firstAttribute="centerY" secondItem="lLi-C2-bKh" secondAttribute="centerY" id="qsn-LX-s6Z"/>
                     <constraint firstItem="QpS-JO-4dm" firstAttribute="centerY" secondItem="lLi-C2-bKh" secondAttribute="centerY" id="rMA-z8-V75"/>
+                    <constraint firstItem="HKd-7I-EfK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yD7-D1-20n" secondAttribute="trailing" id="rRp-d6-zj8"/>
                     <constraint firstItem="z43-32-HdO" firstAttribute="leading" secondItem="Oq7-kA-4TF" secondAttribute="leading" id="xLS-Cs-3gJ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="QpS-JO-4dm" secondAttribute="trailing" constant="-5" id="ydM-2N-7tO"/>
                 </constraints>

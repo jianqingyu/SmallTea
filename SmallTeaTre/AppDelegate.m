@@ -50,12 +50,10 @@
 }
 
 - (void)setShareSDK{
-    [ShareSDK registerApp:@"20f981628abd0"
-          activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),
-                            @(SSDKPlatformTypeWechat),
-                            @(SSDKPlatformTypeQQ)]
-                 onImport:^(SSDKPlatformType platformType)
-     {
+    [ShareSDK registerActivePlatforms:@[@(SSDKPlatformTypeSinaWeibo),
+                                        @(SSDKPlatformTypeWechat),
+                                        @(SSDKPlatformTypeQQ)]
+                             onImport:^(SSDKPlatformType platformType) {
          switch (platformType)
          {
              case SSDKPlatformTypeWechat:
@@ -70,31 +68,75 @@
              default:
                  break;
          }
-     }
-          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
-     {
-         switch (platformType)
-         {
-             case SSDKPlatformTypeSinaWeibo:
-                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                 [appInfo SSDKSetupSinaWeiboByAppKey:@"2341659063"
-                                           appSecret:@"31df936deb0b727abff9aace6eaaf07c"
-                                         redirectUri:@"http://www.sharesdk.cn"
-                                            authType:SSDKAuthTypeBoth];
-                 break;
-             case SSDKPlatformTypeWechat:
-                 [appInfo SSDKSetupWeChatByAppId:@"wxce488c9ce08c20e3"
-                                       appSecret:@"203e4b15ebfc1a03475c2ad0809667ee"];
-                 break;
-             case SSDKPlatformTypeQQ:
-                 [appInfo SSDKSetupQQByAppId:@"1106339351"//QQ41F16617
-                                      appKey:@"dXpXeg8jKculB0SS"
-                                    authType:SSDKAuthTypeBoth];
-                 break;
-             default:
-                 break;
-         }
-     }];
+    } onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo) {
+        switch (platformType)
+        {
+            case SSDKPlatformTypeSinaWeibo:
+                //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+                [appInfo SSDKSetupSinaWeiboByAppKey:@"2341659063"
+                                          appSecret:@"31df936deb0b727abff9aace6eaaf07c"
+                                        redirectUri:@"http://www.sharesdk.cn"
+                                           authType:SSDKAuthTypeBoth];
+                break;
+            case SSDKPlatformTypeWechat:
+                [appInfo SSDKSetupWeChatByAppId:@"wxce488c9ce08c20e3"
+                                      appSecret:@"203e4b15ebfc1a03475c2ad0809667ee"];
+                break;
+            case SSDKPlatformTypeQQ:
+                [appInfo SSDKSetupQQByAppId:@"1106339351"//QQ41F16617
+                                     appKey:@"dXpXeg8jKculB0SS"
+                                   authType:SSDKAuthTypeBoth];
+                break;
+            default:
+                break;
+        }
+
+    }];
+//    [ShareSDK registerApp:@"20f981628abd0"
+//          activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),
+//                            @(SSDKPlatformTypeWechat),
+//                            @(SSDKPlatformTypeQQ)]
+//                 onImport:^(SSDKPlatformType platformType)
+//     {
+//         switch (platformType)
+//         {
+//             case SSDKPlatformTypeWechat:
+//                 [ShareSDKConnector connectWeChat:[WXApi class]];
+//                 break;
+//             case SSDKPlatformTypeQQ:
+//                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+//                 break;
+//             case SSDKPlatformTypeSinaWeibo:
+//                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+//                 break;
+//             default:
+//                 break;
+//         }
+//     }
+//          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
+//     {
+//         switch (platformType)
+//         {
+//             case SSDKPlatformTypeSinaWeibo:
+//                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+//                 [appInfo SSDKSetupSinaWeiboByAppKey:@"2341659063"
+//                                           appSecret:@"31df936deb0b727abff9aace6eaaf07c"
+//                                         redirectUri:@"http://www.sharesdk.cn"
+//                                            authType:SSDKAuthTypeBoth];
+//                 break;
+//             case SSDKPlatformTypeWechat:
+//                 [appInfo SSDKSetupWeChatByAppId:@"wxce488c9ce08c20e3"
+//                                       appSecret:@"203e4b15ebfc1a03475c2ad0809667ee"];
+//                 break;
+//             case SSDKPlatformTypeQQ:
+//                 [appInfo SSDKSetupQQByAppId:@"1106339351"//QQ41F16617
+//                                      appKey:@"dXpXeg8jKculB0SS"
+//                                    authType:SSDKAuthTypeBoth];
+//                 break;
+//             default:
+//                 break;
+//         }
+//     }];
 }
 
 - (void)reachabilityChanged:(NSNotification *)note {

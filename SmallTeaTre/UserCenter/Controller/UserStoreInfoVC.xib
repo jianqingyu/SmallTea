@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="storeAdd" destination="axh-7M-rEC" id="ndg-eG-A1Z"/>
                 <outlet property="storeName" destination="Gmj-3y-r4i" id="Xt5-7D-jbe"/>
+                <outlet property="storePhone" destination="rUN-D2-1dP" id="eeI-05-hrh"/>
                 <outlet property="storeTel" destination="SEM-Xq-Edl" id="d6i-2o-IwH"/>
                 <outlet property="storeTime" destination="ZLc-mz-CAw" id="hCU-hv-iry"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -93,20 +94,30 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEM-Xq-Edl">
-                            <rect key="frame" x="115" y="105" width="30" height="30"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal">
-                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
+                            <rect key="frame" x="185" y="103" width="64" height="26"/>
+                            <color key="backgroundColor" red="0.99607843139999996" green="0.51764705879999995" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="26" id="VAi-wD-Cb2"/>
+                                <constraint firstAttribute="width" constant="64" id="W9N-jJ-0gV"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="拨打"/>
                             <connections>
                                 <action selector="telClick:" destination="-1" eventType="touchUpInside" id="GWX-RY-4ID"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系电话" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUN-D2-1dP">
+                            <rect key="frame" x="115" y="111" width="60" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="axh-7M-rEC" firstAttribute="top" secondItem="UKX-Vj-owv" secondAttribute="bottom" constant="21" id="0vJ-Eg-6sB"/>
+                        <constraint firstItem="rUN-D2-1dP" firstAttribute="centerY" secondItem="3O3-hW-ubD" secondAttribute="centerY" id="6rj-YX-8ap"/>
                         <constraint firstItem="vP6-uD-MTQ" firstAttribute="leading" secondItem="2w1-L9-ywP" secondAttribute="leading" constant="20" id="7rx-69-8nK"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SEM-Xq-Edl" secondAttribute="trailing" constant="5" id="9Sw-o7-dPh"/>
                         <constraint firstItem="Xe2-LV-kpJ" firstAttribute="top" secondItem="axh-7M-rEC" secondAttribute="bottom" constant="5" id="DAr-7g-L63"/>
                         <constraint firstItem="UKX-Vj-owv" firstAttribute="top" secondItem="vP6-uD-MTQ" secondAttribute="bottom" constant="5" id="DLA-CG-g7U"/>
                         <constraint firstItem="axh-7M-rEC" firstAttribute="centerY" secondItem="f6D-3X-rtO" secondAttribute="centerY" id="Hmh-cb-Nw7"/>
@@ -114,8 +125,10 @@
                         <constraint firstAttribute="trailing" secondItem="UKX-Vj-owv" secondAttribute="trailing" id="KpN-Ci-pql"/>
                         <constraint firstItem="Gmj-3y-r4i" firstAttribute="leading" secondItem="axh-7M-rEC" secondAttribute="leading" id="KzF-UQ-egc"/>
                         <constraint firstItem="2K8-vB-Cm2" firstAttribute="top" secondItem="WQP-ex-Trc" secondAttribute="bottom" constant="5" id="L29-hL-J6a"/>
+                        <constraint firstItem="rUN-D2-1dP" firstAttribute="leading" secondItem="axh-7M-rEC" secondAttribute="leading" id="O4D-NT-O36"/>
+                        <constraint firstItem="SEM-Xq-Edl" firstAttribute="leading" secondItem="rUN-D2-1dP" secondAttribute="trailing" constant="10" id="OiJ-z0-CXl"/>
+                        <constraint firstItem="SEM-Xq-Edl" firstAttribute="bottom" secondItem="3O3-hW-ubD" secondAttribute="bottom" id="Qle-bI-tTr"/>
                         <constraint firstItem="UKX-Vj-owv" firstAttribute="top" secondItem="2w1-L9-ywP" secondAttribute="top" constant="44" id="Ruc-Kb-NAn"/>
-                        <constraint firstItem="SEM-Xq-Edl" firstAttribute="leading" secondItem="axh-7M-rEC" secondAttribute="leading" id="S2P-Vu-GyX"/>
                         <constraint firstItem="2K8-vB-Cm2" firstAttribute="top" secondItem="WYF-g5-yEu" secondAttribute="bottom" constant="44" id="T4c-t9-Vi9"/>
                         <constraint firstItem="ZLc-mz-CAw" firstAttribute="centerY" secondItem="WQP-ex-Trc" secondAttribute="centerY" id="Y7N-Py-Y8f"/>
                         <constraint firstItem="ZLc-mz-CAw" firstAttribute="leading" secondItem="axh-7M-rEC" secondAttribute="leading" id="alW-wz-hM2"/>
@@ -126,7 +139,6 @@
                         <constraint firstItem="WYF-g5-yEu" firstAttribute="top" secondItem="Xe2-LV-kpJ" secondAttribute="bottom" constant="44" id="i8r-yG-Fvr"/>
                         <constraint firstItem="f6D-3X-rtO" firstAttribute="leading" secondItem="vP6-uD-MTQ" secondAttribute="leading" id="lx5-l4-6b7"/>
                         <constraint firstAttribute="trailing" secondItem="WYF-g5-yEu" secondAttribute="trailing" id="peX-MR-DgT"/>
-                        <constraint firstItem="ZLc-mz-CAw" firstAttribute="top" secondItem="SEM-Xq-Edl" secondAttribute="bottom" constant="21" id="puj-H4-dMz"/>
                         <constraint firstItem="2K8-vB-Cm2" firstAttribute="leading" secondItem="2w1-L9-ywP" secondAttribute="leading" id="rWP-el-us2"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="axh-7M-rEC" secondAttribute="trailing" constant="10" id="t9J-DM-5XN"/>
                         <constraint firstItem="3O3-hW-ubD" firstAttribute="leading" secondItem="vP6-uD-MTQ" secondAttribute="leading" id="tMw-Ot-Xln"/>

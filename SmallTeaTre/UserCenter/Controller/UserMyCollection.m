@@ -8,6 +8,7 @@
 
 #import "UserMyCollection.h"
 #import "ShoppingListInfo.h"
+#import "HomeShoppingDetailVc.h"
 #import "CustomBackgroundView.h"
 #import "ShopShareCustomView.h"
 #import "ShoppingListTableCell.h"
@@ -170,6 +171,17 @@
     params[@"image"] = listInfo.imgUrl;
     params[@"url"] = listInfo.informationUrl;
     return params.copy;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    HomeShoppingDetailVc *detail = [HomeShoppingDetailVc new];
+    ShoppingListInfo *listInfo;
+    if (indexPath.section<_dataArray.count) {
+        listInfo = _dataArray[indexPath.section];
+    }
+    detail.title = listInfo.goodsName;
+    detail.url = listInfo.informationUrl;
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 @end
