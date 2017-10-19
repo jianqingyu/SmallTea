@@ -31,6 +31,9 @@
 }
 
 - (void)setLoopScrollView:(NSArray *)arr{
+    if (arr.count==0) {
+        return;
+    }
     NSMutableArray *pic  = @[].mutableCopy;
     for (NSDictionary*dict in arr) {
         NSString *str = [self UsingEncoding:dict[@"imgUrl"]];
@@ -76,6 +79,9 @@
 }
 
 - (void)openBanner:(NSDictionary *)dic{
+    if (dic.count==0) {
+        return;
+    }
     HomeBannerDetailVC *banner = [HomeBannerDetailVC new];
     banner.title = dic[@"title"];
     banner.url = dic[@"url"];
@@ -84,6 +90,9 @@
 }
 
 - (void)openConfirmOrder{
+    if (self.messDic.count==0) {
+        return;
+    }
     UIViewController *vc = [ShowLoginViewTool getCurrentVC];
     HomeMessageListVC *listVc = [HomeMessageListVC new];
     [vc.navigationController pushViewController:listVc animated:YES];

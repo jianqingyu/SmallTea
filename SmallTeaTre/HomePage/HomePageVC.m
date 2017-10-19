@@ -56,9 +56,8 @@ UINavigationControllerDelegate>{
 - (void)setBaseTableAndNet{
     [self setupTableView];
     [self setupHeaderRefresh];
-    [self loadHomeHead];
-    [self loadMessage];
-    [self loadNewTea];
+//    [self loadHomeHead];
+//    [self loadMessage];
 }
 
 - (void)loginUser{
@@ -187,6 +186,7 @@ UINavigationControllerDelegate>{
             if ([YQObjectBool boolForObject:response.result]){
                 NSArray *arr = response.result[@"result"];
                 [self creatCusTomHeadView:arr];
+                [self loadMessage];
             }
         }
     } requestURL:url params:params];
@@ -262,6 +262,7 @@ UINavigationControllerDelegate>{
         curPage = 1;
         [self.oneData removeAllObjects];
         [self.twoData removeAllObjects];
+        [self loadHomeHead];
         [self loadNewTea];
     }
     [self getCommodityData];
@@ -369,6 +370,7 @@ UINavigationControllerDelegate>{
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    BOOL isHi = section?self.twoData.count:self.oneData.count;
     NSString *title = section?@"热门茶叶":@"新茶上架";
     UIView *hView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SDevWidth, 18)];
     UIView *heView = [[UIView alloc]initWithFrame:CGRectMake(9.5, 0,SDevWidth-19, 18)];
@@ -381,6 +383,7 @@ UINavigationControllerDelegate>{
     lab.backgroundColor = [UIColor whiteColor];
     [hView addSubview:heView];
     [heView addSubview:lab];
+    hView.hidden = !isHi;
     return hView;
 }
 
