@@ -1741,7 +1741,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.XMYX.SmallTea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "394f1918-8e5f-4ce4-a18b-7cea0d94f01a";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1764,7 +1764,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.XMYX.SmallTea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "394f1918-8e5f-4ce4-a18b-7cea0d94f01a";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
